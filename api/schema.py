@@ -172,15 +172,15 @@ class LocationType:
     def closed_days(self, root) -> List[WeekdayType]:
         return root.closedDays.all()
 
-    @strawberry.field
+    @strawberry.field(name="voiceoverEn")
     def voiceover_en(self, info: strawberry.Info, root) -> Optional[str]:
-        if getattr(root, 'voiceover_en', None) and getattr(root.voiceover_en, 'url', None):
+        if getattr(root, "voiceover_en", None) and getattr(root.voiceover_en, "url", None):
             return info.context.request.build_absolute_uri(root.voiceover_en.url)
         return None
 
-    @strawberry.field
+    @strawberry.field(name="voiceoverFr")
     def voiceover_fr(self, info: strawberry.Info, root) -> Optional[str]:
-        if getattr(root, 'voiceover_fr', None) and getattr(root.voiceover_fr, 'url', None):
+        if getattr(root, "voiceover_fr", None) and getattr(root.voiceover_fr, "url", None):
             return info.context.request.build_absolute_uri(root.voiceover_fr.url)
         return None
 
