@@ -119,6 +119,8 @@ class LocationForm(FlowbiteFormMixin, forms.ModelForm):
             "admissionFee",
             "is_active_ads",
             "closedDays",
+            "voiceover_en",
+            "voiceover_fr",
         ]
         widgets = {
             "category": forms.Select(
@@ -174,6 +176,16 @@ class LocationForm(FlowbiteFormMixin, forms.ModelForm):
             "closedDays": forms.CheckboxSelectMultiple(
                 attrs={
                     "class": "w-5 h-5 border border-default-medium rounded bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft",
+                }
+            ),
+            "voiceover_en": forms.FileInput(
+                attrs={
+                    "accept": ".aac,audio/aac,audio/x-aac",
+                }
+            ),
+            "voiceover_fr": forms.FileInput(
+                attrs={
+                    "accept": ".aac,audio/aac,audio/x-aac",
                 }
             ),
         }
@@ -258,6 +270,21 @@ class LocationForm(FlowbiteFormMixin, forms.ModelForm):
             self.add_error("openTo", _("Opening time must be before closing time."))
 
         return cleaned_data
+
+    def _clean_voiceover(self, field_name):
+        voiceover = self.cleaned_data.get(field_name)
+        if voiceover:
+            import os
+            ext = os.path.splitext(voiceover.name)[1].lower()
+            if ext != '.aac':
+                raise forms.ValidationError(_("Only AAC audio format is allowed."))
+        return voiceover
+
+    def clean_voiceover_en(self):
+        return self._clean_voiceover("voiceover_en")
+
+    def clean_voiceover_fr(self):
+        return self._clean_voiceover("voiceover_fr")
 
 
 class ImageLocationForm(forms.ModelForm):

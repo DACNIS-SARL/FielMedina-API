@@ -53,6 +53,13 @@ class LocationAdmin(TranslationAdmin):
                 )
             },
         ),
+        (
+            _("Voiceover Audio"),
+            {
+                "fields": ("voiceover_en", "voiceover_fr"),
+                "description": _("Optional audio voiceovers for this location (AAC format only)"),
+            },
+        ),
     )
 
 

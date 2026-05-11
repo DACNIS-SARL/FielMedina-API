@@ -451,6 +451,111 @@
         </div>
     </div>
 
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl mt-6">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"></path>
+                    </svg>
+                    {% trans "Voiceover Audio" %}
+                </h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Upload optional audio voiceovers (AAC format only)" %}</p>
+            </div>
+            
+            <div class="mb-4">
+                <div class="border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center dark:text-white" role="tablist">
+                        <li class="mr-2" role="presentation">
+                            <button class="cursor-pointer inline-block p-4 border-b-2 rounded-t-lg border-blue-600 text-blue-600 dark:text-blue-500 dark:border-blue-500" type="button" role="tab" aria-selected="true" onclick="switchTab(event, 'audio-en')">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/></svg>
+                                    {% trans "English" %}
+                                </span>
+                            </button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button class="cursor-pointer inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-selected="false" onclick="switchTab(event, 'audio-fr')">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/></svg>
+                                    {% trans "French" %}
+                                </span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="audio-en" class="tab-content pt-4">
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.voiceover_en.label }}
+                        </label>
+                        {% if object.voiceover_en %}
+                            <div class="mb-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-900 dark:text-white flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        {% trans "Current file:" %} {{ object.voiceover_en.name|slice:"21:" }}
+                                    </span>
+                                </div>
+                                <audio controls class="w-full max-w-md h-10 mt-2 mb-3">
+                                    <source src="{{ object.voiceover_en.url }}" type="audio/aac">
+                                    {% trans "Your browser does not support the audio element." %}
+                                </audio>
+                                <div class="flex items-center">
+                                    <input type="checkbox" name="voiceover_en-clear" id="voiceover_en-clear_id" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="voiceover_en-clear_id" class="ml-2 text-sm font-medium text-red-600 dark:text-red-500">{% trans "Delete this audio file" %}</label>
+                                </div>
+                            </div>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{% trans "Replace audio file:" %}</label>
+                        {% endif %}
+                        {{ form.voiceover_en }}
+                        {% if form.voiceover_en.errors %}
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.voiceover_en.errors.0 }}</p>
+                        {% endif %}
+                        {% if form.voiceover_en.help_text %}
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ form.voiceover_en.help_text }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div id="audio-fr" class="tab-content pt-4 hidden">
+                    <div>
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.voiceover_fr.label }}
+                        </label>
+                        {% if object.voiceover_fr %}
+                            <div class="mb-4 p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-sm font-medium text-gray-900 dark:text-white flex items-center">
+                                        <svg class="w-4 h-4 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        {% trans "Current file:" %} {{ object.voiceover_fr.name|slice:"21:" }}
+                                    </span>
+                                </div>
+                                <audio controls class="w-full max-w-md h-10 mt-2 mb-3">
+                                    <source src="{{ object.voiceover_fr.url }}" type="audio/aac">
+                                    {% trans "Your browser does not support the audio element." %}
+                                </audio>
+                                <div class="flex items-center">
+                                    <input type="checkbox" name="voiceover_fr-clear" id="voiceover_fr-clear_id" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                    <label for="voiceover_fr-clear_id" class="ml-2 text-sm font-medium text-red-600 dark:text-red-500">{% trans "Delete this audio file" %}</label>
+                                </div>
+                            </div>
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{% trans "Replace audio file:" %}</label>
+                        {% endif %}
+                        {{ form.voiceover_fr }}
+                        {% if form.voiceover_fr.errors %}
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.voiceover_fr.errors.0 }}</p>
+                        {% endif %}
+                        {% if form.voiceover_fr.help_text %}
+                            <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ form.voiceover_fr.help_text }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Images Section -->
     <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl mt-6">
         <div class="px-4 py-5 sm:p-6">

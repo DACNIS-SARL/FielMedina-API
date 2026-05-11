@@ -23,6 +23,11 @@ def location_image_path(instance, filename):
     return f"locations/{instance.location.id}/{name}.jpg"
 
 
+def location_voiceover_path(instance, filename):
+    name, ext = os.path.splitext(filename)
+    return f"locations/voiceovers/{instance.id}/{name}{ext}"
+
+
 def event_image_path(instance, filename):
     name, ext = os.path.splitext(filename)
     return f"events/{instance.event.id}/{name}.jpg"
@@ -189,6 +194,20 @@ class Location(models.Model):
         verbose_name=_("Closed Days"),
         blank=True,
         related_name="locations",
+    )
+    voiceover_en = models.FileField(
+        upload_to=location_voiceover_path,
+        verbose_name=_("Voiceover (English)"),
+        blank=True,
+        null=True,
+        help_text=_("Upload an audio voiceover in English (AAC format only)"),
+    )
+    voiceover_fr = models.FileField(
+        upload_to=location_voiceover_path,
+        verbose_name=_("Voiceover (French)"),
+        blank=True,
+        null=True,
+        help_text=_("Upload an audio voiceover in French (AAC format only)"),
     )
 
     class Meta:
@@ -414,6 +433,21 @@ def cleanup_ad_images(sender, instance, **kwargs):
     """
     for field_name in ["image_mobile", "image_tablet"]:
         field = getattr(instance, field_name)
+        if field and field.name:
+            try:
+                if os.path.isfile(field.path):
+                    os.remove(field.path)
+            except Exception:
+                pass
+
+
+@receiver(post_delete, sender=Location)
+def cleanup_location_voiceovers(sender, instance, **kwargs):
+    """
+    Delete voiceover files from filesystem when Location is deleted.
+    """
+    for field_name in ["voiceover_en", "voiceover_fr"]:
+        field = getattr(instance, field_name, None)
         if field and field.name:
             try:
                 if os.path.isfile(field.path):
