@@ -32,6 +32,10 @@ from guard.models import (
     Partner,
     Sponsor,
     Weekday,
+    Merchant,
+    MerchantCategory,
+    MerchantProduct,
+    MerchantRating,
 )
 
 from cities_light.models import City, Country
@@ -340,6 +344,105 @@ class TipType:
     description_en: str
     description_fr: str
     city: Optional["CityType"]
+
+
+@strawberry_django.type(MerchantCategory)
+class MerchantCategoryType:
+    id: auto
+    name: auto
+    name_en: str
+    name_fr: str
+    icon: Optional[str]
+
+
+@strawberry.type
+class MerchantImageType:
+    @strawberry.field
+    def image(self, root) -> ImageFieldType:
+        return root.image
+
+    @strawberry.field(name="imageMobile")
+    def image_mobile(self, root) -> Optional[ImageFieldType]:
+        return root.image_mobile
+
+
+@strawberry_django.type(MerchantProduct)
+class MerchantProductType:
+    id: auto
+    name: auto
+    name_en: str
+    name_fr: str
+    price: Optional[float]
+
+    @strawberry.field
+    def image(self, info: strawberry.Info, root) -> Optional[str]:
+        if root.image and root.image.name:
+            return info.context.request.build_absolute_uri(root.image.url)
+        return None
+
+
+@strawberry_django.type(MerchantRating)
+class MerchantRatingType:
+    id: auto
+    stars: auto
+    reviewer_name: auto
+    comment: Optional[str]
+    created_at: auto
+
+
+@strawberry_django.type(Merchant)
+class MerchantType:
+    id: auto
+    created_at: auto
+    name: auto
+    name_en: str
+    name_fr: str
+    description: str
+    description_en: str
+    description_fr: str
+    address: Optional[str]
+    address_en: Optional[str]
+    address_fr: Optional[str]
+    latitude: float
+    longitude: float
+    phone: Optional[str]
+    website: Optional[str]
+    price_range: str
+    open_from: Optional[str]
+    open_to: Optional[str]
+    is_featured: auto
+    city: Optional["CityType"]
+    category: Optional[MerchantCategoryType]
+
+    @strawberry.field
+    def cover(self, info: strawberry.Info, root) -> Optional[str]:
+        if root.cover and root.cover.name:
+            return info.context.request.build_absolute_uri(root.cover.url)
+        return None
+
+    @strawberry.field
+    def images(self, root) -> List[MerchantImageType]:
+        return root.images.all()
+
+    @strawberry.field
+    def products(self, root) -> List[MerchantProductType]:
+        return root.products.all()
+
+    @strawberry.field
+    def ratings(self, root) -> List[MerchantRatingType]:
+        return root.ratings.filter(is_approved=True)
+
+    @strawberry.field
+    def average_rating(self, root) -> Optional[float]:
+        approved = root.ratings.filter(is_approved=True)
+        if not approved.exists():
+            return None
+        total = sum(r.stars for r in approved)
+        return round(total / approved.count(), 1)
+
+    @strawberry.field
+    def ratings_count(self, root) -> int:
+        return root.ratings.filter(is_approved=True).count()
 
 
 @strawberry_django.type(City)
@@ -759,6 +862,45 @@ class Query:
     def sponsors(self) -> List[SponsorType]:
         return Sponsor.objects.all()
 
+    @strawberry.field
+    def merchants(
+        self,
+        city_id: Optional[int] = None,
+        category_id: Optional[int] = None,
+        limit: Optional[int] = None,
+        offset: Optional[int] = 0,
+    ) -> List[MerchantType]:
+        qs = Merchant.objects.filter(
+            is_active=True,
+            contract_status="active",
+        ).select_related("city", "category").prefetch_related(
+            "images", "products", "ratings"
+        )
+        if city_id is not None:
+            qs = qs.filter(city_id=city_id)
+        if category_id is not None:
+            qs = qs.filter(category_id=category_id)
+        if limit is not None:
+            qs = qs[offset: offset + limit]
+        return qs
+
+    @strawberry.field
+    def merchant(self, id: strawberry.ID) -> Optional[MerchantType]:
+        return (
+            Merchant.objects.filter(
+                pk=id,
+                is_active=True,
+                contract_status="active",
+            )
+            .select_related("city", "category")
+            .prefetch_related("images", "products", "ratings")
+            .first()
+        )
+
+    @strawberry.field
+    def merchant_categories(self) -> List[MerchantCategoryType]:
+        return MerchantCategory.objects.all()
+
 
 @strawberry.type
 class SyncUserPreferencePayload:
@@ -767,6 +909,11 @@ class SyncUserPreferencePayload:
 
 @strawberry.type
 class RegisterDevicePayload:
+    ok: bool
+    message: Optional[str] = None
+
+@strawberry.type
+class SubmitRatingPayload:
     ok: bool
     message: Optional[str] = None
 
@@ -882,6 +1029,58 @@ class Mutation:
             return RegisterDevicePayload(
                 ok=False, message=f"Error registering device: {str(e)}"
             )
+
+    @strawberry.mutation
+    def submit_merchant_rating(
+        self,
+        info: strawberry.Info,
+        merchant_id: strawberry.ID,
+        stars: int,
+        reviewer_name: str,
+        reviewer_email: str,
+        comment: Optional[str] = None,
+    ) -> SubmitRatingPayload:
+        # Validate stars range
+        if stars < 1 or stars > 5:
+            return SubmitRatingPayload(ok=False, message="Stars must be between 1 and 5")
+
+        # Get merchant
+        merchant = Merchant.objects.filter(
+            pk=merchant_id,
+            is_active=True,
+            contract_status="active",
+        ).first()
+        if not merchant:
+            return SubmitRatingPayload(ok=False, message="Merchant not found")
+
+        # Get IP for spam protection
+        request = info.context.request
+        ip = (
+            request.META.get("HTTP_X_FORWARDED_FOR", "").split(",")[0].strip()
+            or request.META.get("REMOTE_ADDR")
+        )
+
+        # One review per email per merchant
+        if MerchantRating.objects.filter(
+            merchant=merchant,
+            reviewer_email=reviewer_email
+        ).exists():
+            return SubmitRatingPayload(
+                ok=False,
+                message="You have already submitted a review for this merchant"
+            )
+
+        MerchantRating.objects.create(
+            merchant=merchant,
+            stars=stars,
+            reviewer_name=reviewer_name,
+            reviewer_email=reviewer_email,
+            comment=comment,
+            ip_address=ip,
+            is_approved=False,  # requires moderation in Guard
+        )
+        return SubmitRatingPayload(ok=True, message="Review submitted successfully")
+
 
 
 extensions = []

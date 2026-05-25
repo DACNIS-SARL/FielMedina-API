@@ -17,6 +17,7 @@ from .models import (
     PublicTransportType,
     Partner,
     Sponsor,
+    MerchantCategory, Merchant, MerchantImage, MerchantProduct, MerchantRating
 )
 from modeltranslation.admin import TranslationAdmin
 
@@ -274,4 +275,53 @@ class SponsorAdmin(admin.ModelAdmin):
             _("Basic Information"),
             {"fields": ("name", "image", "link")},
         ),
+    )
+
+
+class MerchantImageInline(admin.TabularInline):
+    model = MerchantImage
+    extra = 1
+
+class MerchantProductInline(admin.TabularInline):
+    model = MerchantProduct
+    extra = 1
+
+class MerchantRatingInline(admin.TabularInline):
+    model = MerchantRating
+    extra = 0
+    readonly_fields = ("reviewer_name", "reviewer_email", "stars", "comment", "ip_address", "created_at")
+    can_delete = False
+
+@admin.register(MerchantCategory)
+class MerchantCategoryAdmin(TranslationAdmin):
+    list_display = ("name",)
+
+@admin.register(Merchant)
+class MerchantAdmin(TranslationAdmin):
+    list_display = ("name", "category", "city", "price_range", "contract_status", "is_active", "is_featured", "contract_end")
+    list_filter = ("contract_status", "is_active", "is_featured", "category", "city")
+    list_editable = ("is_active", "is_featured", "contract_status")
+    search_fields = ("name", "address", "phone")
+    readonly_fields = ("created_at", "updated_at")
+    inlines = [MerchantImageInline, MerchantProductInline, MerchantRatingInline]
+    fieldsets = (
+        (None, {
+            "fields": ("name", "description", "category", "city", "cover")
+        }),
+        ("Location", {
+            "fields": ("address", "latitude", "longitude")
+        }),
+        ("Contact & Hours", {
+            "fields": ("phone", "website", "price_range", "open_from", "open_to")
+        }),
+        ("Visibility", {
+            "fields": ("is_active", "is_featured")
+        }),
+        ("Contract", {
+            "fields": ("contract_status", "contract_start", "contract_end", "contract_notes")
+        }),
+        ("Timestamps", {
+            "fields": ("created_at", "updated_at"),
+            "classes": ("collapse",)
+        }),
     )

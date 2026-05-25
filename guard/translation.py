@@ -7,6 +7,7 @@ from .models import (
     Tip,
     Hiking,
     PublicTransportType,
+    MerchantCategory, Merchant, MerchantProduct
 )
 
 
@@ -51,4 +52,17 @@ class HikingTranslationOptions(TranslationOptions):
 
 @register(PublicTransportType)
 class PublicTransportTypeTranslationOptions(TranslationOptions):
+    fields = ("name",)
+
+
+@register(MerchantCategory)
+class MerchantCategoryTranslationOptions(TranslationOptions):
+    fields = ("name",)
+
+@register(Merchant)
+class MerchantTranslationOptions(TranslationOptions):
+    fields = ("name", "description", "address")
+
+@register(MerchantProduct)
+class MerchantProductTranslationOptions(TranslationOptions):
     fields = ("name",)

@@ -618,3 +618,221 @@ def cleanup_all_files(sender, instance, **kwargs):
                     # print("Delete successful!")
                 except Exception as e:
                     print(f"Error deleting file: {e}")
+
+
+
+# ──────────────────────────────────────────────
+# Merchant (Our Pick) feature
+# ──────────────────────────────────────────────
+
+def merchant_image_path(instance, filename):
+    ext = filename.rsplit(".", 1)[-1]
+    return f"merchants/{instance.merchant.id}/{uuid.uuid4().hex}.{ext}"
+
+def merchant_cover_path(instance, filename):
+    ext = filename.rsplit(".", 1)[-1]
+    return f"merchants/covers/{uuid.uuid4().hex}.{ext}"
+
+def merchant_product_image_path(instance, filename):
+    ext = filename.rsplit(".", 1)[-1]
+    return f"merchants/products/{uuid.uuid4().hex}.{ext}"
+
+
+class MerchantCategory(models.Model):
+    name = models.CharField(max_length=100, verbose_name=_("Name"))
+    icon = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        verbose_name=_("Icon"),
+        help_text=_("SF Symbol name (iOS) / Material icon name (Android)"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Merchant Category")
+        verbose_name_plural = _("Merchant Categories")
+
+    def __str__(self):
+        return self.name
+
+
+class Merchant(models.Model):
+
+    class ContractStatus(models.TextChoices):
+        PENDING = "pending", _("Pending")
+        ACTIVE = "active", _("Active")
+        EXPIRED = "expired", _("Expired")
+        CANCELLED = "cancelled", _("Cancelled")
+
+    class PriceRange(models.TextChoices):
+        CHEAP = "€", _("€ — Budget friendly")
+        MODERATE = "€€", _("€€ — Moderate")
+        EXPENSIVE = "€€€", _("€€€ — Premium")
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    name = models.CharField(max_length=255, verbose_name=_("Name"))
+    description = HTMLField(verbose_name=_("Description"))
+    category = models.ForeignKey(
+        MerchantCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="merchants",
+        verbose_name=_("Category"),
+    )
+    city = models.ForeignKey(
+        "cities_light.City",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="merchants",
+        verbose_name=_("City"),
+    )
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, verbose_name=_("Latitude"))
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, verbose_name=_("Longitude"))
+    address = models.CharField(max_length=500, blank=True, null=True, verbose_name=_("Address"))
+    phone = models.CharField(max_length=30, blank=True, null=True, verbose_name=_("Phone"))
+    website = models.URLField(blank=True, null=True, verbose_name=_("Website"))
+    price_range = models.CharField(
+        max_length=5,
+        choices=PriceRange.choices,
+        default=PriceRange.MODERATE,
+        verbose_name=_("Price Range"),
+    )
+    open_from = models.TimeField(blank=True, null=True, verbose_name=_("Open From"))
+    open_to = models.TimeField(blank=True, null=True, verbose_name=_("Open To"))
+    cover = models.ImageField(
+        upload_to=merchant_cover_path,
+        blank=True,
+        null=True,
+        verbose_name=_("Cover Image"),
+    )
+    is_active = models.BooleanField(default=False, verbose_name=_("Active"))
+    is_featured = models.BooleanField(
+        default=False,
+        verbose_name=_("Featured"),
+        help_text=_("Featured merchants appear at the top of the list"),
+    )
+    contract_status = models.CharField(
+        max_length=20,
+        choices=ContractStatus.choices,
+        default=ContractStatus.PENDING,
+        verbose_name=_("Contract Status"),
+    )
+    contract_start = models.DateField(blank=True, null=True, verbose_name=_("Contract Start"))
+    contract_end = models.DateField(blank=True, null=True, verbose_name=_("Contract End"))
+    contract_notes = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name=_("Contract Notes"),
+        help_text=_("Internal notes about this merchant's contract"),
+    )
+
+    class Meta:
+        verbose_name = _("Merchant")
+        verbose_name_plural = _("Merchants")
+        ordering = ["-is_featured", "-created_at"]
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        from django.utils import timezone
+        if self.contract_end and self.contract_end < timezone.now().date():
+            if self.contract_status == self.ContractStatus.ACTIVE:
+                self.contract_status = self.ContractStatus.EXPIRED
+                self.is_active = False
+        super().save(*args, **kwargs)
+
+
+class MerchantImage(OptimizedImageModel):
+    merchant = models.ForeignKey(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="images",
+        verbose_name=_("Merchant"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self._meta.get_field("image").upload_to = merchant_image_path
+        self._meta.get_field("image_mobile").upload_to = merchant_image_path
+        super().save(*args, **kwargs)
+
+    class Meta:
+        verbose_name = _("Merchant Image")
+        verbose_name_plural = _("Merchant Images")
+
+    def __str__(self):
+        return f"Image for {self.merchant.name}"
+
+
+class MerchantProduct(models.Model):
+    merchant = models.ForeignKey(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="products",
+        verbose_name=_("Merchant"),
+    )
+    name = models.CharField(max_length=255, verbose_name=_("Product Name"))
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True,
+        verbose_name=_("Price"),
+    )
+    image = models.ImageField(
+        upload_to=merchant_product_image_path,
+        blank=True,
+        null=True,
+        verbose_name=_("Image"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Product")
+        verbose_name_plural = _("Products")
+
+    def __str__(self):
+        return f"{self.name} ({self.merchant.name})"
+
+
+class MerchantRating(models.Model):
+    merchant = models.ForeignKey(
+        Merchant,
+        on_delete=models.CASCADE,
+        related_name="ratings",
+        verbose_name=_("Merchant"),
+    )
+    stars = models.PositiveSmallIntegerField(
+        verbose_name=_("Stars"),
+        help_text=_("Rating from 1 to 5"),
+    )
+    reviewer_name = models.CharField(max_length=150, verbose_name=_("Name"))
+    reviewer_email = models.EmailField(verbose_name=_("Email"))
+    comment = models.TextField(blank=True, null=True, verbose_name=_("Comment"))
+    ip_address = models.GenericIPAddressField(
+        blank=True,
+        null=True,
+        verbose_name=_("IP Address"),
+        help_text=_("Stored for spam protection"),
+    )
+    is_approved = models.BooleanField(
+        default=False,
+        verbose_name=_("Approved"),
+        help_text=_("Only approved ratings are shown in the app"),
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Merchant Rating")
+        verbose_name_plural = _("Merchant Ratings")
+        unique_together = [("merchant", "reviewer_email")]
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.stars}★ — {self.reviewer_name} on {self.merchant.name}"

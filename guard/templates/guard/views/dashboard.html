@@ -5,7 +5,6 @@
 
 {% block body %}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-       <!-- Ads Summary Card -->
        <div class="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-5 transition-all hover:shadow-md">
           <div class="flex justify-between items-start mb-4">
              <div>
@@ -30,8 +29,6 @@
              </a>
           </div>
        </div>
-
-       <!-- Events Summary Card -->
        <div class="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-5 transition-all hover:shadow-md">
           <div class="flex justify-between items-start mb-4">
              <div>
@@ -57,7 +54,6 @@
        </div>
     </div>
 
-    <!-- Additional Placeholder stats or content if needed -->
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
        {% for i in "1234"|make_list %}
        <div class="flex items-center justify-center rounded-xl bg-gray-50 border border-gray-100 h-24 dark:bg-gray-800 dark:border-gray-700">
@@ -68,7 +64,9 @@
        {% endfor %}
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script> {% endcomment %}
+     <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
+
     {{ stats|json_script:"stats-data" }}
     <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -17,7 +17,15 @@
         <a href="{% url 'guard:dashboard' %}" class="flex ms-2 md:me-24">
           <img src="{% static 'logo.png' %}" class="h-10 -me-2" alt="FielMedina Logo" />
           <span
-            class="self-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span>
+            class="self-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">
+            {% if user.is_superuser %}
+            {% trans "Super Admin" %}
+            {% elif user.is_staff %}
+            {% trans "Staff" %}
+            {% else %}
+            {% trans "Pro" %}
+            {% endif %}
+          </span>
         </a>
       </div>
       <div class="flex items-center">
