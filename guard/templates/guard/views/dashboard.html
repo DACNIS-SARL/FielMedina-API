@@ -4,7 +4,7 @@
 {% block title %}{% trans "Dashboard" %}{% endblock title %}
 
 {% block body %}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
        <div class="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-5 transition-all hover:shadow-md">
           <div class="flex justify-between items-start mb-4">
              <div>
@@ -45,6 +45,29 @@
           <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700 mt-4">
              <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">{% trans "Last 7 days trend" %}</span>
              <a href="{% url 'guard:eventsList' %}" class="inline-flex items-center text-sm font-bold text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300">
+                {% trans "Full report" %}
+                <svg class="w-4 h-4 ms-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                </svg>
+             </a>
+          </div>
+       </div>
+       <div class="w-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-5 transition-all hover:shadow-md">
+          <div class="flex justify-between items-start mb-4">
+             <div>
+                <h5 class="text-3xl font-bold text-gray-900 dark:text-white">{{ stats.merchants.totalClicks|default:0 }}</h5>
+                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{% trans "Total Merchant Clicks" %}</p>
+             </div>
+             <div class="flex items-center p-2 rounded-lg bg-purple-50 dark:bg-purple-900/30">
+                <svg class="w-6 h-6 text-purple-600 dark:text-purple-400" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960">
+                   <path d="m387-412 35-114-92-74h114l36-112 36 112h114l-93 74 35 114-92-71-93 71ZM240-40v-309q-38-42-59-96t-21-115q0-134 93-227t227-93q134 0 227 93t93 227q0 61-21 115t-59 96v309l-240-80-240 80Zm410-350q70-70 70-170t-70-170q-70-70-170-70t-170 70q-70 70-70 170t70 170q70 70 170 70t170-70ZM320-159l160-41 160 41v-124q-35 20-75.5 31.5T480-240q-44 0-84.5-11.5T320-283v124Zm160-62Z"/>
+                </svg>
+             </div>
+          </div>
+          <div id="merchants-sparkline" class="py-2"></div>
+          <div class="flex items-center justify-between pt-4 border-t border-gray-100 dark:border-gray-700 mt-4">
+             <span class="text-xs font-semibold text-gray-400 uppercase tracking-wider">{% trans "Last 7 days trend" %}</span>
+             <a href="{% url 'guard:merchantsList' %}" class="inline-flex items-center text-sm font-bold text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300">
                 {% trans "Full report" %}
                 <svg class="w-4 h-4 ms-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
@@ -112,6 +135,17 @@
                 data: eventsTimeline.length ? eventsTimeline.map(p => p.clicks) : [0, 0, 0, 0, 0, 0, 0]
             }],
             colors: ['#059669'],
+        }).render();
+
+        // Merchants Sparkline
+        const merchantsTimeline = (statsData.merchants && statsData.merchants.clickStatistics && statsData.merchants.clickStatistics.timeline) || [];
+        new ApexCharts(document.querySelector("#merchants-sparkline"), {
+            ...commonOptions,
+            series: [{
+                name: 'Merchant Clicks',
+                data: merchantsTimeline.length ? merchantsTimeline.map(p => p.clicks) : [0, 0, 0, 0, 0, 0, 0]
+            }],
+            colors: ['#7c3aed'],
         }).render();
     });
     </script>

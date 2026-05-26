@@ -696,6 +696,8 @@ class Merchant(models.Model):
     address = models.CharField(max_length=500, blank=True, null=True, verbose_name=_("Address"))
     phone = models.CharField(max_length=30, blank=True, null=True, verbose_name=_("Phone"))
     website = models.URLField(blank=True, null=True, verbose_name=_("Website"))
+    short_link = models.URLField(blank=True, null=True)
+    short_id = models.CharField(max_length=50, blank=True, null=True)
     price_range = models.CharField(
         max_length=5,
         choices=PriceRange.choices,

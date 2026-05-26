@@ -8,6 +8,8 @@ from django.db.models import Q
 from django.utils import timezone
 import datetime
 import uuid
+import logging
+from dataclasses import dataclass
 from django.conf import settings
 from graphql.validation import NoSchemaIntrospectionCustomRule
 from strawberry.extensions import AddValidationRules
@@ -407,6 +409,8 @@ class MerchantType:
     longitude: float
     phone: Optional[str]
     website: Optional[str]
+    short_link: auto
+    short_id: auto
     price_range: str
     open_from: Optional[str]
     open_to: Optional[str]
@@ -903,16 +907,19 @@ class Query:
 
 
 @strawberry.type
+@dataclass
 class SyncUserPreferencePayload:
     ok: bool
 
 
 @strawberry.type
+@dataclass
 class RegisterDevicePayload:
     ok: bool
     message: Optional[str] = None
 
 @strawberry.type
+@dataclass
 class SubmitRatingPayload:
     ok: bool
     message: Optional[str] = None
@@ -1022,13 +1029,12 @@ class Mutation:
             )
 
         except Exception as e:
-            import logging
-
             logger = logging.getLogger(__name__)
             logger.error(f"Error registering FCM device: {e}", exc_info=True)
             return RegisterDevicePayload(
-                ok=False, message=f"Error registering device: {str(e)}"
-            )
+                ok=False,
+                message=f"Error registering device: {str(e)}"
+                )
 
     @strawberry.mutation
     def submit_merchant_rating(

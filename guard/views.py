@@ -73,7 +73,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         service = ShortIOService()
 
         # Try to get stats from cache
-        cache_key = "dashboard_analytics_stats"
+        cache_key = f"dashboard_analytics_stats_{self.request.user.id}"
         stats = cache.get(cache_key)
 
         if not stats:
@@ -89,18 +89,25 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                     client=profile, short_id__isnull=False
                 ).values_list("short_id", flat=True)
             )
+            merchant_ids = list(
+                Merchant.objects.filter(
+                    is_active=True, short_id__isnull=False
+                ).values_list("short_id", flat=True)
+            )
 
             # Aggregate stats for the last 7 days (week)
             period = "week"
             ads_stats = service.get_aggregated_link_statistics(ad_ids, period)
             events_stats = service.get_aggregated_link_statistics(event_ids, period)
+            merchants_stats = service.get_aggregated_link_statistics(merchant_ids, period)
 
             stats = {
                 "ads": ads_stats,
                 "events": events_stats,
+                "merchants": merchants_stats,
             }
-            # Cache for 15 minutes - include user ID in cache key for isolation
-            cache.set(f"{cache_key}_{self.request.user.id}", stats, 60 * 15)
+            # Cache for 15 minutes
+            cache.set(cache_key, stats, 60 * 15)
 
         context["stats"] = stats
         return context
@@ -1166,7 +1173,25 @@ class MerchantCreateView(
         product_formset = context["product_formset"]
 
         if image_formset.is_valid() and product_formset.is_valid():
-            self.object = form.save()
+            self.object = form.save(commit=False)
+            
+            # Shorten URL via Short.io
+            if self.object.website:
+                try:
+                    service = ShortIOService()
+                    short_data = service.shorten_url(
+                        self.object.website, title="Merchant Website"
+                    )
+                    if short_data:
+                        self.object.short_link = short_data.get(
+                            "secureShortURL"
+                        ) or short_data.get("shortURL")
+                        self.object.short_id = short_data.get("idString")
+                except Exception as e:
+                    import logging
+                    logging.getLogger(__name__).error(f"Short.io error for merchant create: {e}")
+
+            self.object.save()
             image_formset.instance = self.object
             image_formset.save()
             product_formset.instance = self.object
@@ -1208,7 +1233,43 @@ class MerchantUpdateView(
         product_formset = context["product_formset"]
 
         if image_formset.is_valid() and product_formset.is_valid():
-            self.object = form.save()
+            self.object = form.save(commit=False)
+
+            # Update URL via Short.io if changed
+            if "website" in form.changed_data:
+                if self.object.website:
+                    try:
+                        service = ShortIOService()
+                        updated = False
+                        if self.object.short_id:
+                            result = service.update_link(
+                                self.object.short_id,
+                                self.object.website,
+                                title="Merchant Website",
+                            )
+                            if result:
+                                self.object.short_link = result.get(
+                                    "secureShortURL"
+                                ) or result.get("shortURL")
+                                updated = True
+
+                        if not updated:
+                            short_data = service.shorten_url(
+                                self.object.website, title="Merchant Website"
+                            )
+                            if short_data:
+                                self.object.short_link = short_data.get(
+                                    "secureShortURL"
+                                ) or short_data.get("shortURL")
+                                self.object.short_id = short_data.get("idString")
+                    except Exception as e:
+                        import logging
+                        logging.getLogger(__name__).error(f"Short.io error for merchant update: {e}")
+                else:
+                    self.object.short_link = None
+                    self.object.short_id = None
+
+            self.object.save()
             image_formset.instance = self.object
             image_formset.save()
             product_formset.instance = self.object
