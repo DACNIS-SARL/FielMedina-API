@@ -35,6 +35,10 @@ from .forms import (
     PublicTransportFormSet,
     PartnerForm,
     SponsorForm,
+    MerchantForm,
+    MerchantCategoryForm,
+    MerchantProductFormSet,
+    MerchantImageFormSet,
     # ImageAdFormSet,
 )
 
@@ -50,6 +54,10 @@ from .models import (
     PublicTransportType,
     Partner,
     Sponsor,
+    Merchant,
+    MerchantCategory,
+    MerchantImage,
+    MerchantProduct,
     # ImageAd,
 )
 
@@ -1112,3 +1120,159 @@ def get_locations_by_city(request, city_id):
         return JsonResponse(
             {"success": False, "error": "Error fetching locations"}, status=500
         )
+
+
+class MerchantsListView(UserPassesTestMixin, LoginRequiredMixin, ListView):
+    model = Merchant
+    template_name = "guard/views/merchants/list.html"
+    context_object_name = "merchants"
+    ordering = ["-is_featured", "-created_at"]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["merchant_categories"] = MerchantCategory.objects.all()
+        return context
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MerchantCreateView(
+    UserPassesTestMixin, LoginRequiredMixin, SuccessMessageMixin, CreateView
+):
+    model = Merchant
+    template_name = "guard/views/merchants/index.html"
+    form_class = MerchantForm
+    success_url = reverse_lazy("guard:merchantsList")
+    success_message = _("Merchant created successfully.")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context["image_formset"] = MerchantImageFormSet(
+                self.request.POST, self.request.FILES
+            )
+            context["product_formset"] = MerchantProductFormSet(
+                self.request.POST, self.request.FILES
+            )
+        else:
+            context["image_formset"] = MerchantImageFormSet()
+            context["product_formset"] = MerchantProductFormSet()
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        image_formset = context["image_formset"]
+        product_formset = context["product_formset"]
+
+        if image_formset.is_valid() and product_formset.is_valid():
+            self.object = form.save()
+            image_formset.instance = self.object
+            image_formset.save()
+            product_formset.instance = self.object
+            product_formset.save()
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MerchantUpdateView(
+    UserPassesTestMixin, LoginRequiredMixin, SuccessMessageMixin, UpdateView
+):
+    model = Merchant
+    template_name = "guard/views/merchants/index.html"
+    form_class = MerchantForm
+    success_url = reverse_lazy("guard:merchantsList")
+    success_message = _("Merchant updated successfully.")
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.POST:
+            context["image_formset"] = MerchantImageFormSet(
+                self.request.POST, self.request.FILES, instance=self.object
+            )
+            context["product_formset"] = MerchantProductFormSet(
+                self.request.POST, self.request.FILES, instance=self.object
+            )
+        else:
+            context["image_formset"] = MerchantImageFormSet(instance=self.object)
+            context["product_formset"] = MerchantProductFormSet(instance=self.object)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        image_formset = context["image_formset"]
+        product_formset = context["product_formset"]
+
+        if image_formset.is_valid() and product_formset.is_valid():
+            self.object = form.save()
+            image_formset.instance = self.object
+            image_formset.save()
+            product_formset.instance = self.object
+            product_formset.save()
+            return super().form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MerchantDeleteView(
+    UserPassesTestMixin, LoginRequiredMixin, SuccessMessageMixin, DeleteView
+):
+    model = Merchant
+    success_url = reverse_lazy("guard:merchantsList")
+    success_message = _("Merchant has been deleted.")
+
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MerchantCategoryCreateView(
+    UserPassesTestMixin, LoginRequiredMixin, SuccessMessageMixin, CreateView
+):
+    model = MerchantCategory
+    form_class = MerchantCategoryForm
+    template_name = "guard/views/merchants/category_form.html"
+    success_url = reverse_lazy("guard:merchantsList")
+    success_message = _("Merchant category created successfully.")
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MerchantCategoryUpdateView(
+    UserPassesTestMixin, LoginRequiredMixin, SuccessMessageMixin, UpdateView
+):
+    model = MerchantCategory
+    form_class = MerchantCategoryForm
+    template_name = "guard/views/merchants/category_form.html"
+    success_url = reverse_lazy("guard:merchantsList")
+    success_message = _("Merchant category updated successfully.")
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MerchantCategoryDeleteView(
+    UserPassesTestMixin, LoginRequiredMixin, SuccessMessageMixin, DeleteView
+):
+    model = MerchantCategory
+    success_url = reverse_lazy("guard:merchantsList")
+    success_message = _("Merchant category has been deleted.")
+
+    def delete(self, request, *args, **kwargs):
+        messages.warning(self.request, self.success_message)
+        return super().delete(request, *args, **kwargs)
+
+    def test_func(self):
+        return self.request.user.is_staff
+

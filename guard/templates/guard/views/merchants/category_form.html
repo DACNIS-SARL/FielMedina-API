@@ -1,0 +1,209 @@
+{% extends 'guard/base/index.html' %}
+{% load static i18n %}
+
+{% block title %}
+     {% if object %}
+          {% trans "Edit Category" %}
+     {% else %}
+          {% trans "Add Category" %}
+     {% endif %}
+{% endblock title %}
+
+{% block body %}
+<nav class="flex mb-5" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+            <a href="{% url 'guard:dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                {% trans "Dashboard" %}
+            </a>
+        </li>
+        <li>
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <a href="{% url 'guard:merchantsList' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">{% trans "Our Picks" %}</a>
+            </div>
+        </li>
+        <li aria-current="page">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">
+                    {% if object %}{% trans "Edit Category" %}{% else %}{% trans "Add Category" %}{% endif %}
+                </span>
+            </div>
+        </li>
+    </ol>
+</nav>
+
+<div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+        {% if object %}
+            {% trans "Edit Category" %}
+        {% else %}
+            {% trans "Add Category" %}
+        {% endif %}
+    </h1>
+    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        {% if object %}
+            {% trans "Update the category details below" %}
+        {% else %}
+            {% trans "Fill in the details to create a new category" %}
+        {% endif %}
+    </p>
+</div>
+
+<form action="" method="post" class="space-y-6" id="categoryForm" novalidate>
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    {% trans "Category Information" %}
+                </h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Enter category details" %}</p>
+            </div>
+
+            <div class="mb-6">
+                <div class="border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center dark:text-white" role="tablist">
+                        <li class="mr-2" role="presentation">
+                            <button class="cursor-pointer inline-block p-4 border-b-2 rounded-t-lg border-blue-600 text-blue-600 dark:text-blue-500 dark:border-blue-500" type="button" role="tab" aria-selected="true" onclick="switchTab(event, 'name-en')">
+                                {% trans "English" %}
+                            </button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button class="cursor-pointer inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-selected="false" onclick="switchTab(event, 'name-fr')">
+                                {% trans "French" %}
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <div id="name-en" class="tab-content pt-4">
+                    <div>
+                        <label for="{{ form.name_en.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.name_en.label }}
+                            {% if form.name_en.field.required %}<span class="text-red-600">*</span>{% endif %}
+                        </label>
+                        {{ form.name_en }}
+                        <button type="button" onclick="translateField('name_en', 'name_fr', 'en', 'fr', false)" 
+                                class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:from-purple-600 hover:to-pink-600 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                            </svg>
+                            <span class="translate-btn-text">{% trans "Translate to French" %}</span>
+                            <span class="translate-btn-loader hidden">
+                                <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        {% if form.name_en.errors %}
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.name_en.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div id="name-fr" class="tab-content pt-4 hidden">
+                    <div>
+                        <label for="{{ form.name_fr.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.name_fr.label }}
+                            {% if form.name_fr.field.required %}<span class="text-red-600">*</span>{% endif %}
+                        </label>
+                        {{ form.name_fr }}
+                        <button type="button" onclick="translateField('name_fr', 'name_en', 'fr', 'en', false)" 
+                                class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg hover:from-blue-600 hover:to-cyan-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                            </svg>
+                            <span class="translate-btn-text">{% trans "Translate to English" %}</span>
+                            <span class="translate-btn-loader hidden">
+                                <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </span>
+                        </button>
+                        {% if form.name_fr.errors %}
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.name_fr.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-6">
+                <label for="{{ form.icon.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    {{ form.icon.label }}
+                </label>
+                {{ form.icon }}
+                <p class="text-xs text-gray-500 mt-1">{% trans "SF Symbol name (iOS) / Material icon name (Android)" %}</p>
+                {% if form.icon.errors %}
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.icon.errors.0 }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center justify-between gap-x-6 border-t border-gray-900/10 pt-6">
+        <a href="{% url 'guard:merchantsList' %}" class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none">
+            {% trans "Cancel" %}
+        </a>
+        <div class="flex gap-x-3">
+            <button type="submit" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                {% if object %}{% trans "Update Category" %}{% else %}{% trans "Save Category" %}{% endif %}
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock body %}
+
+{% block extrascript %}
+<script>
+    function switchTab(event, tabId) {
+        event.preventDefault();
+        
+        const element = event.currentTarget;
+        const tabList = element.closest('ul');
+        const contentContainer = tabList.parentElement.parentElement;
+        
+        tabList.querySelectorAll('button, a').forEach(el => {
+            el.classList.remove('border-blue-600', 'text-blue-600', 'dark:text-blue-500', 'dark:border-blue-500', 'active');
+            el.classList.add('border-transparent');
+            el.setAttribute('aria-selected', 'false');
+            el.removeAttribute('aria-current');
+        });
+        
+        element.classList.add('border-blue-600', 'text-blue-600', 'dark:text-blue-500', 'dark:border-blue-500', 'active');
+        element.classList.remove('border-transparent');
+        element.setAttribute('aria-selected', 'true');
+        element.setAttribute('aria-current', 'page');
+        contentContainer.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+        
+        const selectedContent = document.getElementById(tabId);
+        if (selectedContent) {
+            selectedContent.classList.remove('hidden');
+        }
+    }
+
+    // AI Translation Utils
+    {% include 'shared/js/translation_utils.html' %}
+</script>
+{% endblock extrascript %}

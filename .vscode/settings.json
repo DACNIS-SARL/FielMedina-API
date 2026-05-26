@@ -1,4 +1,5 @@
 {
+  "python.defaultInterpreterPath": "/Users/aslan/miniforge3/envs/fielmedina/bin/python",
   "editor.defaultFormatter": null,
   "[django-html]": {
     "editor.defaultFormatter": "monosans.djlint",
@@ -19,3 +20,4 @@
     "django-html": "html"
   }
 }
+

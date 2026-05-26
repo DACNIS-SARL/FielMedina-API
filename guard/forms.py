@@ -18,6 +18,10 @@ from .models import (
     PublicTransportTime,
     Partner,
     Sponsor,
+    Merchant,
+    MerchantCategory,
+    MerchantImage,
+    MerchantProduct,
 )
 
 
@@ -985,3 +989,234 @@ PublicTransportFormSet = inlineformset_factory(
     can_delete=True,
     max_num=20,
 )
+
+
+class MerchantCategoryForm(FlowbiteFormMixin, forms.ModelForm):
+    name_en = forms.CharField(
+        label=_("Name (English)"),
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": _("Category name in English")}),
+    )
+    name_fr = forms.CharField(
+        label=_("Name (French)"),
+        max_length=100,
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": _("Category name in French")}),
+    )
+    icon = forms.CharField(
+        label=_("Icon"),
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={"placeholder": _("SF Symbol (e.g. cart, bag)")}),
+    )
+
+    class Meta:
+        model = MerchantCategory
+        fields = ["name_en", "name_fr", "icon"]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        errors = []
+        if not cleaned_data.get("name_en"):
+            errors.append(_("Please enter the name in English."))
+        if not cleaned_data.get("name_fr"):
+            errors.append(_("Please enter the name in French."))
+        for error in errors:
+            self.add_error(None, error)
+        return cleaned_data
+
+
+class MerchantForm(FlowbiteFormMixin, forms.ModelForm):
+    name_en = forms.CharField(
+        label=_("Name (English)"),
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": _("Merchant name in English")}),
+    )
+    name_fr = forms.CharField(
+        label=_("Name (French)"),
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": _("Merchant name in French")}),
+    )
+
+    description_en = forms.CharField(
+        label=_("Description (English)"),
+        required=True,
+        widget=TinyMCE(attrs={"cols": 80, "rows": 30}),
+    )
+    description_fr = forms.CharField(
+        label=_("Description (French)"),
+        required=True,
+        widget=TinyMCE(attrs={"cols": 80, "rows": 30}),
+    )
+
+    address_en = forms.CharField(
+        label=_("Address (English)"),
+        max_length=500,
+        required=False,
+        widget=forms.TextInput(attrs={"placeholder": _("Address in English")}),
+    )
+    address_fr = forms.CharField(
+        label=_("Address (French)"),
+        max_length=500,
+        required=False,
+        widget=forms.TextInput(attrs={"placeholder": _("Address in French")}),
+    )
+
+    class Meta:
+        model = Merchant
+        fields = [
+            "name_en",
+            "name_fr",
+            "description_en",
+            "description_fr",
+            "category",
+            "city",
+            "latitude",
+            "longitude",
+            "address_en",
+            "address_fr",
+            "phone",
+            "website",
+            "price_range",
+            "open_from",
+            "open_to",
+            "cover",
+            "is_active",
+            "is_featured",
+            "contract_status",
+            "contract_start",
+            "contract_end",
+            "contract_notes",
+        ]
+        widgets = {
+            "category": forms.Select(attrs={"required": True}),
+            "city": forms.Select(attrs={"required": True}),
+            "latitude": forms.NumberInput(attrs={"step": "0.000001", "placeholder": "36.8065"}),
+            "longitude": forms.NumberInput(attrs={"step": "0.000001", "placeholder": "10.1815"}),
+            "phone": forms.TextInput(attrs={"placeholder": "+1234567890"}),
+            "website": forms.URLInput(attrs={"placeholder": "https://example.com"}),
+            "price_range": forms.Select(),
+            "open_from": forms.TimeInput(attrs={"type": "time"}),
+            "open_to": forms.TimeInput(attrs={"type": "time"}),
+            "cover": forms.FileInput(attrs={"accept": "image/*"}),
+            "is_active": forms.CheckboxInput(),
+            "is_featured": forms.CheckboxInput(),
+            "contract_status": forms.Select(),
+            "contract_start": forms.DateInput(attrs={"type": "date"}),
+            "contract_end": forms.DateInput(attrs={"type": "date"}),
+            "contract_notes": forms.Textarea(attrs={"rows": 4, "placeholder": _("Internal contract notes")}),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if "category" in self.fields:
+            self.fields["category"].required = True
+        if "city" in self.fields:
+            self.fields["city"].required = True
+
+    def clean(self):
+        cleaned_data = super().clean()
+        errors = []
+        if not cleaned_data.get("name_en"):
+            errors.append(_("Please enter the name in English."))
+            if "name_en" in self.errors:
+                del self.errors["name_en"]
+
+        if not cleaned_data.get("name_fr"):
+            errors.append(_("Please enter the name in French."))
+            if "name_fr" in self.errors:
+                del self.errors["name_fr"]
+
+        if not cleaned_data.get("description_en"):
+            errors.append(_("Please enter the description in English."))
+            if "description_en" in self.errors:
+                del self.errors["description_en"]
+
+        if not cleaned_data.get("description_fr"):
+            errors.append(_("Please enter the description in French."))
+            if "description_fr" in self.errors:
+                del self.errors["description_fr"]
+
+        for error in errors:
+            self.add_error(None, error)
+
+        # Time range validation
+        open_from = cleaned_data.get("open_from")
+        open_to = cleaned_data.get("open_to")
+        if open_from and open_to and open_from >= open_to:
+            self.add_error("open_to", _("Opening time must be before closing time."))
+
+        # Contract date validation
+        contract_start = cleaned_data.get("contract_start")
+        contract_end = cleaned_data.get("contract_end")
+        if contract_start and contract_end and contract_start >= contract_end:
+            self.add_error("contract_end", _("Contract start date must be before end date."))
+
+        return cleaned_data
+
+
+class MerchantProductForm(FlowbiteFormMixin, forms.ModelForm):
+    name_en = forms.CharField(
+        label=_("Product Name (English)"),
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": _("Product name in English")}),
+    )
+    name_fr = forms.CharField(
+        label=_("Product Name (French)"),
+        max_length=255,
+        required=True,
+        widget=forms.TextInput(attrs={"placeholder": _("Product name in French")}),
+    )
+
+    class Meta:
+        model = MerchantProduct
+        fields = ["name_en", "name_fr", "price", "image"]
+        widgets = {
+            "price": forms.NumberInput(attrs={"step": "0.01", "placeholder": "0.00"}),
+            "image": forms.FileInput(attrs={"accept": "image/*", "class": "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"}),
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        errors = []
+        if not cleaned_data.get("name_en"):
+            errors.append(_("Please enter product name in English."))
+        if not cleaned_data.get("name_fr"):
+            errors.append(_("Please enter product name in French."))
+        for error in errors:
+            self.add_error(None, error)
+        return cleaned_data
+
+
+MerchantProductFormSet = inlineformset_factory(
+    Merchant,
+    MerchantProduct,
+    form=MerchantProductForm,
+    extra=1,
+    can_delete=True,
+    max_num=20,
+)
+
+
+class MerchantImageForm(forms.ModelForm):
+    class Meta:
+        model = MerchantImage
+        fields = ["image"]
+        widgets = {
+            "image": forms.FileInput(attrs={"accept": "image/*", "class": "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"}),
+        }
+
+
+MerchantImageFormSet = inlineformset_factory(
+    Merchant,
+    MerchantImage,
+    form=MerchantImageForm,
+    extra=1,
+    can_delete=True,
+    max_num=10,
+)
+

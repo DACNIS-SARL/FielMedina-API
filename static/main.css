@@ -209,6 +209,7 @@
     --container-lg: 32rem;
     --container-xl: 36rem;
     --container-2xl: 42rem;
+    --container-3xl: 48rem;
     --container-4xl: 56rem;
     --container-7xl: 80rem;
     --text-xs: 0.75rem;
@@ -1402,6 +1403,9 @@
   .h-10 {
     height: calc(var(--spacing) * 10);
   }
+  .h-12 {
+    height: calc(var(--spacing) * 12);
+  }
   .h-16 {
     height: calc(var(--spacing) * 16);
   }
@@ -1521,6 +1525,9 @@
   .w-9 {
     width: calc(var(--spacing) * 9);
   }
+  .w-12 {
+    width: calc(var(--spacing) * 12);
+  }
   .w-20 {
     width: calc(var(--spacing) * 20);
   }
@@ -1547,6 +1554,9 @@
   }
   .max-w-2xl {
     max-width: var(--container-2xl);
+  }
+  .max-w-3xl {
+    max-width: var(--container-3xl);
   }
   .max-w-md {
     max-width: var(--container-md);
@@ -2111,6 +2121,9 @@
   .bg-primary-600 {
     background-color: var(--color-primary-600);
   }
+  .bg-purple-100 {
+    background-color: var(--color-purple-100);
+  }
   .bg-red-50 {
     background-color: var(--color-red-50);
   }
@@ -2607,6 +2620,9 @@
   .text-primary-600 {
     color: var(--color-primary-600);
   }
+  .text-purple-800 {
+    color: var(--color-purple-800);
+  }
   .text-red-500 {
     color: var(--color-red-500);
   }
@@ -2621,6 +2637,9 @@
   }
   .text-yellow-700 {
     color: var(--color-yellow-700);
+  }
+  .text-yellow-800 {
+    color: var(--color-yellow-800);
   }
   .text-yellow-900 {
     color: var(--color-yellow-900);
@@ -2657,6 +2676,10 @@
   }
   .shadow {
     --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 1px 2px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .shadow-md {
+    --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
   .shadow-sm {
@@ -2923,6 +2946,13 @@
       }
     }
   }
+  .hover\:text-blue-950 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-blue-950);
+      }
+    }
+  }
   .hover\:text-fg-brand {
     &:hover {
       @media (hover: hover) {
@@ -2955,6 +2985,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-heading);
+      }
+    }
+  }
+  .hover\:text-red-950 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-red-950);
       }
     }
   }
@@ -3535,6 +3572,14 @@
       background-color: var(--color-primary-600);
     }
   }
+  .dark\:bg-purple-900\/30 {
+    &:where(.dark, .dark *) {
+      background-color: color-mix(in srgb, oklch(38.1% 0.176 304.987) 30%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-purple-900) 30%, transparent);
+      }
+    }
+  }
   .dark\:bg-red-800 {
     &:where(.dark, .dark *) {
       background-color: var(--color-red-800);
@@ -3566,6 +3611,14 @@
       background-color: color-mix(in srgb, oklch(79.5% 0.184 86.047) 20%, transparent);
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-yellow-500) 20%, transparent);
+      }
+    }
+  }
+  .dark\:bg-yellow-900\/30 {
+    &:where(.dark, .dark *) {
+      background-color: color-mix(in srgb, oklch(42.1% 0.095 57.708) 30%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-yellow-900) 30%, transparent);
       }
     }
   }
@@ -3662,6 +3715,11 @@
       color: var(--color-primary-500);
     }
   }
+  .dark\:text-purple-400 {
+    &:where(.dark, .dark *) {
+      color: var(--color-purple-400);
+    }
+  }
   .dark\:text-red-100 {
     &:where(.dark, .dark *) {
       color: var(--color-red-100);
@@ -3700,6 +3758,11 @@
   .dark\:text-yellow-200 {
     &:where(.dark, .dark *) {
       color: var(--color-yellow-200);
+    }
+  }
+  .dark\:text-yellow-400 {
+    &:where(.dark, .dark *) {
+      color: var(--color-yellow-400);
     }
   }
   .dark\:placeholder-gray-400 {
@@ -3786,6 +3849,15 @@
       }
     }
   }
+  .dark\:hover\:text-blue-200 {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          color: var(--color-blue-200);
+        }
+      }
+    }
+  }
   .dark\:hover\:text-blue-300 {
     &:where(.dark, .dark *) {
       &:hover {
@@ -3818,6 +3890,15 @@
       &:hover {
         @media (hover: hover) {
           color: var(--color-green-300);
+        }
+      }
+    }
+  }
+  .dark\:hover\:text-red-200 {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          color: var(--color-red-200);
         }
       }
     }

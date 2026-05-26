@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-03-03 15:45+0000\n"
+"POT-Creation-Date: 2026-05-25 14:04+0000\n"
 "PO-Revision-Date: 2026-01-05 23:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,468 +19,603 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.8\n"
 
-#: guard/admin.py:38 guard/admin.py:88 guard/admin.py:146 guard/admin.py:170
-#: guard/admin.py:221 guard/admin.py:254 guard/admin.py:267
+#: api/templates/api/auth/login.html:4 guard/templates/guard/auth/login.html:4
+msgid "Login"
+msgstr "Connexion"
+
+#: api/templates/api/auth/login.html:15
+#: guard/templates/guard/auth/login.html:15
+msgid "Sign in to your account"
+msgstr "Connectez-vous à votre compte"
+
+#: api/templates/api/views/index.html:4 api/templates/api/views/index.html:7
+msgid "Home"
+msgstr ""
+
+#: guard/admin.py:39 guard/admin.py:96 guard/admin.py:154 guard/admin.py:178
+#: guard/admin.py:229 guard/admin.py:262 guard/admin.py:275
 #: guard/templates/guard/views/events/index.html:92
 #: guard/templates/guard/views/hiking/index.html:72
-#: guard/templates/guard/views/locations/index.html:72 shared/admin.py:16
+#: guard/templates/guard/views/locations/index.html:72
+#: guard/templates/guard/views/merchants/index.html:74 shared/admin.py:16
 msgid "Basic Information"
 msgstr "Informations de base"
 
-#: guard/admin.py:42 guard/templates/guard/views/locations/index.html:168
+#: guard/admin.py:43 guard/templates/guard/views/locations/index.html:168
 msgid "Location Details"
 msgstr "Détails du lieu"
 
-#: guard/admin.py:92
+#: guard/admin.py:58 guard/templates/guard/views/locations/index.html:461
+msgid "Voiceover Audio"
+msgstr ""
+
+#: guard/admin.py:61
+msgid "Optional audio voiceovers for this location (AAC format only)"
+msgstr ""
+
+#: guard/admin.py:100
 msgid "Event Schedule"
 msgstr "Programme des événements"
 
-#: guard/admin.py:104
+#: guard/admin.py:112
 msgid "Details"
 msgstr "Détails"
 
-#: guard/admin.py:150 guard/templates/guard/views/hiking/index.html:329
+#: guard/admin.py:158 guard/templates/guard/views/hiking/index.html:329
 msgid "Geolocation"
 msgstr "Géolocalisation"
 
-#: guard/admin.py:174 guard/models.py:46
+#: guard/admin.py:182 guard/models.py:51
 msgid "Ad Images"
 msgstr "Images publicitaires"
 
-#: guard/admin.py:178
+#: guard/admin.py:186
 msgid "Link Information"
 msgstr "Informations sur le lien"
 
-#: guard/admin.py:187
+#: guard/admin.py:195
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: guard/forms.py:62 guard/forms.py:289 guard/forms.py:533
+#: guard/forms.py:66 guard/forms.py:320 guard/forms.py:564 guard/forms.py:996
+#: guard/forms.py:1032
 msgid "Name (English)"
 msgstr "Nom (anglais)"
 
-#: guard/forms.py:67
+#: guard/forms.py:71
 msgid "Enter location name in English"
 msgstr "Saisissez le nom du lieu en anglais"
 
-#: guard/forms.py:71 guard/forms.py:229 guard/forms.py:298 guard/forms.py:416
-#: guard/forms.py:536 guard/forms.py:611
+#: guard/forms.py:75 guard/forms.py:245 guard/forms.py:329 guard/forms.py:447
+#: guard/forms.py:567 guard/forms.py:642 guard/forms.py:1022
+#: guard/forms.py:1124
 msgid "Please enter the name in English."
 msgstr "Veuillez saisir le nom en anglais."
 
-#: guard/forms.py:75 guard/forms.py:302 guard/forms.py:540
+#: guard/forms.py:79 guard/forms.py:333 guard/forms.py:571 guard/forms.py:1002
+#: guard/forms.py:1038
 msgid "Name (French)"
 msgstr "Nom (français)"
 
-#: guard/forms.py:80
+#: guard/forms.py:84
 msgid "Enter location name in French"
 msgstr "Saisissez le nom du lieu en français"
 
-#: guard/forms.py:84 guard/forms.py:235 guard/forms.py:311 guard/forms.py:422
-#: guard/forms.py:543 guard/forms.py:615
+#: guard/forms.py:88 guard/forms.py:251 guard/forms.py:342 guard/forms.py:453
+#: guard/forms.py:574 guard/forms.py:646 guard/forms.py:1024
+#: guard/forms.py:1129
 msgid "Please enter the name in French."
 msgstr "Veuillez saisir le nom en français."
 
-#: guard/forms.py:89
+#: guard/forms.py:93
 msgid "Story (English)"
 msgstr "Histoire (anglais)"
 
-#: guard/forms.py:93 guard/forms.py:240
+#: guard/forms.py:97 guard/forms.py:256
 msgid "Please enter the story in English."
 msgstr "Veuillez saisir votre récit en anglais."
 
-#: guard/forms.py:97
+#: guard/forms.py:101
 msgid "Story (French)"
 msgstr "Histoire (française)"
 
-#: guard/forms.py:101 guard/forms.py:245
+#: guard/forms.py:105 guard/forms.py:261
 msgid "Please enter the story in French."
 msgstr "Veuillez saisir le récit en français."
 
-#: guard/forms.py:126
+#: guard/forms.py:132
 msgid "Select location category"
 msgstr "Sélectionner la catégorie de localisation"
 
-#: guard/forms.py:132
+#: guard/forms.py:138
 msgid "Select location country"
 msgstr "Sélectionnez le pays de localisation"
 
-#: guard/forms.py:138
+#: guard/forms.py:144
 msgid "Select location city"
 msgstr "Sélectionnez la ville où vous souhaitez vous rendre"
 
-#: guard/forms.py:144 guard/forms.py:584
+#: guard/forms.py:150 guard/forms.py:615
 msgid "e.g., 36.8065"
 msgstr "ex., 36.8065"
 
-#: guard/forms.py:150 guard/forms.py:590
+#: guard/forms.py:156 guard/forms.py:621
 msgid "e.g., 10.1815"
 msgstr "ex., 10.1815"
 
-#: guard/forms.py:157
+#: guard/forms.py:163
 msgid "Opening time"
 msgstr "Heures d'ouverture"
 
-#: guard/forms.py:163
+#: guard/forms.py:169
 msgid "Closing time"
 msgstr "Heure de fermeture"
 
-#: guard/forms.py:168
+#: guard/forms.py:174
 msgid "e.g., 5.00"
 msgstr "ex., 5.00"
 
-#: guard/forms.py:183
+#: guard/forms.py:199
 msgid "Please select a category."
 msgstr "Veuillez sélectionner une catégorie."
 
-#: guard/forms.py:186
+#: guard/forms.py:202
 msgid "Please select a country."
 msgstr "Veuillez sélectionner un pays."
 
-#: guard/forms.py:189 guard/forms.py:506 guard/forms.py:597 guard/forms.py:909
+#: guard/forms.py:205 guard/forms.py:537 guard/forms.py:628 guard/forms.py:940
 msgid "Please select a city."
 msgstr "Veuillez sélectionner une ville."
 
-#: guard/forms.py:194
+#: guard/forms.py:210
 msgid "Latitude in decimal degrees (e.g., 36.8065)"
 msgstr "Latitude en degrés décimaux (ex. : 36,8065)"
 
-#: guard/forms.py:195
+#: guard/forms.py:211
 msgid "Longitude in decimal degrees (e.g., 10.1815)"
 msgstr "Longitude en degrés décimaux (ex. : 10,1815)"
 
-#: guard/forms.py:196 guard/forms.py:197
+#: guard/forms.py:212 guard/forms.py:213
 msgid "Leave empty if location is always open"
 msgstr "Laisser vide si l'emplacement est toujours ouvert"
 
-#: guard/forms.py:198
+#: guard/forms.py:214
 msgid "Leave empty if admission is free"
 msgstr "Laisser vide si l'entrée est gratuite"
 
-#: guard/forms.py:199
+#: guard/forms.py:215
 msgid "Enable advertisements for this location"
 msgstr "Activer les publicités pour cet emplacement"
 
-#: guard/forms.py:258
+#: guard/forms.py:274 guard/forms.py:1150
 msgid "Opening time must be before closing time."
 msgstr "L'heure d'ouverture doit être antérieure à l'heure de fermeture."
 
-#: guard/forms.py:294
+#: guard/forms.py:284
+msgid "Only AAC audio format is allowed."
+msgstr ""
+
+#: guard/forms.py:325
 msgid "Enter event name in English"
 msgstr "Saisissez le nom de l'événement en anglais"
 
-#: guard/forms.py:307
+#: guard/forms.py:338
 msgid "Enter event name in French"
 msgstr "Saisissez le nom de l'événement en français"
 
-#: guard/forms.py:316 guard/forms.py:483 guard/forms.py:547
+#: guard/forms.py:347 guard/forms.py:514 guard/forms.py:578 guard/forms.py:1045
 msgid "Description (English)"
 msgstr "Description (anglais)"
 
-#: guard/forms.py:320 guard/forms.py:427 guard/forms.py:551 guard/forms.py:619
+#: guard/forms.py:351 guard/forms.py:458 guard/forms.py:582 guard/forms.py:650
+#: guard/forms.py:1134
 msgid "Please enter the description in English."
 msgstr "Veuillez saisir la description en anglais."
 
-#: guard/forms.py:324 guard/forms.py:488 guard/forms.py:555
+#: guard/forms.py:355 guard/forms.py:519 guard/forms.py:586 guard/forms.py:1050
 msgid "Description (French)"
 msgstr "Description (français)"
 
-#: guard/forms.py:328 guard/forms.py:432 guard/forms.py:559 guard/forms.py:623
+#: guard/forms.py:359 guard/forms.py:463 guard/forms.py:590 guard/forms.py:654
+#: guard/forms.py:1139
 msgid "Please enter the description in French."
 msgstr "Veuillez saisir la description en français."
 
-#: guard/forms.py:333 guard/forms.py:694
+#: guard/forms.py:364 guard/forms.py:725
 msgid "Destination Link"
 msgstr "Lien de destination"
 
-#: guard/forms.py:340
+#: guard/forms.py:371
 msgid "The destination URL for this event."
 msgstr "L'URL de destination pour cet événement."
 
-#: guard/forms.py:363
+#: guard/forms.py:394
 msgid "Select event location"
 msgstr "Sélectionner le lieu de l'événement"
 
-#: guard/forms.py:368 guard/forms.py:499 guard/forms.py:577 guard/forms.py:725
-#: guard/forms.py:884
+#: guard/forms.py:399 guard/forms.py:530 guard/forms.py:608 guard/forms.py:756
+#: guard/forms.py:915
 msgid "Select city"
 msgstr "Sélectionnez une ville"
 
-#: guard/forms.py:373
+#: guard/forms.py:404
 msgid "Select event category"
 msgstr "Sélectionner la catégorie d'événement"
 
-#: guard/forms.py:379
+#: guard/forms.py:410
 msgid "Select event start date"
 msgstr "Sélectionnez la date de début de l'événement"
 
-#: guard/forms.py:385
+#: guard/forms.py:416
 msgid "Select event end date"
 msgstr "Sélectionnez la date de fin de l'événement"
 
-#: guard/forms.py:391
+#: guard/forms.py:422
 msgid "Select event time"
 msgstr "Sélectionnez l'heure de l'événement"
 
-#: guard/forms.py:396
+#: guard/forms.py:427
 msgid "Enter event price"
 msgstr "Saisissez le prix de l'événement"
 
-#: guard/forms.py:518
+#: guard/forms.py:549
 msgid "Description (English) is required."
 msgstr "Une description (en anglais) est requise."
 
-#: guard/forms.py:519
+#: guard/forms.py:550
 msgid "Description (French) is required."
 msgstr "Une description (en français) est requise."
 
-#: guard/forms.py:641
+#: guard/forms.py:672
 #, fuzzy
 #| msgid "Select locations"
 msgid "Select location"
 msgstr "Sélectionner les emplacements"
 
-#: guard/forms.py:684
+#: guard/forms.py:715
 msgid "Ad Name"
 msgstr "Nom de l'annonce"
 
-#: guard/forms.py:688
+#: guard/forms.py:719
 msgid "e.g., Summer Campaign 2026"
 msgstr "ex, la campagne d'été 2026"
 
-#: guard/forms.py:691
+#: guard/forms.py:722
 msgid "If empty, a name like 'ADS-XXXXXX' will be auto-generated."
 msgstr ""
 "Si ce champ est vide, un nom tel que ‘ADS-XXXXXX’ sera généré "
 "automatiquement."
 
-#: guard/forms.py:702
+#: guard/forms.py:733
 msgid "The destination URL for this ad. This will be tracked via Short.io."
 msgstr ""
 "URL de destination de cette publicité. Celle-ci sera suivie via Short.io."
 
-#: guard/forms.py:720
+#: guard/forms.py:751
 #, fuzzy
 #| msgid "Select city"
 msgid "Select country"
 msgstr "Sélectionnez une ville"
 
-#: guard/forms.py:735 guard/templates/guard/views/ads/list.html:95
+#: guard/forms.py:766 guard/models.py:664 guard/models.py:713
+#: guard/templates/guard/views/ads/list.html:95
+#: guard/templates/guard/views/merchants/list.html:154
 #: guard/templates/guard/views/pages/list.html:65 shared/models.py:110
 #: shared/models.py:184 shared/models.py:247
 msgid "Active"
 msgstr "Active"
 
-#: guard/forms.py:765
+#: guard/forms.py:796
 #, python-format
 msgid "Mobile image must be exactly 320x50 pixels. Uploaded: %(w)sx%(h)s"
 msgstr ""
 "L'image mobile doit mesurer exactement 320 x 50 pixels. Téléchargée le: "
 "%(w)sx%(h)s"
 
-#: guard/forms.py:784
+#: guard/forms.py:815
 #, python-format
 msgid "Tablet image must be exactly 728x90 pixels. Uploaded: %(w)sx%(h)s"
 msgstr ""
 "L'image de la tablette doit avoir exactement 728 x 90 pixels. Téléchargée "
 "le: %(w)sx%(h)s"
 
-#: guard/forms.py:808
+#: guard/forms.py:839
 msgid "e.g., Partner name"
 msgstr "par exemple, le nom du partenaire"
 
-#: guard/forms.py:823 guard/forms.py:858
+#: guard/forms.py:854 guard/forms.py:889
 msgid "Please enter a name."
 msgstr "Veuillez saisir un nom."
 
-#: guard/forms.py:824 guard/forms.py:859
+#: guard/forms.py:855 guard/forms.py:890
 msgid "Please upload an image (300x200)."
 msgstr "Veuillez télécharger une image (300x200)."
 
-#: guard/forms.py:825 guard/forms.py:860
+#: guard/forms.py:856 guard/forms.py:891
 msgid "Please provide a link."
 msgstr "Veuillez fournir un lien."
 
-#: guard/forms.py:843
+#: guard/forms.py:874
 msgid "e.g., Sponsor name"
 msgstr "par exemple, nom du sponsor"
 
-#: guard/forms.py:878
+#: guard/forms.py:909
 msgid "Select transport type"
 msgstr "Sélectionnez le type de transport"
 
-#: guard/forms.py:890
+#: guard/forms.py:921
 msgid "Select departure region"
 msgstr "Sélectionnez la région de départ"
 
-#: guard/forms.py:895
+#: guard/forms.py:926
 msgid "Select arrival region"
 msgstr "Sélectionnez la région d'arrivée"
 
-#: guard/forms.py:900
+#: guard/forms.py:931
 msgid "e.g., Line 32 or Bus 105"
 msgstr ""
 
-#: guard/forms.py:906
+#: guard/forms.py:937
 msgid "Please select a transport type."
 msgstr "Veuillez sélectionner un type de transport."
 
-#: guard/forms.py:947
+#: guard/forms.py:978
 msgid "Select time"
 msgstr "Sélectionnez l'heure"
 
-#: guard/models.py:45
+#: guard/forms.py:999
+#, fuzzy
+#| msgid "Enter event name in English"
+msgid "Category name in English"
+msgstr "Saisissez le nom de l'événement en anglais"
+
+#: guard/forms.py:1005
+#, fuzzy
+#| msgid "Enter event name in French"
+msgid "Category name in French"
+msgstr "Saisissez le nom de l'événement en français"
+
+#: guard/forms.py:1008 guard/models.py:647
+#: guard/templates/guard/views/merchants/list.html:50
+msgid "Icon"
+msgstr "Icône"
+
+#: guard/forms.py:1011
+msgid "SF Symbol (e.g. cart, bag)"
+msgstr "Symbole SF (ex. cart, bag)"
+
+#: guard/forms.py:1035
+msgid "Merchant name in English"
+msgstr "Nom du commerce en anglais"
+
+#: guard/forms.py:1041
+msgid "Merchant name in French"
+msgstr "Nom du commerce en français"
+
+#: guard/forms.py:1056 guard/templates/guard/views/merchants/index.html:273
+msgid "Address (English)"
+msgstr "Adresse (anglais)"
+
+#: guard/forms.py:1059
+msgid "Address in English"
+msgstr "Adresse en anglais"
+
+#: guard/forms.py:1062 guard/templates/guard/views/merchants/index.html:278
+msgid "Address (French)"
+msgstr "Adresse (français)"
+
+#: guard/forms.py:1065
+msgid "Address in French"
+msgstr "Adresse en français"
+
+#: guard/forms.py:1110
+msgid "Internal contract notes"
+msgstr "Notes contractuelles internes"
+
+#: guard/forms.py:1156
+msgid "Contract start date must be before end date."
+msgstr "La date de début du contrat doit être antérieure à la date de fin."
+
+#: guard/forms.py:1163
+msgid "Product Name (English)"
+msgstr "Nom du produit (anglais)"
+
+#: guard/forms.py:1166
+msgid "Product name in English"
+msgstr "Nom du produit en anglais"
+
+#: guard/forms.py:1169
+msgid "Product Name (French)"
+msgstr "Nom du produit (français)"
+
+#: guard/forms.py:1172
+msgid "Product name in French"
+msgstr "Nom du produit en français"
+
+#: guard/forms.py:1187
+msgid "Please enter product name in English."
+msgstr "Veuillez saisir le nom du produit en anglais."
+
+#: guard/forms.py:1189
+msgid "Please enter product name in French."
+msgstr "Veuillez saisir le nom du produit en français."
+
+#: guard/models.py:50
 msgid "Ad Image"
 msgstr "Image publicitaire"
 
-#: guard/models.py:60
+#: guard/models.py:65
 msgid "Hiking Image"
 msgstr "Image de randonnée"
 
-#: guard/models.py:61
+#: guard/models.py:66
 msgid "Hiking Images"
 msgstr "Images de randonnée"
 
-#: guard/models.py:75
+#: guard/models.py:80
 msgid "Location Image"
 msgstr "Image de localisation"
 
-#: guard/models.py:76
+#: guard/models.py:81
 msgid "Location Images"
 msgstr "Images de localisation"
 
-#: guard/models.py:90
+#: guard/models.py:95
 msgid "Event Image"
 msgstr "Image de l'événement"
 
-#: guard/models.py:91
+#: guard/models.py:96
 msgid "Event Images"
 msgstr "Images de l'événement"
 
-#: guard/models.py:105
+#: guard/models.py:110
 msgid "Location Category"
 msgstr "Catégorie de localisation"
 
-#: guard/models.py:106
+#: guard/models.py:111
 msgid "Location Categories"
 msgstr "Catégories de localisation"
 
-#: guard/models.py:113
+#: guard/models.py:118
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: guard/models.py:114
+#: guard/models.py:119
 msgid "Monday"
 msgstr "Lundi"
 
-#: guard/models.py:115
+#: guard/models.py:120
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: guard/models.py:116
+#: guard/models.py:121
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: guard/models.py:117
+#: guard/models.py:122
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: guard/models.py:118
+#: guard/models.py:123
 msgid "Friday"
 msgstr "Vendredi"
 
-#: guard/models.py:119
+#: guard/models.py:124
 msgid "Saturday"
 msgstr "Samedi"
 
-#: guard/models.py:124
+#: guard/models.py:129
 msgid "Day"
 msgstr "Jour"
 
-#: guard/models.py:128
+#: guard/models.py:133
 msgid "Weekday"
 msgstr "Jour de la semaine"
 
-#: guard/models.py:129
+#: guard/models.py:134
 msgid "Weekdays"
 msgstr "Jours de la semaine"
 
-#: guard/models.py:144 guard/models.py:282
+#: guard/models.py:149 guard/models.py:301 guard/models.py:684
 #: guard/templates/guard/views/locations/list.html:38
+#: guard/templates/guard/views/merchants/list.html:107
 msgid "Category"
 msgstr "Catégorie"
 
-#: guard/models.py:153 guard/models.py:346
+#: guard/models.py:158 guard/models.py:365
 #: guard/templates/guard/views/locations/list.html:54
 msgid "Country"
 msgstr "Pays"
 
-#: guard/models.py:161 guard/models.py:276 guard/models.py:354
-#: guard/models.py:455 guard/templates/guard/views/hiking/list.html:33
+#: guard/models.py:166 guard/models.py:295 guard/models.py:373
+#: guard/models.py:489 guard/models.py:692
+#: guard/templates/guard/views/hiking/list.html:33
 #: guard/templates/guard/views/locations/list.html:46
+#: guard/templates/guard/views/merchants/list.html:115
 #: guard/templates/guard/views/publicTransports/list.html:25
 #: guard/templates/guard/views/tips/list.html:25
 msgid "City"
 msgstr "Ville"
 
-#: guard/models.py:165
+#: guard/models.py:170
 msgid "Active Ads"
 msgstr "Annonces actives"
 
-#: guard/models.py:166
+#: guard/models.py:171
 msgid "Story"
 msgstr "Histoire"
 
-#: guard/models.py:168
+#: guard/models.py:173 guard/models.py:705
 msgid "Open From"
 msgstr "Ouvert à partir de"
 
-#: guard/models.py:171
+#: guard/models.py:176
 msgid "Add opening hours if the location is open from a specific time"
 msgstr ""
 "Ajoutez les horaires d'ouverture si l'établissement est ouvert à partir "
 "d'une heure précise"
 
-#: guard/models.py:174
+#: guard/models.py:179 guard/models.py:706
 msgid "Open To"
 msgstr "Ouvert à"
 
-#: guard/models.py:177
+#: guard/models.py:182
 msgid "Add opening hours if the location is open to a specific time"
 msgstr ""
 "Ajoutez les horaires d'ouverture si l'établissement est ouvert jusqu'à une "
 "heure précise"
 
-#: guard/models.py:182
+#: guard/models.py:187
 msgid "Admission Fee"
 msgstr "Frais d'admission"
 
-#: guard/models.py:185
+#: guard/models.py:190
 msgid "Add admission fee if the location has a specific admission fee"
 msgstr ""
 "Ajoutez les frais d'entrée si le lieu applique des frais d'entrée spécifiques"
 
-#: guard/models.py:189
+#: guard/models.py:194
 msgid "Closed Days"
 msgstr "Jours de fermeture"
 
-#: guard/models.py:195 guard/models.py:230 guard/models.py:291
+#: guard/models.py:200
+#, fuzzy
+#| msgid "Story (English)"
+msgid "Voiceover (English)"
+msgstr "Histoire (anglais)"
+
+#: guard/models.py:203
+msgid "Upload an audio voiceover in English (AAC format only)"
+msgstr ""
+
+#: guard/models.py:207
+#, fuzzy
+#| msgid "Story (French)"
+msgid "Voiceover (French)"
+msgstr "Histoire (française)"
+
+#: guard/models.py:210
+msgid "Upload an audio voiceover in French (AAC format only)"
+msgstr ""
+
+#: guard/models.py:214 guard/models.py:249 guard/models.py:310
 #: guard/templates/guard/views/events/list.html:33
 #: guard/templates/guard/views/hiking/index.html:293
 #: guard/templates/guard/views/locations/list.html:30
 msgid "Location"
 msgstr "Emplacement"
 
-#: guard/models.py:196 guard/templates/guard/base/sidebar-left.html:37
+#: guard/models.py:215 guard/templates/guard/base/sidebar-left.html:37
 #: guard/templates/guard/views/locations/index.html:24
 msgid "Locations"
 msgstr "Lieux"
 
-#: guard/models.py:224 guard/models.py:322
+#: guard/models.py:243 guard/models.py:341
 msgid "Cities"
 msgstr "Villes"
 
-#: guard/models.py:226 guard/models.py:529 guard/models.py:552
+#: guard/models.py:245 guard/models.py:563 guard/models.py:586
+#: guard/models.py:642 guard/models.py:676 guard/models.py:815
 #: guard/templates/guard/views/ads/list.html:25
 #: guard/templates/guard/views/hiking/list.html:25
 #: guard/templates/guard/views/locations/partials/cat_list.html:8
@@ -489,173 +624,329 @@ msgstr "Villes"
 msgid "Name"
 msgstr "Nom"
 
-#: guard/models.py:227 guard/models.py:302
+#: guard/models.py:246 guard/models.py:321 guard/models.py:677
 #: guard/templates/guard/views/events/index.html:230
 #: guard/templates/guard/views/hiking/index.html:161
 #: guard/templates/guard/views/tips/list.html:33 shared/models.py:240
 msgid "Description"
 msgstr "Description"
 
-#: guard/models.py:240 guard/templates/guard/base/sidebar-left.html:48
+#: guard/models.py:259 guard/templates/guard/base/sidebar-left.html:53
 #: guard/templates/guard/views/hiking/index.html:24
 msgid "Hiking"
 msgstr "Randonnée"
 
-#: guard/models.py:241
+#: guard/models.py:260
 msgid "Hikings"
 msgstr "Randonnées"
 
-#: guard/models.py:253
+#: guard/models.py:272
 msgid "Event Category"
 msgstr "Catégorie d'événement"
 
-#: guard/models.py:254
+#: guard/models.py:273
 msgid "Event Categories"
 msgstr "Catégories d'événements"
 
-#: guard/models.py:268 guard/models.py:362
+#: guard/models.py:287 guard/models.py:381
 msgid "Client"
 msgstr "Client"
 
-#: guard/models.py:293 guard/templates/guard/views/events/list.html:41
+#: guard/models.py:312 guard/templates/guard/views/events/list.html:41
 msgid "Start Date"
 msgstr "Date de début"
 
-#: guard/models.py:294 guard/templates/guard/views/events/list.html:49
+#: guard/models.py:313 guard/templates/guard/views/events/list.html:49
 msgid "End Date"
 msgstr "Date de fin"
 
-#: guard/models.py:295 guard/models.py:493
+#: guard/models.py:314 guard/models.py:527
 msgid "Time"
 msgstr "Temps"
 
-#: guard/models.py:297 guard/templates/guard/views/events/list.html:57
-#: shared/models.py:242
+#: guard/models.py:316 guard/models.py:786
+#: guard/templates/guard/views/events/list.html:57
+#: guard/templates/guard/views/merchants/index.html:571 shared/models.py:242
 msgid "Price"
 msgstr "Prix"
 
-#: guard/models.py:299
+#: guard/models.py:318
 msgid "The link to subscribe"
 msgstr "Le lien pour s'abonner"
 
-#: guard/models.py:306 guard/templates/guard/views/events/list.html:25
+#: guard/models.py:325 guard/templates/guard/views/events/list.html:25
 msgid "Event"
 msgstr "Événement"
 
-#: guard/models.py:307 guard/templates/guard/views/events/index.html:35
+#: guard/models.py:326 guard/templates/guard/views/events/index.html:35
 msgid "Events"
 msgstr "Événements"
 
-#: guard/models.py:327
+#: guard/models.py:346
 msgid "Tip"
 msgstr "Conseil"
 
-#: guard/models.py:328 guard/templates/guard/base/sidebar-left.html:86
+#: guard/models.py:347 guard/templates/guard/base/sidebar-left.html:91
 #: guard/templates/guard/views/tips/index.html:24
 msgid "Tips"
 msgstr "Conseils"
 
-#: guard/models.py:338
+#: guard/models.py:357
 msgid "Add a name"
 msgstr "Ajouter un nom"
 
-#: guard/models.py:366
+#: guard/models.py:385
 msgid "Size: 320x50 pixels"
 msgstr "Taille : 320 x 50 pixels"
 
-#: guard/models.py:367
+#: guard/models.py:386
 msgid "Mobile Image (320x50)"
 msgstr "Image mobile (320x50)"
 
-#: guard/models.py:373
+#: guard/models.py:392
 msgid "Size: 728x90 pixels"
 msgstr "Taille : 728 x 90 pixels"
 
-#: guard/models.py:374
+#: guard/models.py:393
 msgid "Tablet Image (728x90)"
 msgstr "Image de tablette (728x90)"
 
-#: guard/models.py:385
+#: guard/models.py:404
 msgid "Ad"
 msgstr "Annonce"
 
-#: guard/models.py:386 guard/templates/guard/base/sidebar-left.html:128
+#: guard/models.py:405 guard/templates/guard/base/sidebar-left.html:133
 #: guard/templates/guard/views/ads/index.html:24
 msgid "Ads"
 msgstr "Publicités"
 
-#: guard/models.py:429 guard/models.py:446
+#: guard/models.py:463 guard/models.py:480
 msgid "Public Transport Type"
 msgstr "Type de transport public"
 
-#: guard/models.py:430
+#: guard/models.py:464
 msgid "Public Transport Types"
 msgstr "Types de transports publics"
 
-#: guard/models.py:464
+#: guard/models.py:498
 msgid "From region"
 msgstr "De la région"
 
-#: guard/models.py:472
+#: guard/models.py:506
 msgid "To region"
 msgstr "Vers la région"
 
-#: guard/models.py:474
+#: guard/models.py:508
 msgid "Bus number"
 msgstr ""
 
-#: guard/models.py:477 guard/models.py:491
+#: guard/models.py:511 guard/models.py:525
 msgid "Public Transport"
 msgstr "Transports publics"
 
-#: guard/models.py:478
+#: guard/models.py:512
 #: guard/templates/guard/views/publicTransports/index.html:24
 msgid "Public Transports"
 msgstr "Transports publics"
 
-#: guard/models.py:496
+#: guard/models.py:530
 msgid "Public Transport Time"
 msgstr "Heure des transports publics"
 
-#: guard/models.py:497
+#: guard/models.py:531
 msgid "Public Transport Times"
 msgstr "Horaires des transports publics"
 
-#: guard/models.py:530 guard/models.py:553
+#: guard/models.py:564 guard/models.py:587 guard/models.py:792
 msgid "Image"
 msgstr "Image"
 
-#: guard/models.py:531 guard/models.py:554
+#: guard/models.py:565 guard/models.py:588
 #: guard/templates/guard/views/ads/list.html:30
 #: guard/templates/guard/views/partners/list.html:24
 #: guard/templates/guard/views/sponsors/list.html:24
 msgid "Link"
 msgstr "Lien"
 
-#: guard/models.py:534
+#: guard/models.py:568
 msgid "Partner"
 msgstr "Partenaire"
 
-#: guard/models.py:535 guard/templates/guard/base/sidebar-left.html:95
+#: guard/models.py:569 guard/templates/guard/base/sidebar-left.html:100
 #: guard/templates/guard/views/partners/list.html:4
 msgid "Partners"
 msgstr "Partenaires"
 
-#: guard/models.py:557
+#: guard/models.py:591
 msgid "sponsor"
 msgstr "sponsor"
 
-#: guard/models.py:558
+#: guard/models.py:592
 msgid "sponsors"
 msgstr "sponsors"
 
-#: guard/templates/guard/auth/login.html:4
-msgid "Login"
-msgstr "Connexion"
+#: guard/models.py:648
+#: guard/templates/guard/views/merchants/category_form.html:151
+msgid "SF Symbol name (iOS) / Material icon name (Android)"
+msgstr "Nom du symbole SF (iOS) / Nom de l'icône Material (Android)"
 
-#: guard/templates/guard/auth/login.html:15
-msgid "Sign in to your account"
-msgstr "Connectez-vous à votre compte"
+#: guard/models.py:653
+msgid "Merchant Category"
+msgstr "Catégorie de commerce"
+
+#: guard/models.py:654 guard/templates/guard/views/merchants/list.html:28
+msgid "Merchant Categories"
+msgstr "Catégories de commerce"
+
+#: guard/models.py:663 shared/models.py:189
+msgid "Pending"
+msgstr "En attente"
+
+#: guard/models.py:665 shared/models.py:186
+msgid "Expired"
+msgstr "Expiré"
+
+#: guard/models.py:666
+msgid "Cancelled"
+msgstr "Annulé"
+
+#: guard/models.py:669
+msgid "€ — Budget friendly"
+msgstr "€ — Économique"
+
+#: guard/models.py:670
+msgid "€€ — Moderate"
+msgstr "€€ — Modéré"
+
+#: guard/models.py:671
+msgid "€€€ — Premium"
+msgstr "€€€ — Haut de gamme"
+
+#: guard/models.py:694
+msgid "Latitude"
+msgstr "Latitude"
+
+#: guard/models.py:695
+msgid "Longitude"
+msgstr "Longitude"
+
+#: guard/models.py:696
+msgid "Address"
+msgstr "Adresse"
+
+#: guard/models.py:697
+msgid "Phone"
+msgstr "Téléphone"
+
+#: guard/models.py:698
+msgid "Website"
+msgstr "Site web"
+
+#: guard/models.py:703
+msgid "Price Range"
+msgstr "Gamme de prix"
+
+#: guard/models.py:711
+msgid "Cover Image"
+msgstr "Image de couverture"
+
+#: guard/models.py:716 guard/templates/guard/views/merchants/list.html:123
+#: guard/templates/guard/views/merchants/list.html:147
+msgid "Featured"
+msgstr "Mis en avant"
+
+#: guard/models.py:717 guard/templates/guard/views/merchants/index.html:420
+msgid "Featured merchants appear at the top of the list"
+msgstr "Les commerces mis en avant apparaissent en tête de liste"
+
+#: guard/models.py:723
+msgid "Contract Status"
+msgstr "Statut du contrat"
+
+#: guard/models.py:725
+msgid "Contract Start"
+msgstr "Début du contrat"
+
+#: guard/models.py:726
+msgid "Contract End"
+msgstr "Fin du contrat"
+
+#: guard/models.py:730
+msgid "Contract Notes"
+msgstr "Notes du contrat"
+
+#: guard/models.py:731
+msgid "Internal notes about this merchant's contract"
+msgstr "Notes internes concernant le contrat de ce commerce"
+
+#: guard/models.py:735 guard/models.py:756 guard/models.py:778
+#: guard/models.py:809 guard/templates/guard/views/merchants/list.html:99
+msgid "Merchant"
+msgstr "Commerce"
+
+#: guard/models.py:736
+msgid "Merchants"
+msgstr "Commerces"
+
+#: guard/models.py:766
+msgid "Merchant Image"
+msgstr "Image du commerce"
+
+#: guard/models.py:767
+msgid "Merchant Images"
+msgstr "Images du commerce"
+
+#: guard/models.py:780
+msgid "Product Name"
+msgstr "Nom du produit"
+
+#: guard/models.py:797
+msgid "Product"
+msgstr "Produit"
+
+#: guard/models.py:798 guard/templates/guard/views/merchants/index.html:542
+msgid "Products"
+msgstr "Produits"
+
+#: guard/models.py:812
+msgid "Stars"
+msgstr "Étoiles"
+
+#: guard/models.py:813
+msgid "Rating from 1 to 5"
+msgstr "Note de 1 à 5"
+
+#: guard/models.py:816 shared/forms.py:179
+msgid "Email"
+msgstr "Email"
+
+#: guard/models.py:817
+msgid "Comment"
+msgstr "Commentaire"
+
+#: guard/models.py:821
+msgid "IP Address"
+msgstr "Adresse IP"
+
+#: guard/models.py:822
+msgid "Stored for spam protection"
+msgstr "Enregistré pour la protection contre le spam"
+
+#: guard/models.py:826
+msgid "Approved"
+msgstr "Approuvé"
+
+#: guard/models.py:827
+msgid "Only approved ratings are shown in the app"
+msgstr "Seules les évaluations approuvées sont affichées dans l'application"
+
+#: guard/models.py:832
+msgid "Merchant Rating"
+msgstr "Évaluation du commerce"
+
+#: guard/models.py:833
+msgid "Merchant Ratings"
+msgstr "Évaluations du commerce"
 
 #: guard/templates/guard/auth/login.html:45
 msgid "Forgot password?"
@@ -687,9 +978,11 @@ msgstr "Utilisez un mot de passe fort que vous n'utilisez nulle part ailleurs."
 
 #: guard/templates/guard/auth/password_change.html:48
 #: guard/templates/guard/views/ads/index.html:191
-#: guard/templates/guard/views/events/index.html:536
+#: guard/templates/guard/views/events/index.html:537
 #: guard/templates/guard/views/hiking/index.html:408
-#: guard/templates/guard/views/locations/index.html:506
+#: guard/templates/guard/views/locations/index.html:611
+#: guard/templates/guard/views/merchants/category_form.html:162
+#: guard/templates/guard/views/merchants/index.html:615
 #: guard/templates/guard/views/pages/index.html:208
 #: guard/templates/guard/views/partners/delete.html:16
 #: guard/templates/guard/views/partners/index.html:68
@@ -847,8 +1140,8 @@ msgid "Already have an account?"
 msgstr "Vous avez déjà un compte ?"
 
 #: guard/templates/guard/auth/settings.html:4
-#: guard/templates/guard/base/sidebar-left.html:144
-#: guard/templates/guard/base/topBar.html:52
+#: guard/templates/guard/base/sidebar-left.html:149
+#: guard/templates/guard/base/topBar.html:60
 msgid "Settings"
 msgstr "Paramètres"
 
@@ -919,6 +1212,7 @@ msgstr "Plan"
 
 #: guard/templates/guard/auth/settings.html:123
 #: guard/templates/guard/views/ads/list.html:56
+#: guard/templates/guard/views/merchants/list.html:128
 #: guard/templates/guard/views/pages/list.html:41
 msgid "Status"
 msgstr "Statut"
@@ -948,6 +1242,8 @@ msgstr ""
 #: guard/templates/guard/views/events/index.html:23
 #: guard/templates/guard/views/hiking/index.html:18
 #: guard/templates/guard/views/locations/index.html:18
+#: guard/templates/guard/views/merchants/category_form.html:18
+#: guard/templates/guard/views/merchants/index.html:18
 #: guard/templates/guard/views/pages/index.html:18
 #: guard/templates/guard/views/publicTransports/index.html:18
 #: guard/templates/guard/views/tips/index.html:18
@@ -959,28 +1255,48 @@ msgstr "Tableau de bord"
 msgid "Pages"
 msgstr "Pages"
 
-#: guard/templates/guard/base/sidebar-left.html:60
+#: guard/templates/guard/base/sidebar-left.html:46
+#: guard/templates/guard/views/merchants/category_form.html:24
+#: guard/templates/guard/views/merchants/index.html:24
+msgid "Our Pick"
+msgstr "Notre Sélection"
+
+#: guard/templates/guard/base/sidebar-left.html:65
 msgid "Subscribers"
 msgstr "Abonnés"
 
-#: guard/templates/guard/base/sidebar-left.html:73
+#: guard/templates/guard/base/sidebar-left.html:78
 msgid "Transports"
 msgstr "Transports"
 
-#: guard/templates/guard/base/sidebar-left.html:104
+#: guard/templates/guard/base/sidebar-left.html:109
 #: guard/templates/guard/views/sponsors/list.html:4
 msgid "Sponsors"
 msgstr "Sponsors"
 
-#: guard/templates/guard/base/sidebar-left.html:115
+#: guard/templates/guard/base/sidebar-left.html:120
 msgid "My events"
 msgstr "Mes événements"
 
-#: guard/templates/guard/base/topBar.html:29
+#: guard/templates/guard/base/topBar.html:22
+msgid "Super Admin"
+msgstr ""
+
+#: guard/templates/guard/base/topBar.html:24 shared/models.py:131
+msgid "Staff"
+msgstr "Personnel"
+
+#: guard/templates/guard/base/topBar.html:26
+#, fuzzy
+#| msgid "Period:"
+msgid "Pro"
+msgstr "Période :"
+
+#: guard/templates/guard/base/topBar.html:37
 msgid "Open user menu"
 msgstr "Ouvrir le menu utilisateur"
 
-#: guard/templates/guard/base/topBar.html:62
+#: guard/templates/guard/base/topBar.html:70
 msgid "Sign out"
 msgstr "Se déconnecter"
 
@@ -1002,6 +1318,9 @@ msgstr "Ajouter une annonce"
 #: guard/templates/guard/views/hiking/list.html:62
 #: guard/templates/guard/views/locations/index.html:31
 #: guard/templates/guard/views/locations/list.html:76
+#: guard/templates/guard/views/merchants/index.html:31
+#: guard/templates/guard/views/merchants/list.html:71
+#: guard/templates/guard/views/merchants/list.html:174
 #: guard/templates/guard/views/pages/index.html:31
 #: guard/templates/guard/views/pages/list.html:77
 #: guard/templates/guard/views/partners/list.html:48
@@ -1021,6 +1340,7 @@ msgstr "Modifier"
 #: guard/templates/guard/views/hiking/list.html:14
 #: guard/templates/guard/views/locations/index.html:31
 #: guard/templates/guard/views/locations/list.html:14
+#: guard/templates/guard/views/merchants/index.html:31
 #: guard/templates/guard/views/pages/index.html:31
 #: guard/templates/guard/views/pages/list.html:14
 #: guard/templates/guard/views/partners/list.html:14
@@ -1087,6 +1407,7 @@ msgstr "Liste des annonces"
 #: guard/templates/guard/views/events/list.html:10
 #: guard/templates/guard/views/hiking/list.html:10
 #: guard/templates/guard/views/locations/list.html:10
+#: guard/templates/guard/views/merchants/list.html:10
 #: guard/templates/guard/views/pages/list.html:10
 #: guard/templates/guard/views/partners/list.html:10
 #: guard/templates/guard/views/publicTransports/list.html:10
@@ -1096,6 +1417,7 @@ msgid "List"
 msgstr "Liste"
 
 #: guard/templates/guard/views/ads/list.html:100
+#: guard/templates/guard/views/merchants/list.html:156
 #: guard/templates/guard/views/pages/list.html:67
 msgid "Inactive"
 msgstr "Inactif"
@@ -1110,8 +1432,11 @@ msgstr "Analytique"
 #: guard/templates/guard/views/events/list.html:94
 #: guard/templates/guard/views/hiking/index.html:388
 #: guard/templates/guard/views/hiking/list.html:68
-#: guard/templates/guard/views/locations/index.html:486
+#: guard/templates/guard/views/locations/index.html:591
 #: guard/templates/guard/views/locations/list.html:82
+#: guard/templates/guard/views/merchants/index.html:520
+#: guard/templates/guard/views/merchants/list.html:74
+#: guard/templates/guard/views/merchants/list.html:180
 #: guard/templates/guard/views/pages/list.html:83
 #: guard/templates/guard/views/partners/delete.html:19
 #: guard/templates/guard/views/partners/list.html:54
@@ -1139,6 +1464,8 @@ msgstr ""
 #: guard/templates/guard/views/events/partials/confirm_model.html:22
 #: guard/templates/guard/views/hiking/partials/confirm_model.html:22
 #: guard/templates/guard/views/locations/partials/confirm_model.html:22
+#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:22
+#: guard/templates/guard/views/merchants/partials/confirm_model.html:22
 #: guard/templates/guard/views/pages/partials/confirm_model.html:22
 #: guard/templates/guard/views/partners/partials/confirm_modal.html:22
 #: guard/templates/guard/views/publicTransports/partials/confirm_model.html:22
@@ -1151,6 +1478,8 @@ msgstr "J'accepte"
 #: guard/templates/guard/views/events/partials/confirm_model.html:24
 #: guard/templates/guard/views/hiking/partials/confirm_model.html:24
 #: guard/templates/guard/views/locations/partials/confirm_model.html:24
+#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:24
+#: guard/templates/guard/views/merchants/partials/confirm_model.html:24
 #: guard/templates/guard/views/pages/partials/confirm_model.html:24
 #: guard/templates/guard/views/partners/partials/confirm_modal.html:24
 #: guard/templates/guard/views/publicTransports/partials/confirm_model.html:24
@@ -1271,21 +1600,21 @@ msgstr "Clics"
 msgid "No data available"
 msgstr "Aucune donnée disponible"
 
-#: guard/templates/guard/views/dashboard.html:13
+#: guard/templates/guard/views/dashboard.html:12
 msgid "Total Ads Clicks"
 msgstr "Nombre total de clics sur les annonces"
 
-#: guard/templates/guard/views/dashboard.html:24
-#: guard/templates/guard/views/dashboard.html:49
+#: guard/templates/guard/views/dashboard.html:23
+#: guard/templates/guard/views/dashboard.html:46
 msgid "Last 7 days trend"
 msgstr "Tendances des 7 derniers jours"
 
-#: guard/templates/guard/views/dashboard.html:26
-#: guard/templates/guard/views/dashboard.html:51
+#: guard/templates/guard/views/dashboard.html:25
+#: guard/templates/guard/views/dashboard.html:48
 msgid "Full report"
 msgstr "Rapport complet"
 
-#: guard/templates/guard/views/dashboard.html:39
+#: guard/templates/guard/views/dashboard.html:36
 msgid "Total Events Clicks"
 msgstr "Nombre total d'événements et de clics"
 
@@ -1317,6 +1646,9 @@ msgstr "Entrez le nom de l'événement dans différentes langues"
 #: guard/templates/guard/views/hiking/index.html:173
 #: guard/templates/guard/views/locations/index.html:84
 #: guard/templates/guard/views/locations/index.html:269
+#: guard/templates/guard/views/locations/index.html:473
+#: guard/templates/guard/views/merchants/category_form.html:82
+#: guard/templates/guard/views/merchants/index.html:86
 #: guard/templates/guard/views/pages/index.html:85
 #: guard/templates/guard/views/tips/index.html:95
 msgid "English"
@@ -1328,6 +1660,9 @@ msgstr "Anglais"
 #: guard/templates/guard/views/hiking/index.html:181
 #: guard/templates/guard/views/locations/index.html:92
 #: guard/templates/guard/views/locations/index.html:277
+#: guard/templates/guard/views/locations/index.html:481
+#: guard/templates/guard/views/merchants/category_form.html:87
+#: guard/templates/guard/views/merchants/index.html:94
 #: guard/templates/guard/views/pages/index.html:93
 #: guard/templates/guard/views/tips/index.html:103
 msgid "French"
@@ -1339,6 +1674,10 @@ msgstr "Français"
 #: guard/templates/guard/views/hiking/index.html:200
 #: guard/templates/guard/views/locations/index.html:111
 #: guard/templates/guard/views/locations/index.html:296
+#: guard/templates/guard/views/merchants/category_form.html:105
+#: guard/templates/guard/views/merchants/index.html:114
+#: guard/templates/guard/views/merchants/index.html:138
+#: guard/templates/guard/views/merchants/index.html:292
 #: guard/templates/guard/views/pages/index.html:111
 #: guard/templates/guard/views/pages/index.html:136
 #: guard/templates/guard/views/tips/index.html:122
@@ -1351,6 +1690,10 @@ msgstr "Traduire en français"
 #: guard/templates/guard/views/hiking/index.html:226
 #: guard/templates/guard/views/locations/index.html:140
 #: guard/templates/guard/views/locations/index.html:325
+#: guard/templates/guard/views/merchants/category_form.html:131
+#: guard/templates/guard/views/merchants/index.html:166
+#: guard/templates/guard/views/merchants/index.html:190
+#: guard/templates/guard/views/merchants/index.html:314
 #: guard/templates/guard/views/pages/index.html:158
 #: guard/templates/guard/views/pages/index.html:183
 #: guard/templates/guard/views/tips/index.html:148
@@ -1371,7 +1714,8 @@ msgstr "Lieu, dates, horaires et tarifs"
 
 #: guard/templates/guard/views/events/index.html:483
 #: guard/templates/guard/views/hiking/index.html:360
-#: guard/templates/guard/views/locations/index.html:458
+#: guard/templates/guard/views/locations/index.html:563
+#: guard/templates/guard/views/merchants/index.html:475
 msgid "Images"
 msgstr "Images"
 
@@ -1385,27 +1729,23 @@ msgstr ""
 
 #: guard/templates/guard/views/events/index.html:502
 #: guard/templates/guard/views/hiking/index.html:377
-#: guard/templates/guard/views/locations/index.html:475
+#: guard/templates/guard/views/locations/index.html:580
+#: guard/templates/guard/views/merchants/index.html:509
 msgid "Replace Image"
 msgstr "Remplacer l'image"
 
 #: guard/templates/guard/views/events/index.html:502
 #: guard/templates/guard/views/hiking/index.html:377
-#: guard/templates/guard/views/locations/index.html:475
+#: guard/templates/guard/views/locations/index.html:580
+#: guard/templates/guard/views/merchants/index.html:509
 msgid "Upload Image"
 msgstr "Télécharger une image"
 
-#: guard/templates/guard/views/events/index.html:528
-#: guard/templates/guard/views/hiking/index.html:401
-#: guard/templates/guard/views/locations/index.html:499
-msgid "Add Another Image"
-msgstr "Ajouter une autre image"
-
-#: guard/templates/guard/views/events/index.html:546
+#: guard/templates/guard/views/events/index.html:547
 msgid "Update Event"
 msgstr "Mise à jour de l'événement"
 
-#: guard/templates/guard/views/events/index.html:546
+#: guard/templates/guard/views/events/index.html:547
 msgid "Save Event"
 msgstr "Enregistrer l'événement"
 
@@ -1488,6 +1828,11 @@ msgstr ""
 "Téléchargez des images pour ce sentier de randonnée (max. 10). Les images "
 "seront automatiquement optimisées."
 
+#: guard/templates/guard/views/hiking/index.html:401
+#: guard/templates/guard/views/locations/index.html:604
+msgid "Add Another Image"
+msgstr "Ajouter une autre image"
+
 #: guard/templates/guard/views/hiking/index.html:415
 msgid "Update Hiking"
 msgstr "Mise à jour Randonnée"
@@ -1515,8 +1860,8 @@ msgid ""
 "Warning: This action cannot be undone. If you confirm, the hiking trail will "
 "be permanently deleted."
 msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
-"le sentier de randonnée sera définitivement supprimé."
+"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le "
+"sentier de randonnée sera définitivement supprimé."
 
 #: guard/templates/guard/views/locations/index.html:6
 #: guard/templates/guard/views/locations/index.html:41
@@ -1569,7 +1914,37 @@ msgstr "Statut et paramètres"
 msgid "Location visibility and features"
 msgstr "Visibilité et caractéristiques de l'emplacement"
 
-#: guard/templates/guard/views/locations/index.html:459
+#: guard/templates/guard/views/locations/index.html:463
+msgid "Upload optional audio voiceovers (AAC format only)"
+msgstr ""
+
+#: guard/templates/guard/views/locations/index.html:498
+#: guard/templates/guard/views/locations/index.html:532
+#, fuzzy
+#| msgid "Current image"
+msgid "Current file:"
+msgstr "Image actuelle"
+
+#: guard/templates/guard/views/locations/index.html:503
+#: guard/templates/guard/views/locations/index.html:537
+msgid "Your browser does not support the audio element."
+msgstr ""
+
+#: guard/templates/guard/views/locations/index.html:507
+#: guard/templates/guard/views/locations/index.html:541
+#, fuzzy
+#| msgid "Delete hiking trail"
+msgid "Delete this audio file"
+msgstr "Supprimer le sentier de randonnée"
+
+#: guard/templates/guard/views/locations/index.html:510
+#: guard/templates/guard/views/locations/index.html:544
+#, fuzzy
+#| msgid "Replace Image"
+msgid "Replace audio file:"
+msgstr "Remplacer l'image"
+
+#: guard/templates/guard/views/locations/index.html:564
 msgid ""
 "Upload images for this location (max 10). Images will be automatically "
 "optimized."
@@ -1577,11 +1952,11 @@ msgstr ""
 "Téléchargez des images pour cet emplacement (10 au maximum). Les images "
 "seront automatiquement optimisées."
 
-#: guard/templates/guard/views/locations/index.html:513
+#: guard/templates/guard/views/locations/index.html:618
 msgid "Update Location"
 msgstr "Mettre à jour l'emplacement"
 
-#: guard/templates/guard/views/locations/index.html:513
+#: guard/templates/guard/views/locations/index.html:618
 msgid "Save Location"
 msgstr "Enregistrer l'emplacement"
 
@@ -1590,6 +1965,7 @@ msgid "Locations List"
 msgstr "Liste des emplacements"
 
 #: guard/templates/guard/views/locations/list.html:18
+#: guard/templates/guard/views/merchants/list.html:18
 msgid "Categories"
 msgstr "Catégories"
 
@@ -1604,6 +1980,171 @@ msgid ""
 msgstr ""
 "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
 "l'emplacement sera définitivement supprimé."
+
+#: guard/templates/guard/views/merchants/category_form.html:6
+#: guard/templates/guard/views/merchants/category_form.html:31
+#: guard/templates/guard/views/merchants/category_form.html:41
+msgid "Edit Category"
+msgstr "Modifier la catégorie"
+
+#: guard/templates/guard/views/merchants/category_form.html:8
+#: guard/templates/guard/views/merchants/category_form.html:31
+#: guard/templates/guard/views/merchants/category_form.html:43
+#: guard/templates/guard/views/merchants/list.html:41
+msgid "Add Category"
+msgstr "Ajouter une catégorie"
+
+#: guard/templates/guard/views/merchants/category_form.html:48
+msgid "Update the category details below"
+msgstr "Mettez à jour les détails de la catégorie ci-dessous"
+
+#: guard/templates/guard/views/merchants/category_form.html:50
+msgid "Fill in the details to create a new category"
+msgstr "Remplissez les détails pour créer une nouvelle catégorie"
+
+#: guard/templates/guard/views/merchants/category_form.html:72
+msgid "Category Information"
+msgstr "Informations de la catégorie"
+
+#: guard/templates/guard/views/merchants/category_form.html:74
+msgid "Enter category details"
+msgstr "Entrez les détails de la catégorie"
+
+#: guard/templates/guard/views/merchants/category_form.html:169
+msgid "Update Category"
+msgstr "Mettre à jour la catégorie"
+
+#: guard/templates/guard/views/merchants/category_form.html:169
+msgid "Save Category"
+msgstr "Enregistrer la catégorie"
+
+#: guard/templates/guard/views/merchants/index.html:6
+#: guard/templates/guard/views/merchants/index.html:41
+msgid "Edit Merchant"
+msgstr "Modifier le commerce"
+
+#: guard/templates/guard/views/merchants/index.html:8
+#: guard/templates/guard/views/merchants/index.html:43
+#: guard/templates/guard/views/merchants/list.html:14
+msgid "Add Merchant"
+msgstr "Ajouter un commerce"
+
+#: guard/templates/guard/views/merchants/index.html:48
+msgid "Update the merchant details below"
+msgstr "Mettez à jour les détails du commerce ci-dessous"
+
+#: guard/templates/guard/views/merchants/index.html:50
+msgid "Fill in the details to create a new merchant"
+msgstr "Remplissez les détails pour créer un nouveau commerce"
+
+#: guard/templates/guard/views/merchants/index.html:76
+msgid "Enter the merchant name and description in different languages"
+msgstr "Entrez le nom et la description du commerce dans différentes langues"
+
+#: guard/templates/guard/views/merchants/index.html:217
+msgid "Merchant Details"
+msgstr "Détails du commerce"
+
+#: guard/templates/guard/views/merchants/index.html:219
+msgid "Category, City, Geolocation, Address, and Contact Details"
+msgstr "Catégorie, Ville, Géolocalisation, Adresse et coordonnées"
+
+#: guard/templates/guard/views/merchants/index.html:391
+msgid "Contract & Visibility"
+msgstr "Contrat & Visibilité"
+
+#: guard/templates/guard/views/merchants/index.html:393
+msgid "Settings for featuring and active contract status"
+msgstr "Paramètres pour la mise en avant et statut de contrat actif"
+
+#: guard/templates/guard/views/merchants/index.html:476
+msgid "Upload cover image and secondary images"
+msgstr "Télécharger l'image de couverture et les images secondaires"
+
+#: guard/templates/guard/views/merchants/index.html:496
+msgid "Secondary Gallery Images"
+msgstr "Images secondaires de la galerie"
+
+#: guard/templates/guard/views/merchants/index.html:533
+msgid "Add Gallery Image"
+msgstr "Ajouter une image de galerie"
+
+#: guard/templates/guard/views/merchants/index.html:543
+msgid "List of products offered by this merchant"
+msgstr "Liste des produits offerts par ce commerce"
+
+#: guard/templates/guard/views/merchants/index.html:554
+msgid "Product Name (EN)"
+msgstr "Nom du produit (EN)"
+
+#: guard/templates/guard/views/merchants/index.html:561
+msgid "Product Name (FR)"
+msgstr "Nom du produit (FR)"
+
+#: guard/templates/guard/views/merchants/index.html:578
+msgid "Product Image"
+msgstr "Image du produit"
+
+#: guard/templates/guard/views/merchants/index.html:595
+msgid "Delete Product"
+msgstr "Supprimer le produit"
+
+#: guard/templates/guard/views/merchants/index.html:607
+msgid "Add Product"
+msgstr "Ajouter un produit"
+
+#: guard/templates/guard/views/merchants/index.html:622
+msgid "Update Merchant"
+msgstr "Mettre à jour le commerce"
+
+#: guard/templates/guard/views/merchants/index.html:622
+msgid "Save Merchant"
+msgstr "Enregistrer le commerce"
+
+#: guard/templates/guard/views/merchants/list.html:4
+msgid "Our Picks List"
+msgstr "Liste de Nos Coups de Cœur"
+
+#: guard/templates/guard/views/merchants/list.html:34
+msgid "Close modal"
+msgstr "Fermer le modal"
+
+#: guard/templates/guard/views/merchants/list.html:48
+msgid "Name (EN)"
+msgstr "Nom (EN)"
+
+#: guard/templates/guard/views/merchants/list.html:49
+msgid "Name (FR)"
+msgstr "Nom (FR)"
+
+#: guard/templates/guard/views/merchants/list.html:81
+msgid "No categories found."
+msgstr "Aucune catégorie trouvée."
+
+#: guard/templates/guard/views/merchants/list.html:133
+msgid "Contract"
+msgstr "Contrat"
+
+#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:7
+msgid "Delete category"
+msgstr "Supprimer la catégorie"
+
+#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:16
+msgid ""
+"Warning: This action cannot be undone. If you confirm, the merchant category "
+"will be permanently deleted."
+msgstr "Attention : cette action est irréversible. Si vous confirmez, la catégorie de commerce sera définitivement supprimée."
+
+#: guard/templates/guard/views/merchants/partials/confirm_model.html:7
+msgid "Delete merchant"
+msgstr "Supprimer le commerce"
+
+#: guard/templates/guard/views/merchants/partials/confirm_model.html:16
+msgid ""
+"Warning: This action cannot be undone. If you confirm, the merchant will be "
+"permanently deleted."
+msgstr "Attention : cette action est irréversible. Si vous confirmez, le commerce sera définitivement supprimé."
+
 
 #: guard/templates/guard/views/pages/index.html:6
 #: guard/templates/guard/views/pages/index.html:41
@@ -1920,150 +2461,174 @@ msgid ""
 "Warning: This action cannot be undone. If you confirm, the tip will be "
 "permanently deleted."
 msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
-"le conseil sera définitivement supprimé."
+"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le "
+"conseil sera définitivement supprimé."
 
-#: guard/views.py:124
+#: guard/views.py:132
 msgid "Location created successfully."
 msgstr "Emplacement créé avec succès."
 
-#: guard/views.py:149 guard/views.py:732
+#: guard/views.py:157 guard/views.py:740
 msgid "Please upload at least one image."
 msgstr "Veuillez télécharger au moins une image."
 
-#: guard/views.py:170
+#: guard/views.py:178
 msgid "Location updated successfully."
 msgstr "Emplacement mis à jour avec succès."
 
-#: guard/views.py:202 guard/views.py:538 guard/views.py:796
+#: guard/views.py:210 guard/views.py:546 guard/views.py:804
 msgid "Veuillez conserver ou télécharger au moins une image."
 msgstr "Please save or download at least one image."
 
-#: guard/views.py:222
+#: guard/views.py:230
 msgid "Unfortunately, this location has been deleted"
 msgstr "Malheureusement, cet emplacement a été supprimé"
 
-#: guard/views.py:266
+#: guard/views.py:274
 msgid "Public transport created successfully."
 msgstr "Transports publics créés avec succès."
 
-#: guard/views.py:307
+#: guard/views.py:315
 msgid "Please add at least one departure time."
 msgstr "Veuillez ajouter au moins une heure de départ."
 
-#: guard/views.py:328
+#: guard/views.py:336
 msgid "Public transport updated successfully."
 msgstr "Transports publics mis à jour avec succès."
 
-#: guard/views.py:385
+#: guard/views.py:393
 msgid "Please keep or add at least one departure time."
 msgstr "Veuillez conserver ou ajouter au moins une heure de départ."
 
-#: guard/views.py:405
+#: guard/views.py:413
 msgid "Public transport has been deleted."
 msgstr "Les transports publics ont été supprimés."
 
-#: guard/views.py:431
+#: guard/views.py:439
 msgid "Event created successfully."
 msgstr "Événement créé avec succès."
 
-#: guard/views.py:462
+#: guard/views.py:470
 msgid "Veuillez télécharger au moins une image."
 msgstr "Please upload at least one image."
 
-#: guard/views.py:498
+#: guard/views.py:506
 msgid "Event updated successfully."
 msgstr "Événement mis à jour avec succès."
 
-#: guard/views.py:612
+#: guard/views.py:620
 msgid "Unfortunately, this event has been deleted"
 msgstr "Malheureusement, cet événement a été supprimé"
 
-#: guard/views.py:640 guard/views.py:642
+#: guard/views.py:648 guard/views.py:650
 msgid "Tip created successfully"
 msgstr "Astuce créée avec succès"
 
-#: guard/views.py:645
+#: guard/views.py:653
 msgid "Error creating tip. Please check the form."
 msgstr ""
 "Erreur lors de la création du pourboire. Veuillez vérifier le formulaire."
 
-#: guard/views.py:659 guard/views.py:661
+#: guard/views.py:667 guard/views.py:669
 msgid "Tip updated successfully"
 msgstr "Conseil mis à jour avec succès"
 
-#: guard/views.py:664
+#: guard/views.py:672
 msgid "Error updating tip. Please check the form."
 msgstr ""
 "Erreur lors de la mise à jour du pourboire. Veuillez vérifier le formulaire."
 
-#: guard/views.py:676
+#: guard/views.py:684
 msgid "Tip deleted successfully"
 msgstr "Conseil supprimé avec succès"
 
-#: guard/views.py:704
+#: guard/views.py:712
 msgid "Hiking created successfully"
 msgstr "Randonnée créée avec succès"
 
-#: guard/views.py:745
+#: guard/views.py:753
 msgid "Error creating hiking. Please check the form."
 msgstr ""
 "Erreur lors de la création de la randonnée. Veuillez vérifier le formulaire."
 
-#: guard/views.py:759
+#: guard/views.py:767
 msgid "Hiking updated successfully"
 msgstr "Randonnée mise à jour avec succès"
 
-#: guard/views.py:810
+#: guard/views.py:818
 msgid "Error updating hiking. Please check the form."
 msgstr ""
 "Erreur lors de la mise à jour de la randonnée. Veuillez vérifier le "
 "formulaire."
 
-#: guard/views.py:822
+#: guard/views.py:830
 msgid "Hiking deleted successfully"
 msgstr "Randonnée supprimée avec succès"
 
-#: guard/views.py:862
+#: guard/views.py:870
 msgid "Ad created successfully"
 msgstr "Annonce créée avec succès"
 
-#: guard/views.py:887
+#: guard/views.py:895
 msgid "Error creating ad. Please check the form."
 msgstr ""
 "Erreur lors de la création de l'annonce. Veuillez vérifier le formulaire."
 
-#: guard/views.py:896
+#: guard/views.py:904
 msgid "Ad updated successfully"
 msgstr "Annonce mise à jour avec succès"
 
-#: guard/views.py:963
+#: guard/views.py:971
 msgid "Ad deleted successfully"
 msgstr "Annonce supprimée avec succès"
 
-#: guard/views.py:991
+#: guard/views.py:999
 msgid "Partner created successfully."
 msgstr "Partenaire créé avec succès."
 
-#: guard/views.py:1004
+#: guard/views.py:1012
 msgid "Partner updated successfully."
 msgstr "Partenaire mis à jour avec succès."
 
-#: guard/views.py:1016
+#: guard/views.py:1024
 msgid "Partner deleted successfully."
 msgstr "Partenaire supprimé avec succès."
 
-#: guard/views.py:1044
+#: guard/views.py:1052
 msgid "Sponsor created successfully."
 msgstr "Parrain créé avec succès."
 
-#: guard/views.py:1057
+#: guard/views.py:1065
 msgid "Sponsor updated successfully."
 msgstr "Parrainage mis à jour avec succès."
 
-#: guard/views.py:1069
+#: guard/views.py:1077
 msgid "Sponsor deleted successfully."
 msgstr "Parrain supprimé avec succès."
+
+#: guard/views.py:1147
+msgid "Merchant created successfully."
+msgstr "Commerce créé avec succès."
+
+#: guard/views.py:1189
+msgid "Merchant updated successfully."
+msgstr "Commerce mis à jour avec succès."
+
+#: guard/views.py:1229
+msgid "Merchant has been deleted."
+msgstr "Le commerce a été supprimé."
+
+#: guard/views.py:1246
+msgid "Merchant category created successfully."
+msgstr "Catégorie de commerce créée avec succès."
+
+#: guard/views.py:1259
+msgid "Merchant category updated successfully."
+msgstr "Catégorie de commerce mise à jour avec succès."
+
+#: guard/views.py:1270
+msgid "Merchant category has been deleted."
+msgstr "La catégorie de commerce a été supprimée."
 
 #: shared/forms.py:53 shared/forms.py:105
 msgid "Username"
@@ -2157,10 +2722,6 @@ msgstr "Prénom"
 msgid "Last name"
 msgstr "Nom de famille"
 
-#: shared/forms.py:179
-msgid "Email"
-msgstr "Email"
-
 #: shared/forms.py:184
 msgid "Your first name"
 msgstr "Votre prénom"
@@ -2205,10 +2766,6 @@ msgstr "URL Slug"
 msgid "Page"
 msgstr "Page"
 
-#: shared/models.py:131
-msgid "Staff"
-msgstr "Personnel"
-
 #: shared/models.py:132
 msgid "Client / Partners"
 msgstr "Clients / Partenaires"
@@ -2232,14 +2789,6 @@ msgstr "Procès"
 #: shared/models.py:185
 msgid "Grace period"
 msgstr "Délai de grâce"
-
-#: shared/models.py:186
-msgid "Expired"
-msgstr "Expiré"
-
-#: shared/models.py:189
-msgid "Pending"
-msgstr "En attente"
 
 #: shared/models.py:224
 msgid "First visit"

@@ -1,0 +1,730 @@
+{% extends 'guard/base/index.html' %}
+{% load static i18n %}
+
+{% block title %}
+     {% if object %}
+          {% trans "Edit Merchant" %}
+     {% else %}
+          {% trans "Add Merchant" %}
+     {% endif %}
+{% endblock title %}
+
+{% block body %}
+<nav class="flex mb-5" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+            <a href="{% url 'guard:dashboard' %}" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                {% trans "Dashboard" %}
+            </a>
+        </li>
+        <li>
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <a href="{% url 'guard:merchantsList' %}" class="ml-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-400 dark:hover:text-white">{% trans "Our Picks" %}</a>
+            </div>
+        </li>
+        <li aria-current="page">
+            <div class="flex items-center">
+                <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">
+                    {% if object %}{% trans "Edit" %}{% else %}{% trans "Add" %}{% endif %}
+                </span>
+            </div>
+        </li>
+    </ol>
+</nav>
+
+<div class="mb-6">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+        {% if object %}
+            {% trans "Edit Merchant" %}
+        {% else %}
+            {% trans "Add Merchant" %}
+        {% endif %}
+    </h1>
+    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">
+        {% if object %}
+            {% trans "Update the merchant details below" %}
+        {% else %}
+            {% trans "Fill in the details to create a new merchant" %}
+        {% endif %}
+    </p>
+</div>
+
+<form action="" method="post" class="space-y-6" id="merchantForm" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {{ form.media }}
+    {% if form.non_field_errors %}
+        <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+            {% for error in form.non_field_errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Card 1: Basic Information -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    {% trans "Basic Information" %}
+                </h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Enter the merchant name and description in different languages" %}</p>
+            </div>
+            
+            <div class="mb-4">
+                <div class="border-b border-gray-200 dark:border-gray-700">
+                    <ul class="flex flex-wrap -mb-px text-sm font-medium text-center dark:text-white" role="tablist">
+                        <li class="mr-2" role="presentation">
+                            <button class="cursor-pointer inline-block p-4 border-b-2 rounded-t-lg border-blue-600 text-blue-600 dark:text-blue-500 dark:border-blue-500" type="button" role="tab" aria-selected="true" onclick="switchTab(event, 'name-en')">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/></svg>
+                                    {% trans "English" %}
+                                </span>
+                            </button>
+                        </li>
+                        <li class="mr-2" role="presentation">
+                            <button class="cursor-pointer inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-selected="false" onclick="switchTab(event, 'name-fr')">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="8"/></svg>
+                                    {% trans "French" %}
+                                </span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="name-en" class="tab-content pt-4">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="{{ form.name_en.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.name_en.label }}
+                                {% if form.name_en.field.required %}<span class="text-red-600">*</span>{% endif %}
+                            </label>
+                            {{ form.name_en }}
+                            <button type="button" onclick="translateField('name_en', 'name_fr', 'en', 'fr', false)" 
+                                    class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:from-purple-600 hover:to-pink-600 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                                <span class="translate-btn-text">{% trans "Translate to French" %}</span>
+                                <span class="translate-btn-loader hidden">
+                                    <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            {% if form.name_en.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.name_en.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div>
+                            <label for="{{ form.description_en.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.description_en.label }}
+                                {% if form.description_en.field.required %}<span class="text-red-600">*</span>{% endif %}
+                            </label>
+                            {{ form.description_en }}
+                            <button type="button" onclick="translateField('description_en', 'description_fr', 'en', 'fr', true)" 
+                                    class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:from-purple-600 hover:to-pink-600 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                                <span class="translate-btn-text">{% trans "Translate to French" %}</span>
+                                <span class="translate-btn-loader hidden">
+                                    <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            {% if form.description_en.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.description_en.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="name-fr" class="tab-content pt-4 hidden">
+                    <div class="space-y-4">
+                        <div>
+                            <label for="{{ form.name_fr.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.name_fr.label }}
+                                {% if form.name_fr.field.required %}<span class="text-red-600">*</span>{% endif %}
+                            </label>
+                            {{ form.name_fr }}
+                            <button type="button" onclick="translateField('name_fr', 'name_en', 'fr', 'en', false)" 
+                                    class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg hover:from-blue-600 hover:to-cyan-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                                <span class="translate-btn-text">{% trans "Translate to English" %}</span>
+                                <span class="translate-btn-loader hidden">
+                                    <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            {% if form.name_fr.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.name_fr.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div>
+                            <label for="{{ form.description_fr.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {{ form.description_fr.label }}
+                                {% if form.description_fr.field.required %}<span class="text-red-600">*</span>{% endif %}
+                            </label>
+                            {{ form.description_fr }}
+                            <button type="button" onclick="translateField('description_fr', 'description_en', 'fr', 'en', true)" 
+                                    class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg hover:from-blue-600 hover:to-cyan-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                                <span class="translate-btn-text">{% trans "Translate to English" %}</span>
+                                <span class="translate-btn-loader hidden">
+                                    <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            {% if form.description_fr.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.description_fr.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 2: Location & Details -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    {% trans "Merchant Details" %}
+                </h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Category, City, Geolocation, Address, and Contact Details" %}</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div>
+                    <label for="{{ form.category.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.category.label }}
+                        {% if form.category.field.required %}<span class="text-red-600">*</span>{% endif %}
+                    </label>
+                    {{ form.category }}
+                    {% if form.category.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.category.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
+                <div>
+                    <label for="{{ form.city.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.city.label }}
+                        {% if form.city.field.required %}<span class="text-red-600">*</span>{% endif %}
+                    </label>
+                    {{ form.city }}
+                    {% if form.city.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.city.errors.0 }}</p>
+                    {% endif %}
+                </div>
+                
+                <div>
+                    <label for="{{ form.latitude.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.latitude.label }}
+                        {% if form.latitude.field.required %}<span class="text-red-600">*</span>{% endif %}
+                    </label>
+                    {{ form.latitude }}
+                    {% if form.latitude.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.latitude.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.longitude.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.longitude.label }}
+                        {% if form.longitude.field.required %}<span class="text-red-600">*</span>{% endif %}
+                    </label>
+                    {{ form.longitude }}
+                    {% if form.longitude.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.longitude.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <!-- Multilingual Address fields -->
+                <div class="sm:col-span-2">
+                    <div class="border-b border-gray-200 dark:border-gray-700">
+                        <ul class="flex flex-wrap -mb-px text-sm font-medium text-center dark:text-white" role="tablist">
+                            <li class="mr-2" role="presentation">
+                                <button class="cursor-pointer inline-block p-4 border-b-2 rounded-t-lg border-blue-600 text-blue-600 dark:text-blue-500 dark:border-blue-500" type="button" role="tab" aria-selected="true" onclick="switchTab(event, 'addr-en')">
+                                    {% trans "Address (English)" %}
+                                </button>
+                            </li>
+                            <li class="mr-2" role="presentation">
+                                <button class="cursor-pointer inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" type="button" role="tab" aria-selected="false" onclick="switchTab(event, 'addr-fr')">
+                                    {% trans "Address (French)" %}
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="addr-en" class="tab-content pt-4">
+                        <div>
+                            {{ form.address_en }}
+                            <button type="button" onclick="translateField('address_en', 'address_fr', 'en', 'fr', false)" 
+                                    class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg hover:from-purple-600 hover:to-pink-600 focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-900">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                                <span class="translate-btn-text">{% trans "Translate to French" %}</span>
+                                <span class="translate-btn-loader hidden">
+                                    <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            {% if form.address_en.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.address_en.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div id="addr-fr" class="tab-content pt-4 hidden">
+                        <div>
+                            {{ form.address_fr }}
+                            <button type="button" onclick="translateField('address_fr', 'address_en', 'fr', 'en', false)" 
+                                    class="mt-2 inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg hover:from-blue-600 hover:to-cyan-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path>
+                                </svg>
+                                <span class="translate-btn-text">{% trans "Translate to English" %}</span>
+                                <span class="translate-btn-loader hidden">
+                                    <svg class="animate-spin h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            {% if form.address_fr.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.address_fr.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="{{ form.phone.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.phone.label }}
+                    </label>
+                    {{ form.phone }}
+                    {% if form.phone.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.phone.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.website.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.website.label }}
+                    </label>
+                    {{ form.website }}
+                    {% if form.website.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.website.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.price_range.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.price_range.label }}
+                    </label>
+                    {{ form.price_range }}
+                    {% if form.price_range.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.price_range.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="sm:col-span-2 grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div>
+                        <label for="{{ form.open_from.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.open_from.label }}
+                        </label>
+                        {{ form.open_from }}
+                        {% if form.open_from.errors %}
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.open_from.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label for="{{ form.open_to.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            {{ form.open_to.label }}
+                        </label>
+                        {{ form.open_to }}
+                        {% if form.open_to.errors %}
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.open_to.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 3: Status & Contract details -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    {% trans "Contract & Visibility" %}
+                </h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Settings for featuring and active contract status" %}</p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div class="flex flex-col space-y-4">
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            {{ form.is_active }}
+                        </div>
+                        <div class="ms-3 text-sm">
+                            <label for="{{ form.is_active.id_for_label }}" class="font-medium text-gray-900 dark:text-gray-300">
+                                {{ form.is_active.label }}
+                            </label>
+                            {% if form.is_active.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.is_active.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="flex items-start">
+                        <div class="flex items-center h-5">
+                            {{ form.is_featured }}
+                        </div>
+                        <div class="ms-3 text-sm">
+                            <label for="{{ form.is_featured.id_for_label }}" class="font-medium text-gray-900 dark:text-gray-300">
+                                {{ form.is_featured.label }}
+                            </label>
+                            <p class="text-xs text-gray-500">{% trans "Featured merchants appear at the top of the list" %}</p>
+                            {% if form.is_featured.errors %}
+                                <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.is_featured.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label for="{{ form.contract_status.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.contract_status.label }}
+                    </label>
+                    {{ form.contract_status }}
+                    {% if form.contract_status.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.contract_status.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.contract_start.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.contract_start.label }}
+                    </label>
+                    {{ form.contract_start }}
+                    {% if form.contract_start.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.contract_start.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="{{ form.contract_end.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.contract_end.label }}
+                    </label>
+                    {{ form.contract_end }}
+                    {% if form.contract_end.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.contract_end.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="{{ form.contract_notes.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                        {{ form.contract_notes.label }}
+                    </label>
+                    {{ form.contract_notes }}
+                    {% if form.contract_notes.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.contract_notes.errors.0 }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Card 4: Images -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{% trans "Images" %}</h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Upload cover image and secondary images" %}</p>
+            </div>
+            
+            <div class="mb-6">
+                <label for="{{ form.cover.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    {{ form.cover.label }}
+                </label>
+                {% if object.cover %}
+                    <div class="mb-4 flex items-center gap-4">
+                        <img src="{{ object.cover.url }}" alt="Cover" class="h-20 w-20 object-cover rounded shadow">
+                    </div>
+                {% endif %}
+                {{ form.cover }}
+                {% if form.cover.errors %}
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.cover.errors.0 }}</p>
+                {% endif %}
+            </div>
+
+            <!-- Image Formset -->
+            {{ image_formset.management_form }}
+            <h3 class="text-lg font-medium text-gray-900 dark:text-white mb-4">{% trans "Secondary Gallery Images" %}</h3>
+            <div id="image-formset" class="space-y-4">
+                {% for iform in image_formset %}
+                <div class="image-form-row p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <div class="flex items-start gap-4">
+                        {% if iform.instance.pk and iform.instance.image %}
+                        <div class="flex-shrink-0">
+                            <img src="{{ iform.instance.image.url }}" alt="Merchant image" class="h-20 w-20 object-cover rounded">
+                        </div>
+                        {% endif %}
+                        <div class="flex-1">
+                            {{ iform.id }}
+                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                {% if iform.instance.pk %}{% trans "Replace Image" %}{% else %}{% trans "Upload Image" %}{% endif %}
+                            </label>
+                            {{ iform.image }}
+                            {% if iform.errors.image %}
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-400">{{ iform.errors.image }}</p>
+                            {% endif %}
+                        </div>
+                        {% if iform.instance.pk %}
+                        <div class="flex-shrink-0">
+                            <label class="inline-flex items-center cursor-pointer">
+                                {{ iform.DELETE }}
+                                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">{% trans "Delete" %}</span>
+                            </label>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <button type="button" id="add-image-button" class="mt-4 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                {% trans "Add Gallery Image" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Card 5: Products -->
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white">{% trans "Products" %}</h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "List of products offered by this merchant" %}</p>
+            </div>
+
+            {{ product_formset.management_form }}
+            <div id="product-formset" class="space-y-4">
+                {% for pform in product_formset %}
+                <div class="product-form-row p-4 border border-gray-200 dark:border-gray-700 rounded-lg">
+                    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+                        {{ pform.id }}
+                        <div class="md:col-span-2 grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div>
+                                <label class="block mb-1 text-xs font-semibold text-gray-700 dark:text-gray-300">{% trans "Product Name (EN)" %}</label>
+                                {{ pform.name_en }}
+                                {% if pform.errors.name_en %}
+                                    <p class="text-red-500 text-xs mt-1">{{ pform.errors.name_en }}</p>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <label class="block mb-1 text-xs font-semibold text-gray-700 dark:text-gray-300">{% trans "Product Name (FR)" %}</label>
+                                {{ pform.name_fr }}
+                                {% if pform.errors.name_fr %}
+                                    <p class="text-red-500 text-xs mt-1">{{ pform.errors.name_fr }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+                            <div>
+                                <label class="block mb-1 text-xs font-semibold text-gray-700 dark:text-gray-300">{% trans "Price" %}</label>
+                                {{ pform.price }}
+                                {% if pform.errors.price %}
+                                    <p class="text-red-500 text-xs mt-1">{{ pform.errors.price }}</p>
+                                {% endif %}
+                            </div>
+                            <div>
+                                <label class="block mb-1 text-xs font-semibold text-gray-700 dark:text-gray-300">{% trans "Product Image" %}</label>
+                                {% if pform.instance.pk and pform.instance.image %}
+                                    <div class="mb-2">
+                                        <img src="{{ pform.instance.image.url }}" alt="Product Image" class="h-12 w-12 object-cover rounded shadow">
+                                    </div>
+                                {% endif %}
+                                {{ pform.image }}
+                                {% if pform.errors.image %}
+                                    <p class="text-red-500 text-xs mt-1">{{ pform.errors.image }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    {% if pform.instance.pk %}
+                    <div class="flex justify-end mt-2">
+                        <label class="inline-flex items-center cursor-pointer">
+                            {{ pform.DELETE }}
+                            <span class="ms-2 text-sm font-medium text-red-600 dark:text-red-500">{% trans "Delete Product" %}</span>
+                        </label>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+
+            <button type="button" id="add-product-button" class="mt-4 text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                {% trans "Add Product" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex items-center justify-between gap-x-6 border-t border-gray-900/10 pt-6">
+        <a href="{% url 'guard:merchantsList' %}" class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-full text-sm px-4 py-2.5 focus:outline-none">
+            {% trans "Cancel" %}
+        </a>
+        <div class="flex gap-x-3">
+            <button type="submit" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                {% if object %}{% trans "Update Merchant" %}{% else %}{% trans "Save Merchant" %}{% endif %}
+            </button>
+        </div>
+    </div>
+</form>
+{% endblock body %}
+
+{% block extrascript %}
+<script>
+    function switchTab(event, tabId) {
+        event.preventDefault();
+        
+        const element = event.currentTarget;
+        const tabList = element.closest('ul');
+        const contentContainer = tabList.parentElement.parentElement;
+        
+        tabList.querySelectorAll('button, a').forEach(el => {
+            el.classList.remove('border-blue-600', 'text-blue-600', 'dark:text-blue-500', 'dark:border-blue-500', 'active');
+            el.classList.add('border-transparent');
+            el.setAttribute('aria-selected', 'false');
+            el.removeAttribute('aria-current');
+        });
+        
+        element.classList.add('border-blue-600', 'text-blue-600', 'dark:text-blue-500', 'dark:border-blue-500', 'active');
+        element.classList.remove('border-transparent');
+        element.setAttribute('aria-selected', 'true');
+        element.setAttribute('aria-current', 'page');
+        contentContainer.querySelectorAll('.tab-content').forEach(content => {
+            content.classList.add('hidden');
+        });
+        
+        const selectedContent = document.getElementById(tabId);
+        if (selectedContent) {
+            selectedContent.classList.remove('hidden');
+        }
+    }
+
+    // Dynamic Image Formset
+    document.getElementById('add-image-button')?.addEventListener('click', function() {
+        const formset = document.getElementById('image-formset');
+        const totalForms = document.querySelector('#id_images-TOTAL_FORMS');
+        const formCount = parseInt(totalForms.value);
+        const maxForms = parseInt(document.querySelector('#id_images-MAX_NUM_FORMS').value);
+        
+        if (formCount >= maxForms) {
+            alert('Maximum number of images reached (10)');
+            return;
+        }
+        
+        const emptyForm = formset.querySelector('.image-form-row');
+        const newForm = emptyForm.cloneNode(true);
+        
+        const formRegex = RegExp(`images-(\\d+)-`, 'g');
+        newForm.innerHTML = newForm.innerHTML.replace(formRegex, `images-${formCount}-`);
+        
+        const fileInput = newForm.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = '';
+        
+        const imgPreview = newForm.querySelector('img');
+        if (imgPreview) imgPreview.parentElement.remove();
+        
+        const deleteSection = newForm.querySelector('.flex-shrink-0:has(label)');
+        if (deleteSection) deleteSection.remove();
+        
+        formset.appendChild(newForm);
+        totalForms.value = formCount + 1;
+    });
+
+    // Dynamic Product Formset
+    document.getElementById('add-product-button')?.addEventListener('click', function() {
+        const formset = document.getElementById('product-formset');
+        const totalForms = document.querySelector('#id_products-TOTAL_FORMS');
+        const formCount = parseInt(totalForms.value);
+        const maxForms = parseInt(document.querySelector('#id_products-MAX_NUM_FORMS').value);
+        
+        if (formCount >= maxForms) {
+            alert('Maximum number of products reached (20)');
+            return;
+        }
+        
+        const emptyForm = formset.querySelector('.product-form-row');
+        const newForm = emptyForm.cloneNode(true);
+        
+        const formRegex = RegExp(`products-(\\d+)-`, 'g');
+        newForm.innerHTML = newForm.innerHTML.replace(formRegex, `products-${formCount}-`);
+        
+        // Clear all inputs
+        newForm.querySelectorAll('input').forEach(input => {
+            if (input.type === 'file') {
+                input.value = '';
+            } else if (input.type !== 'hidden') {
+                input.value = '';
+            }
+        });
+        
+        const imgPreview = newForm.querySelector('img');
+        if (imgPreview) imgPreview.parentElement.remove();
+        
+        const deleteSection = newForm.querySelector('.flex-shrink-0:has(label)');
+        if (deleteSection) deleteSection.remove();
+        
+        formset.appendChild(newForm);
+        totalForms.value = formCount + 1;
+    });
+
+    // AI Translation Utils Inclusion
+    {% include 'shared/js/translation_utils.html' %}
+</script>
+{% endblock extrascript %}
