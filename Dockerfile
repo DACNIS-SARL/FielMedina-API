@@ -1,16 +1,19 @@
 # ─── Stage 1: Build Tailwind CSS ──────────────────────────────────────────────
-FROM node:20-slim AS css-builder
+# FROM node:20-slim AS css-builder
+FROM oven/bun:1 AS css-builder
 
 WORKDIR /build
 
-COPY package.json package-lock.json ./
-RUN npm ci
+# COPY package.json package-lock.json ./
+# RUN npm ci
+COPY package.json bun.lockb ./
+RUN bun install --frozen-lockfile
 
 # Copy ALL application code so Tailwind can scan the HTML/JS for class names
 COPY . .
 
-RUN npx @tailwindcss/cli -i ./static/input.css -o ./static/main.css --minify
-
+# RUN npx @tailwindcss/cli -i ./static/input.css -o ./static/main.css --minify
+RUN bunx @tailwindcss/cli -i ./static/input.css -o ./static/main.css --minify
 
 # ─── Stage 2: Python Application ─────────────────────────────────────────────
 FROM python:3.14-slim
