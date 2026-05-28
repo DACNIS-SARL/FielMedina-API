@@ -2902,3 +2902,17 @@ msgstr "Page mise à jour avec succès."
 #: shared/views.py:209
 msgid "Page deleted successfully."
 msgstr "Page supprimée avec succès."
+
+#: guard/models.py guard/templates/guard/views/locations/list.html
+#: guard/templates/guard/views/events/list.html
+#: guard/templates/guard/views/ads/list.html
+#: guard/templates/guard/views/merchants/list.html
+msgid "Created By"
+msgstr "Créé par"
+
+#: guard/models.py guard/templates/guard/views/locations/list.html
+#: guard/templates/guard/views/events/list.html
+#: guard/templates/guard/views/ads/list.html
+#: guard/templates/guard/views/merchants/list.html
+msgid "Updated By"
+msgstr "Mis à jour par"

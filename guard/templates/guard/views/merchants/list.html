@@ -133,6 +133,18 @@
                         {% trans "Contract" %}
                      </span>
                   </th>
+                  {% if request.user.is_staff %}
+                  <th>
+                     <span class="flex items-center">
+                        {% trans "Created By" %}
+                     </span>
+                  </th>
+                  <th>
+                     <span class="flex items-center">
+                        {% trans "Updated By" %}
+                     </span>
+                  </th>
+                  {% endif %}
                   <th></th>
             </tr>
          </thead>
@@ -165,6 +177,10 @@
                              <span class="px-2 py-1 text-xs font-semibold bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-400 rounded-full">{{ data.get_contract_status_display }}</span>
                          {% endif %}
                      </td>
+                     {% if request.user.is_staff %}
+                     <td>{% if data.created_by %}{{ data.created_by.get_full_name|default:data.created_by.username }}{% else %}-{% endif %}</td>
+                     <td>{% if data.updated_by %}{{ data.updated_by.get_full_name|default:data.updated_by.username }}{% else %}-{% endif %}</td>
+                     {% endif %}
                      <td>
                          <div class="flex items-center gap-2">
                             <a href="{% url 'guard:merchant_update' data.id %}" class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
@@ -173,6 +189,14 @@
                                </svg>
                                {% trans "Edit" %}
                             </a>
+                            {% if data.short_id %}
+                             <a href="{% url 'guard:merchant_track' data.id %}" class="inline-flex items-center text-white bg-indigo-600 box-border border border-transparent hover:bg-indigo-700 focus:ring-4 focus:ring-indigo-300 shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none dark:bg-indigo-500 dark:hover:bg-indigo-600 dark:focus:ring-indigo-800">
+                                 <svg class="w-3.5 h-3.5 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                     <path fill-rule="evenodd" d="M4 4a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H4Zm3 12a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2Zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-6Zm5-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V9Z" clip-rule="evenodd"/>
+                                 </svg>
+                                 {% trans "Analytics" %}
+                             </a>
+                             {% endif %}
                             <button data-modal-target="confirm-modal{{ data.id }}" data-modal-toggle="confirm-modal{{ data.id }}" class="inline-flex items-center text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                                <svg class="w-3.5 h-3.5 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 640 640">
                                   <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M232.7 69.9L224 96L128 96C110.3 96 96 110.3 96 128C96 145.7 110.3 160 128 160L512 160C529.7 160 544 145.7 544 128C544 110.3 529.7 96 512 96L416 96L407.3 69.9C402.9 56.8 390.7 48 376.9 48L263.1 48C249.3 48 237.1 56.8 232.7 69.9zM512 208L128 208L149.1 531.1C150.7 556.4 171.7 576 197 576L443 576C468.3 576 489.3 556.4 490.9 531.1L512 208z"/>

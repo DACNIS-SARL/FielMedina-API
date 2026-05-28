@@ -89,17 +89,23 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                     client=profile, short_id__isnull=False
                 ).values_list("short_id", flat=True)
             )
-            merchant_ids = list(
-                Merchant.objects.filter(
-                    is_active=True, short_id__isnull=False
-                ).values_list("short_id", flat=True)
-            )
+            merchant_ids = []
+            if self.request.user.is_staff:
+                merchant_ids = list(
+                    Merchant.objects.filter(
+                        is_active=True, short_id__isnull=False
+                    ).values_list("short_id", flat=True)
+                )
 
             # Aggregate stats for the last 7 days (week)
             period = "week"
             ads_stats = service.get_aggregated_link_statistics(ad_ids, period)
             events_stats = service.get_aggregated_link_statistics(event_ids, period)
-            merchants_stats = service.get_aggregated_link_statistics(merchant_ids, period)
+            merchants_stats = (
+                service.get_aggregated_link_statistics(merchant_ids, period)
+                if self.request.user.is_staff
+                else {"totalClicks": 0, "clickStatistics": {"timeline": []}}
+            )
 
             stats = {
                 "ads": ads_stats,
@@ -119,6 +125,12 @@ class LocationsListView(UserPassesTestMixin, LoginRequiredMixin, ListView):
     context_object_name = "locations"
     # paginate_by = 10
     ordering = ["-created_at"]
+
+    def get_queryset(self):
+        qs = super().get_queryset().select_related("created_by", "updated_by")
+        if self.request.user.is_staff:
+            return qs
+        return qs.filter(created_by=self.request.user)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -164,7 +176,10 @@ class LocationCreateView(
                 form.add_error(None, _("Please upload at least one image."))
                 return self.form_invalid(form)
 
-            self.object = form.save()
+            self.object = form.save(commit=False)
+            self.object.created_by = self.request.user
+            self.object.updated_by = self.request.user
+            self.object.save()
             image_formset.instance = self.object
             image_formset.save()
             return super().form_valid(form)
@@ -218,7 +233,9 @@ class LocationUpdateView(
                 )
                 return self.form_invalid(form)
 
-            self.object = form.save()
+            self.object = form.save(commit=False)
+            self.object.updated_by = self.request.user
+            self.object.save()
             image_formset.instance = self.object
             image_formset.save()
             return super().form_valid(form)
@@ -435,7 +452,10 @@ class EventListView(LoginRequiredMixin, ListView):
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        return super().get_queryset().filter(client=self.request.user.profile)
+        qs = super().get_queryset().select_related("created_by", "updated_by")
+        if self.request.user.is_staff:
+            return qs
+        return qs.filter(client=self.request.user.profile)
 
 
 class EventCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
@@ -479,6 +499,8 @@ class EventCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
             self.object = form.save(commit=False)
             self.object.client = self.request.user.profile
+            self.object.created_by = self.request.user
+            self.object.updated_by = self.request.user
 
             # Shorten URL via Short.io
             try:
@@ -518,7 +540,10 @@ class EventUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return kwargs
 
     def get_queryset(self):
-        return super().get_queryset().filter(client=self.request.user.profile)
+        qs = super().get_queryset().select_related("created_by", "updated_by")
+        if self.request.user.is_staff:
+            return qs
+        return qs.filter(client=self.request.user.profile)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -555,6 +580,7 @@ class EventUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
                 return self.form_invalid(form)
 
             self.object = form.save(commit=False)
+            self.object.updated_by = self.request.user
 
             # Update URL via Short.io if changed
             if "link" in form.changed_data:
@@ -606,6 +632,8 @@ class EventTrackingView(LoginRequiredMixin, DetailView):
     context_object_name = "object"
 
     def get_queryset(self):
+        if self.request.user.is_staff:
+            return super().get_queryset()
         return super().get_queryset().filter(client=self.request.user.profile)
 
     def get_context_data(self, **kwargs):
@@ -627,6 +655,8 @@ class EventDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = _("Unfortunately, this event has been deleted")
 
     def get_queryset(self):
+        if self.request.user.is_staff:
+            return super().get_queryset()
         return super().get_queryset().filter(client=self.request.user.profile)
 
     def delete(self, request, *args, **kwargs):
@@ -852,7 +882,10 @@ class AdListView(LoginRequiredMixin, ListView):
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        return super().get_queryset().filter(client=self.request.user.profile)
+        qs = super().get_queryset().select_related("created_by", "updated_by")
+        if self.request.user.is_staff:
+            return qs
+        return qs.filter(client=self.request.user.profile)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -879,6 +912,8 @@ class AdCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.client = self.request.user.profile
+        self.object.created_by = self.request.user
+        self.object.updated_by = self.request.user
 
         try:
             service = ShortIOService()
@@ -911,10 +946,14 @@ class AdUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = _("Ad updated successfully")
 
     def get_queryset(self):
-        return super().get_queryset().filter(client=self.request.user.profile)
+        qs = super().get_queryset().select_related("created_by", "updated_by")
+        if self.request.user.is_staff:
+            return qs
+        return qs.filter(client=self.request.user.profile)
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
+        self.object.updated_by = self.request.user
 
         if "link" in form.changed_data:
             try:
@@ -957,6 +996,8 @@ class AdTrackingView(LoginRequiredMixin, DetailView):
     context_object_name = "object"
 
     def get_queryset(self):
+        if self.request.user.is_staff:
+            return super().get_queryset()
         return super().get_queryset().filter(client=self.request.user.profile)
 
     def get_context_data(self, **kwargs):
@@ -978,6 +1019,8 @@ class AdDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     success_message = _("Ad deleted successfully")
 
     def get_queryset(self):
+        if self.request.user.is_staff:
+            return super().get_queryset()
         return super().get_queryset().filter(client=self.request.user.profile)
 
     def delete(self, request, *args, **kwargs):
@@ -1135,6 +1178,12 @@ class MerchantsListView(UserPassesTestMixin, LoginRequiredMixin, ListView):
     context_object_name = "merchants"
     ordering = ["-is_featured", "-created_at"]
 
+    def get_queryset(self):
+        qs = super().get_queryset().select_related("created_by", "updated_by")
+        if self.request.user.is_staff:
+            return qs
+        return qs.filter(created_by=self.request.user)
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["merchant_categories"] = MerchantCategory.objects.all()
@@ -1174,6 +1223,8 @@ class MerchantCreateView(
 
         if image_formset.is_valid() and product_formset.is_valid():
             self.object = form.save(commit=False)
+            self.object.created_by = self.request.user
+            self.object.updated_by = self.request.user
             
             # Shorten URL via Short.io
             if self.object.website:
@@ -1234,6 +1285,7 @@ class MerchantUpdateView(
 
         if image_formset.is_valid() and product_formset.is_valid():
             self.object = form.save(commit=False)
+            self.object.updated_by = self.request.user
 
             # Update URL via Short.io if changed
             if "website" in form.changed_data:
@@ -1292,6 +1344,29 @@ class MerchantDeleteView(
     def delete(self, request, *args, **kwargs):
         messages.warning(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
+
+    def test_func(self):
+        return self.request.user.is_staff
+
+
+class MerchantTrackingView(
+    UserPassesTestMixin, LoginRequiredMixin, DetailView
+):
+    model = Merchant
+    template_name = "guard/views/merchants/partials/tracking.html"
+    context_object_name = "object"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        period = self.request.GET.get("period", "today")
+        context["period"] = period
+        context["page_title"] = self.object.name
+
+        if self.object.short_id:
+            service = ShortIOService()
+            context["stats"] = service.get_link_statistics(self.object.short_id, period)
+
+        return context
 
     def test_func(self):
         return self.request.user.is_staff

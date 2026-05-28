@@ -4,6 +4,7 @@ from io import BytesIO
 
 
 from django.db import models
+from django.conf import settings
 from django.db.models.signals import post_delete
 from django.db.models import FileField
 from django.dispatch import receiver
@@ -210,6 +211,23 @@ class Location(models.Model):
         help_text=_("Upload an audio voiceover in French (AAC format only)"),
     )
 
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="created_locations",
+        verbose_name=_("Created By"),
+    )
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="updated_locations",
+        verbose_name=_("Updated By"),
+    )
+
     class Meta:
         verbose_name = _("Location")
         verbose_name_plural = _("Locations")
@@ -320,6 +338,22 @@ class Event(models.Model):
     short_id = models.CharField(max_length=50, blank=True, null=True)
     description = HTMLField(verbose_name=_("Description"))
     boost = models.BooleanField(default=False)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="created_events",
+        verbose_name=_("Created By"),
+    )
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="updated_events",
+        verbose_name=_("Updated By"),
+    )
 
     class Meta:
         verbose_name = _("Event")
@@ -399,6 +433,22 @@ class Ad(models.Model):
     short_id = models.CharField(max_length=50, blank=True, null=True)
     clicks = models.IntegerField(default=0)
     is_active = models.BooleanField(default=True)
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="created_ads",
+        verbose_name=_("Created By"),
+    )
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="updated_ads",
+        verbose_name=_("Updated By"),
+    )
 
     class Meta:
         verbose_name = _("Ad")
@@ -731,6 +781,22 @@ class Merchant(models.Model):
         null=True,
         verbose_name=_("Contract Notes"),
         help_text=_("Internal notes about this merchant's contract"),
+    )
+    created_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="created_merchants",
+        verbose_name=_("Created By"),
+    )
+    updated_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="updated_merchants",
+        verbose_name=_("Updated By"),
     )
 
     class Meta:

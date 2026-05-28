@@ -1,0 +1,264 @@
+{% extends 'guard/base/index.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans "Tracking Dashboard" %}{% endblock title %}
+
+{% block body %}
+<div class="container py-6">
+    <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900 dark:text-white">
+                {% trans "Analytics for:" %} {{ page_title|default:"Item" }}
+            </h1>
+        </div>
+        
+        <div class="flex items-center">
+            <label for="period-select" class="mr-2 text-sm font-medium text-gray-900 dark:text-white">{% trans "Period:" %}</label>
+            <select id="period-select" onchange="updatePeriod(this.value)" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value="today" {% if period == 'today' %}selected{% endif %}>{% trans "Today" %}</option>
+                <option value="yesterday" {% if period == 'yesterday' %}selected{% endif %}>{% trans "Yesterday" %}</option>
+                <option value="week" {% if period == 'week' %}selected{% endif %}>{% trans "Last 7 Days" %}</option>
+                <option value="month" {% if period == 'month' %}selected{% endif %}>{% trans "Last 30 Days" %}</option>
+                <option value="lastmonth" {% if period == 'lastmonth' %}selected{% endif %}>{% trans "Last Month" %}</option>
+                <option value="total" {% if period == 'total' %}selected{% endif %}>{% trans "All Time" %}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="bg-white border border-gray-200 shadow-sm rounded-xl mb-6 dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    {% trans "Tracking Information" %}
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                    <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{% trans "Short ID" %}</p>
+                    <p class="text-gray-900 dark:text-white font-mono">{{ object.short_id }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-800">
+            <h5 class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">{% trans "Total clicks" %}</h5>
+            <div class="flex items-baseline gap-3">
+                <p id="totalClicksValue" class="text-4xl font-bold text-gray-900 dark:text-white">{{ stats.totalClicks|default:0 }}</p>
+                {% if stats.totalClicksChange %}
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded border border-green-500/20 text-xs font-medium text-green-600 bg-green-50 dark:text-green-500 dark:bg-green-500/10">
+                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    {{ stats.totalClicksChange }}%
+                </span>
+                {% endif %}
+            </div>
+            {% if stats.interval and stats.interval.prevStartDate %}
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-500">
+                vs {{ stats.interval.prevStartDate|slice:":10" }}–{{ stats.interval.prevEndDate|slice:":10" }}
+            </p>
+            {% endif %}
+        </div>
+        
+        <div class="p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-900 dark:border-gray-800">
+            <h5 class="mb-2 text-sm font-medium text-gray-500 dark:text-gray-400">{% trans "Human clicks" %}</h5>
+            <div class="flex items-baseline gap-3">
+                <p id="humanClicksValue" class="text-4xl font-bold text-gray-900 dark:text-white">{{ stats.humanClicks|default:0 }}</p>
+                {% if stats.humanClicksChange %}
+                <span class="inline-flex items-center px-1.5 py-0.5 rounded border border-green-500/20 text-xs font-medium text-green-600 bg-green-50 dark:text-green-500 dark:bg-green-500/10">
+                    <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                    {{ stats.humanClicksChange }}%
+                </span>
+                {% endif %}
+            </div>
+            {% if stats.interval and stats.interval.prevStartDate %}
+            <p class="mt-2 text-xs text-gray-500 dark:text-gray-500">
+                vs {{ stats.interval.prevStartDate|slice:":10" }}–{{ stats.interval.prevEndDate|slice:":10" }}
+            </p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 lg:col-span-2">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{% trans "Metric's Evolution Over Time" %}</h3>
+            <div id="clicksChart" class="w-full"></div>
+        </div>
+
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{% trans "Top Countries" %}</h3>
+            <div id="countriesChart" class="w-full"></div>
+        </div>
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{% trans "Top Cities" %}</h3>
+            <div id="citiesChart" class="w-full"></div>
+        </div>
+
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{% trans "Top Browsers" %}</h3>
+            <div id="browsersChart" class="w-full"></div>
+        </div>
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{% trans "Top Operating Systems" %}</h3>
+            <div id="osChart" class="w-full"></div>
+        </div>
+        
+        <div class="p-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">{% trans "Top Social Referrers" %}</h3>
+            <div id="socialChart" class="w-full"></div>
+        </div>
+    </div>
+    
+    <div class="mt-6">
+        <a href="javascript:history.back()" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+            {% trans "Back" %}
+        </a>
+    </div>
+
+</div>
+{% endblock body %}
+
+{% block extrascript %}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
+{{ stats|default:"{}"|json_script:"stats-data" }}
+<script>
+    function updatePeriod(period) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('period', period);
+        window.location.href = url.toString();
+    }
+
+    try {
+        const statsData = JSON.parse(document.getElementById('stats-data').textContent);
+        console.log("Stats Data:", statsData);
+
+        const isDarkMode = document.documentElement.classList.contains('dark');
+        const chartColor = isDarkMode ? '#FFFFFF' : '#374151';
+        
+        let calculatedTotalClicks = statsData.totalClicks || 0;
+        let calculatedHumanClicks = statsData.humanClicks || 0;
+        
+        if (statsData.clickStatistics && statsData.clickStatistics.datasets && statsData.clickStatistics.datasets[0]) {
+            const dataset = statsData.clickStatistics.datasets[0];
+            if (dataset.data && dataset.data.length > 0) {
+                const sumFromChart = dataset.data.reduce((sum, item) => sum + Number(item.y || 0), 0);
+                if (sumFromChart > calculatedTotalClicks) {
+                    calculatedTotalClicks = sumFromChart;
+                    calculatedHumanClicks = sumFromChart; 
+                }
+            }
+        }
+        
+        if (statsData) {
+            const totalEl = document.getElementById('totalClicksValue');
+            if(totalEl) totalEl.textContent = calculatedTotalClicks;
+            
+            const headerEl = document.getElementById('headerTotalClicks');
+            if(headerEl) headerEl.textContent = calculatedTotalClicks;
+            
+            const humanEl = document.getElementById('humanClicksValue');
+            if(humanEl) humanEl.textContent = calculatedHumanClicks;
+        }
+
+        const chartOptionsBase = {
+            chart: {
+                fontFamily: 'Inter, sans-serif',
+                toolbar: { show: false },
+                background: 'transparent',
+                foreColor: chartColor
+            },
+            dataLabels: { enabled: false },
+            theme: { mode: isDarkMode ? 'dark' : 'light' },
+            tooltip: { theme: isDarkMode ? 'dark' : 'light' }
+        };
+
+        if (document.getElementById("clicksChart")) {
+            if (statsData.clickStatistics && statsData.clickStatistics.datasets && statsData.clickStatistics.datasets[0]) {
+                const dataset = statsData.clickStatistics.datasets[0];
+                if (dataset.data && dataset.data.length > 0) {
+                    const labels = dataset.data.map(item => item.x);
+                    const values = dataset.data.map(item => Number(item.y));
+                    
+                    const options = {
+                        ...chartOptionsBase,
+                        chart: { ...chartOptionsBase.chart, type: 'area', height: 300 },
+                        series: [{ name: '{% trans "Clicks" %}', data: values }],
+                        xaxis: { 
+                            categories: labels, 
+                            labels: { show: false },
+                            axisBorder: { show: false },
+                            axisTicks: { show: false }
+                        },
+                        stroke: { curve: 'smooth', width: 2 },
+                        fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.7, opacityTo: 0.0, stops: [0, 90, 100] } },
+                        colors: ['#1A56DB'],
+                        grid: { show: false }
+                    };
+                    new ApexCharts(document.getElementById("clicksChart"), options).render();
+                } else {
+                    renderNoData("clicksChart");
+                }
+            } else {
+                renderNoData("clicksChart");
+            }
+        }
+
+        function renderBarChart(elementId, dataArray, labelKey, valueKey = 'score') {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+
+            if (!dataArray || !Array.isArray(dataArray) || dataArray.length === 0) {
+                renderNoData(elementId);
+                return;
+            }
+
+            const sortedData = [...dataArray].sort((a, b) => Number(b[valueKey]) - Number(a[valueKey])).slice(0, 10);
+            
+            const labels = sortedData.map(item => {
+                if (labelKey === 'country') return item.countryName || item.country || 'Unknown';
+                if (labelKey === 'city') return item.name || item.city || 'Unknown';
+                if (labelKey === 'browser') return item.browser || 'Unknown';
+                if (labelKey === 'os') return item.os || 'Unknown';
+                if (labelKey === 'referer') return item.referer || 'Direct';
+                if (labelKey === 'social') return item.social || 'None';
+                return item[labelKey] || 'Unknown';
+            });
+
+            const values = sortedData.map(item => Number(item[valueKey]));
+
+            const options = {
+                ...chartOptionsBase,
+                chart: { ...chartOptionsBase.chart, type: 'bar', height: 300 },
+                series: [{ name: '{% trans "Clicks" %}', data: values }],
+                xaxis: { 
+                    categories: labels,
+                    axisBorder: { show: false },
+                    axisTicks: { show: false }
+                },
+                plotOptions: { bar: { borderRadius: 4, horizontal: true, barHeight: '50%' } },
+                colors: ['#3e82f7'],
+                grid: { borderColor: '#f3f4f6', strokeDashArray: 4 }
+            };
+            new ApexCharts(element, options).render();
+        }
+
+        function renderNoData(elementId) {
+            const el = document.getElementById(elementId);
+            if (el) el.innerHTML = "<div class='flex items-center justify-center h-full text-gray-500 text-sm'>{% trans "No data available" %}</div>";
+        }
+
+        renderBarChart("countriesChart", statsData.country, "country");
+        renderBarChart("citiesChart", statsData.city, "city");
+        renderBarChart("browsersChart", statsData.browser, "browser");
+        renderBarChart("osChart", statsData.os, "os");
+        renderBarChart("socialChart", statsData.social, "social");
+
+    } catch (e) {
+        console.error("Error rendering charts:", e);
+    }
+</script>
+{% endblock extrascript %}
