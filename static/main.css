@@ -2121,6 +2121,9 @@
   .bg-primary-600 {
     background-color: var(--color-primary-600);
   }
+  .bg-purple-50 {
+    background-color: var(--color-purple-50);
+  }
   .bg-purple-100 {
     background-color: var(--color-purple-100);
   }
@@ -2620,6 +2623,9 @@
   .text-primary-600 {
     color: var(--color-primary-600);
   }
+  .text-purple-600 {
+    color: var(--color-purple-600);
+  }
   .text-purple-800 {
     color: var(--color-purple-800);
   }
@@ -2985,6 +2991,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-heading);
+      }
+    }
+  }
+  .hover\:text-purple-700 {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-purple-700);
       }
     }
   }

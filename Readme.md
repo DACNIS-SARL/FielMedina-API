@@ -97,3 +97,6 @@ In the event that this project needs urgent attention and the original developer
 
 ## 📄 License
 Internal / Private - All Rights Reserved.
+
+
+bunx @tailwindcss/cli -i ./static/src/input.css -o ./static/main.css --watch
