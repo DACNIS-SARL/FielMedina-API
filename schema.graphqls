@@ -170,10 +170,73 @@ type LocationType {
   voiceoverFr: String
 }
 
+type MerchantCategoryType {
+  id: ID!
+  name: String!
+  nameEn: String!
+  nameFr: String!
+  icon: String
+}
+
+type MerchantImageType {
+  image: ImageFieldType!
+  imageMobile: ImageFieldType
+}
+
+type MerchantProductType {
+  id: ID!
+  name: String!
+  nameEn: String!
+  nameFr: String!
+  price: Float
+  image: String
+}
+
+type MerchantRatingType {
+  id: ID!
+  stars: Int!
+  reviewerName: String!
+  comment: String
+  createdAt: DateTime!
+}
+
+type MerchantType {
+  id: ID!
+  createdAt: DateTime!
+  name: String!
+  nameEn: String!
+  nameFr: String!
+  description: String!
+  descriptionEn: String!
+  descriptionFr: String!
+  address: String
+  addressEn: String
+  addressFr: String
+  latitude: Float!
+  longitude: Float!
+  phone: String
+  website: String
+  shortLink: String
+  shortId: String
+  priceRange: String!
+  openFrom: String
+  openTo: String
+  isFeatured: Boolean!
+  city: CityType
+  category: MerchantCategoryType
+  cover: String
+  images: [MerchantImageType!]!
+  products: [MerchantProductType!]!
+  ratings: [MerchantRatingType!]!
+  averageRating: Float
+  ratingsCount: Int!
+}
+
 type Mutation {
   syncUserPreference(userUid: UUID!, firstVisit: Boolean!, travelingWith: String!, interests: [String!]!, updatedAt: DateTime!): SyncUserPreferencePayload!
   forgetMe(userUid: UUID!): SyncUserPreferencePayload!
   registerFcmDevice(registrationId: String!, type: String!, name: String = null, userUid: UUID = null, language: String = null): RegisterDevicePayload!
+  submitMerchantRating(merchantId: ID!, stars: Int!, reviewerName: String!, reviewerEmail: String!, comment: String = null): SubmitRatingPayload!
 }
 
 type PageType {
@@ -252,6 +315,9 @@ type Query {
   partners: [PartnerType!]!
   sponsor(id: ID!): SponsorType
   sponsors: [SponsorType!]!
+  merchants(cityId: Int = null, categoryId: Int = null, limit: Int = null, offset: Int = 0): [MerchantType!]!
+  merchant(id: ID!): MerchantType
+  merchantCategories: [MerchantCategoryType!]!
 }
 
 type RegisterDevicePayload {
@@ -264,6 +330,11 @@ type SponsorType {
   name: String!
   link: String!
   image: ImageFieldType!
+}
+
+type SubmitRatingPayload {
+  ok: Boolean!
+  message: String
 }
 
 type SyncUserPreferencePayload {
