@@ -73,8 +73,10 @@ class DashboardView(LoginRequiredMixin, TemplateView):
         service = ShortIOService()
 
         # Try to get stats from cache
-        cache_key = f"dashboard_analytics_stats_{self.request.user.id}"
-        stats = cache.get(cache_key)
+        # cache_key = f"dashboard_analytics_stats_{self.request.user.id}"
+        # stats = cache.get(cache_key)
+        cache_key = "dashboard_analytics_stats"
+        stats = cache.get(f"{cache_key}_{self.request.user.id}")
 
         if not stats:
             # Fetch active Ads and Events with short_id, filtered by user profile
@@ -113,7 +115,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
                 "merchants": merchants_stats,
             }
             # Cache for 15 minutes
-            cache.set(cache_key, stats, 60 * 15)
+            cache.set(f"{cache_key}_{self.request.user.id}", stats, 60 * 15)
 
         context["stats"] = stats
         return context
@@ -641,10 +643,17 @@ class EventTrackingView(LoginRequiredMixin, DetailView):
         period = self.request.GET.get("period", "today")
         context["period"] = period
         context["page_title"] = self.object.name
+        context["stats"] = {
+            "totalClicks": 0,
+            "humanClicks": 0,
+            "clickStatistics": {"timeline": [], "datasets": []},
+        }
 
         if self.object.short_id:
             service = ShortIOService()
-            context["stats"] = service.get_link_statistics(self.object.short_id, period)
+            result = service.get_link_statistics(self.object.short_id, period)
+            if result:
+                context["stats"] = result
 
         return context
 
@@ -1005,10 +1014,17 @@ class AdTrackingView(LoginRequiredMixin, DetailView):
         period = self.request.GET.get("period", "today")
         context["period"] = period
         context["page_title"] = self.object.link
+        context["stats"] = {
+            "totalClicks": 0,
+            "humanClicks": 0,
+            "clickStatistics": {"timeline": [], "datasets": []},
+        }
 
         if self.object.short_id:
             service = ShortIOService()
-            context["stats"] = service.get_link_statistics(self.object.short_id, period)
+            result = service.get_link_statistics(self.object.short_id, period)
+            if result:
+                context["stats"] = result
 
         return context
 
@@ -1361,10 +1377,17 @@ class MerchantTrackingView(
         period = self.request.GET.get("period", "today")
         context["period"] = period
         context["page_title"] = self.object.name
+        context["stats"] = {
+            "totalClicks": 0,
+            "humanClicks": 0,
+            "clickStatistics": {"timeline": [], "datasets": []},
+        }
 
         if self.object.short_id:
             service = ShortIOService()
-            context["stats"] = service.get_link_statistics(self.object.short_id, period)
+            result = service.get_link_statistics(self.object.short_id, period)
+            if result:
+                context["stats"] = result
 
         return context
 
