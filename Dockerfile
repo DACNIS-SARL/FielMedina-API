@@ -6,7 +6,7 @@ WORKDIR /build
 
 # COPY package.json package-lock.json ./
 # RUN npm ci
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 RUN bun install --frozen-lockfile
 
 # Copy ALL application code so Tailwind can scan the HTML/JS for class names
