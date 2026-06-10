@@ -239,6 +239,21 @@ type Mutation {
   submitMerchantRating(merchantId: ID!, stars: Int!, reviewerName: String!, reviewerEmail: String!, comment: String = null): SubmitRatingPayload!
 }
 
+type OfflineCityType {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  regionId: String!
+  name: String!
+  nameEn: String!
+  nameFr: String!
+  city: CityType
+  latitude: Decimal!
+  longitude: Decimal!
+  radius: Float!
+  isActive: Boolean!
+}
+
 type PageType {
   id: ID!
   slug: String!
@@ -318,6 +333,7 @@ type Query {
   merchants(cityId: Int = null, categoryId: Int = null, limit: Int = null, offset: Int = 0): [MerchantType!]!
   merchant(id: ID!): MerchantType
   merchantCategories: [MerchantCategoryType!]!
+  offlineCities(isActive: Boolean = true): [OfflineCityType!]!
 }
 
 type RegisterDevicePayload {

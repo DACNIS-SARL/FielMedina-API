@@ -38,6 +38,7 @@ from guard.models import (
     MerchantCategory,
     MerchantProduct,
     MerchantRating,
+    OfflineCity,
 )
 
 from cities_light.models import City, Country
@@ -189,6 +190,22 @@ class LocationType:
         if getattr(root, "voiceover_fr", None) and getattr(root.voiceover_fr, "url", None):
             return info.context.request.build_absolute_uri(root.voiceover_fr.url)
         return None
+
+
+@strawberry_django.type(OfflineCity)
+class OfflineCityType:
+    id: auto
+    created_at: auto
+    updated_at: auto
+    region_id: auto
+    name: auto
+    name_en: str
+    name_fr: str
+    city: Optional["CityType"]
+    latitude: auto
+    longitude: auto
+    radius: auto
+    is_active: auto
 
 
 @strawberry_django.type(ImageHiking)
@@ -904,6 +921,16 @@ class Query:
     @strawberry.field
     def merchant_categories(self) -> List[MerchantCategoryType]:
         return MerchantCategory.objects.all()
+
+    @strawberry.field
+    def offline_cities(
+        self,
+        is_active: Optional[bool] = True,
+    ) -> List[OfflineCityType]:
+        qs = OfflineCity.objects.select_related("city")
+        if is_active is not None:
+            qs = qs.filter(is_active=is_active)
+        return qs
 
 
 @strawberry.type

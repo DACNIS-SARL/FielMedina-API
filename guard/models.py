@@ -249,6 +249,37 @@ class HikingLocation(models.Model):
         return f"{self.hiking.name} - {self.location.name}"
 
 
+class OfflineCity(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    region_id = models.CharField(
+        max_length=100, 
+        unique=True, 
+        verbose_name=_("Region ID"), 
+        help_text=_("Unique identifier string, e.g., 'sousse_medina'")
+    )
+    name = models.CharField(max_length=255, verbose_name=_("Name"))
+    city = models.ForeignKey(
+        "cities_light.City",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="offline_cities",
+        verbose_name=_("City"),
+    )
+    latitude = models.DecimalField(max_digits=9, decimal_places=6, verbose_name=_("Latitude"))
+    longitude = models.DecimalField(max_digits=9, decimal_places=6, verbose_name=_("Longitude"))
+    radius = models.FloatField(verbose_name=_("Radius"), help_text=_("Radius in meters, e.g., 2000"))
+    is_active = models.BooleanField(default=True, verbose_name=_("Active"))
+
+    class Meta:
+        verbose_name = _("Offline City")
+        verbose_name_plural = _("Offline Cities")
+
+    def __str__(self):
+        return self.name
+
+
 class Hiking(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

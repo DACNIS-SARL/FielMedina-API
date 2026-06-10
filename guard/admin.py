@@ -17,7 +17,8 @@ from .models import (
     PublicTransportType,
     Partner,
     Sponsor,
-    MerchantCategory, Merchant, MerchantImage, MerchantProduct, MerchantRating
+    MerchantCategory, Merchant, MerchantImage, MerchantProduct, MerchantRating,
+    OfflineCity
 )
 from modeltranslation.admin import TranslationAdmin
 
@@ -323,5 +324,19 @@ class MerchantAdmin(TranslationAdmin):
         ("Timestamps", {
             "fields": ("created_at", "updated_at"),
             "classes": ("collapse",)
+        }),
+    )
+
+@admin.register(OfflineCity)
+class OfflineCityAdmin(TranslationAdmin):
+    list_display = ("name", "region_id", "city", "is_active", "radius")
+    list_filter = ("is_active", "city")
+    search_fields = ("name", "region_id")
+    fieldsets = (
+        (None, {
+            "fields": ("name", "region_id", "city", "is_active")
+        }),
+        ("Location Details", {
+            "fields": ("latitude", "longitude", "radius")
         }),
     )
