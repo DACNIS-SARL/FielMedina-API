@@ -498,6 +498,7 @@
                         {% endif %}
                         <div class="flex-1">
                             {{ form.id }}
+                            {{ form.temp_token }}
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 {% if form.instance.pk %}{% trans "Replace Image" %}{% else %}{% trans "Upload Image" %}{% endif %}
                             </label>

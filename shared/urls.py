@@ -15,10 +15,12 @@ from .views import (
     PageUpdateView,
     PageDeleteView,
     translate_text,
+    upload_temp_file,
 )
 
 app_name = "shared"
 urlpatterns = [
+    path("api/upload-temp/", upload_temp_file, name="upload_temp_file"),
     path("pages/", PageListView.as_view(), name="pageList"),
     path("pages/create/", PageCreateView.as_view(), name="page_create"),
     path("pages/<int:pk>/update/", PageUpdateView.as_view(), name="page_update"),

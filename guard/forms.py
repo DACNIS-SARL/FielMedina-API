@@ -25,6 +25,42 @@ from .models import (
 )
 
 
+class TemporaryUploadFormMixin:
+    """
+    Mixin that resolves temporary file upload tokens into actual files.
+    Works by scanning fields and looking for matching `<field_name>_temp_token` fields.
+    """
+    def _resolve_temp_tokens(self, cleaned_data):
+        from shared.models import TemporaryUpload
+        file_fields = [
+            name for name, field in self.fields.items()
+            if isinstance(field, forms.FileField) or isinstance(field, forms.ImageField)
+        ]
+        
+        for field_name in file_fields:
+            token = None
+            if self.prefix:
+                token_key = f"{self.prefix}-{field_name}_temp_token"
+                token = self.data.get(token_key)
+                if not token:
+                    token_key_alt = f"{self.prefix}-temp_token"
+                    token = self.data.get(token_key_alt)
+            
+            if not token:
+                token = cleaned_data.get(f"{field_name}_temp_token") or self.data.get(f"{field_name}_temp_token")
+                
+            if token:
+                try:
+                    temp_upload = TemporaryUpload.objects.get(id=token)
+                    cleaned_data[field_name] = temp_upload.file
+                    if self.files is None:
+                        self.files = {}
+                    self.files[self.add_prefix(field_name)] = temp_upload.file
+                except (TemporaryUpload.DoesNotExist, ValueError):
+                    pass
+        return cleaned_data
+
+
 class FlowbiteFormMixin:
     input_class = (
         "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg "
@@ -61,7 +97,10 @@ class FlowbiteFormMixin:
             widget.attrs.setdefault("id", f"id_{name}")
 
 
-class LocationForm(FlowbiteFormMixin, forms.ModelForm):
+class LocationForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
+    voiceover_en_temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+    voiceover_fr_temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     name_en = forms.CharField(
         label=_("Name (English)"),
         max_length=255,
@@ -237,6 +276,7 @@ class LocationForm(FlowbiteFormMixin, forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
 
         # Check required multilingual fields and add non-field errors so they appear at top
         errors = []
@@ -291,7 +331,9 @@ class LocationForm(FlowbiteFormMixin, forms.ModelForm):
         return self._clean_voiceover("voiceover_fr")
 
 
-class ImageLocationForm(forms.ModelForm):
+class ImageLocationForm(TemporaryUploadFormMixin, forms.ModelForm):
+    temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     class Meta:
         model = ImageLocation
         fields = ["image"]
@@ -303,6 +345,11 @@ class ImageLocationForm(forms.ModelForm):
                 }
             )
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
+        return cleaned_data
 
 
 ImageLocationFormSet = inlineformset_factory(
@@ -485,7 +532,9 @@ class EventForm(FlowbiteFormMixin, forms.ModelForm):
             pass
 
 
-class ImageEventForm(forms.ModelForm):
+class ImageEventForm(TemporaryUploadFormMixin, forms.ModelForm):
+    temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     class Meta:
         model = ImageEvent
         fields = ["image"]
@@ -497,6 +546,11 @@ class ImageEventForm(forms.ModelForm):
                 }
             )
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
+        return cleaned_data
 
 
 ImageEventFormSet = inlineformset_factory(
@@ -686,7 +740,9 @@ HikingLocationFormSet = inlineformset_factory(
 )
 
 
-class ImageHikingForm(forms.ModelForm):
+class ImageHikingForm(TemporaryUploadFormMixin, forms.ModelForm):
+    temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     class Meta:
         model = ImageHiking
         fields = ["image"]
@@ -699,6 +755,11 @@ class ImageHikingForm(forms.ModelForm):
             )
         }
 
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
+        return cleaned_data
+
 
 ImageHikingFormSet = inlineformset_factory(
     Hiking,
@@ -710,7 +771,10 @@ ImageHikingFormSet = inlineformset_factory(
 )
 
 
-class AdForm(FlowbiteFormMixin, forms.ModelForm):
+class AdForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
+    image_mobile_temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+    image_tablet_temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     name = forms.CharField(
         label=_("Ad Name"),
         required=False,
@@ -818,6 +882,11 @@ class AdForm(FlowbiteFormMixin, forms.ModelForm):
                 )
         return image
 
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
+        return cleaned_data
+
 
 ImageAdFormSet = inlineformset_factory(
     Ad,
@@ -829,7 +898,9 @@ ImageAdFormSet = inlineformset_factory(
 )
 
 
-class PartnerForm(FlowbiteFormMixin, forms.ModelForm):
+class PartnerForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
+    image_temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     class Meta:
         model = Partner
         fields = ["name", "image", "link"]
@@ -863,8 +934,15 @@ class PartnerForm(FlowbiteFormMixin, forms.ModelForm):
             if self.instance and self.instance.pk:
                 self.fields["image"].required = False
 
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
+        return cleaned_data
 
-class SponsorForm(FlowbiteFormMixin, forms.ModelForm):
+
+class SponsorForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
+    image_temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     class Meta:
         model = Sponsor
         fields = ["name", "image", "link"]
@@ -897,6 +975,11 @@ class SponsorForm(FlowbiteFormMixin, forms.ModelForm):
             self.fields["image"].required = True
             if self.instance and self.instance.pk:
                 self.fields["image"].required = False
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
+        return cleaned_data
 
 
 class PublicTransportForm(FlowbiteFormMixin, forms.ModelForm):
@@ -1027,7 +1110,8 @@ class MerchantCategoryForm(FlowbiteFormMixin, forms.ModelForm):
         return cleaned_data
 
 
-class MerchantForm(FlowbiteFormMixin, forms.ModelForm):
+class MerchantForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
+    cover_temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
     name_en = forms.CharField(
         label=_("Name (English)"),
         max_length=255,
@@ -1119,6 +1203,7 @@ class MerchantForm(FlowbiteFormMixin, forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
         errors = []
         if not cleaned_data.get("name_en"):
             errors.append(_("Please enter the name in English."))
@@ -1158,7 +1243,9 @@ class MerchantForm(FlowbiteFormMixin, forms.ModelForm):
         return cleaned_data
 
 
-class MerchantProductForm(FlowbiteFormMixin, forms.ModelForm):
+class MerchantProductForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
+    temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     name_en = forms.CharField(
         label=_("Product Name (English)"),
         max_length=255,
@@ -1182,6 +1269,7 @@ class MerchantProductForm(FlowbiteFormMixin, forms.ModelForm):
 
     def clean(self):
         cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
         errors = []
         if not cleaned_data.get("name_en"):
             errors.append(_("Please enter product name in English."))
@@ -1202,13 +1290,20 @@ MerchantProductFormSet = inlineformset_factory(
 )
 
 
-class MerchantImageForm(forms.ModelForm):
+class MerchantImageForm(TemporaryUploadFormMixin, forms.ModelForm):
+    temp_token = forms.CharField(required=False, widget=forms.HiddenInput())
+
     class Meta:
         model = MerchantImage
         fields = ["image"]
         widgets = {
             "image": forms.FileInput(attrs={"accept": "image/*", "class": "block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"}),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cleaned_data = self._resolve_temp_tokens(cleaned_data)
+        return cleaned_data
 
 
 MerchantImageFormSet = inlineformset_factory(

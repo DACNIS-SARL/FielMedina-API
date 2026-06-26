@@ -527,3 +527,68 @@ class StaffAccessAndAuditTrackingTests(TestCase):
         self.client_http.login(username="usera", password="pass123")
         response = self.client_http.get(reverse("guard:merchant_track", args=[merchant.id]))
         self.assertIn(response.status_code, [302, 403])
+
+
+class TemporaryUploadTests(TestCase):
+    def setUp(self):
+        from django.contrib.auth import get_user_model
+        from shared.models import TemporaryUpload
+        self.User = get_user_model()
+        self.client = Client()
+        self.user = self.User.objects.create_user(
+            username="testuser",
+            email="testuser@example.com",
+            password="Password123"
+        )
+        
+    def test_upload_temp_file_anonymous(self):
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        test_file = SimpleUploadedFile("test.png", b"file_content", content_type="image/png")
+        response = self.client.post(
+            reverse("shared:upload_temp_file"),
+            {"file": test_file}
+        )
+        self.assertEqual(response.status_code, 302)
+
+    def test_upload_temp_file_authenticated(self):
+        self.client.login(username="testuser", password="Password123")
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        test_file = SimpleUploadedFile("test.png", b"file_content", content_type="image/png")
+        response = self.client.post(
+            reverse("shared:upload_temp_file"),
+            {"file": test_file}
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()
+        self.assertTrue(data["success"])
+        self.assertIn("token", data)
+        self.assertIn("url", data)
+        
+        # Verify db record
+        from shared.models import TemporaryUpload
+        temp_upload = TemporaryUpload.objects.get(id=data["token"])
+        self.assertEqual(temp_upload.file.read(), b"file_content")
+
+    def test_resolve_temp_tokens_mixin(self):
+        from django import forms
+        from shared.models import TemporaryUpload
+        from guard.forms import TemporaryUploadFormMixin
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        
+        # Create temporary upload
+        temp_file = SimpleUploadedFile("voice.aac", b"audio_content", content_type="audio/aac")
+        temp_upload = TemporaryUpload.objects.create(file=temp_file)
+        
+        # Define a mock form using the mixin
+        class MockForm(TemporaryUploadFormMixin, forms.Form):
+            voiceover = forms.FileField(required=False)
+            voiceover_temp_token = forms.CharField(required=False)
+            
+            def clean(self):
+                cleaned_data = super().clean()
+                return self._resolve_temp_tokens(cleaned_data)
+                
+        # Test with temp_token provided
+        form = MockForm(data={"voiceover_temp_token": str(temp_upload.id)})
+        self.assertTrue(form.is_valid())
+        self.assertEqual(form.cleaned_data["voiceover"].read(), b"audio_content")

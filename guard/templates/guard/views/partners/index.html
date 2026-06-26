@@ -51,6 +51,7 @@
                     {{ form.image.label }}{% if form.image.field.required %}<span class="text-red-600">*</span>{% endif %}
                     <span class="ml-1 text-xs text-gray-500 dark:text-gray-400">(300x200)</span>
                 </label>
+                {{ form.image_temp_token }}
                 {{ form.image }}
                 {% if object.image %}
                     <div class="mt-3">

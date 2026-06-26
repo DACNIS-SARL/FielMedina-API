@@ -509,6 +509,7 @@
                             </div>
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{% trans "Replace audio file:" %}</label>
                         {% endif %}
+                        {{ form.voiceover_en_temp_token }}
                         {{ form.voiceover_en }}
                         {% if form.voiceover_en.errors %}
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.voiceover_en.errors.0 }}</p>
@@ -543,6 +544,7 @@
                             </div>
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{% trans "Replace audio file:" %}</label>
                         {% endif %}
+                        {{ form.voiceover_fr_temp_token }}
                         {{ form.voiceover_fr }}
                         {% if form.voiceover_fr.errors %}
                             <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.voiceover_fr.errors.0 }}</p>
@@ -576,6 +578,7 @@
                         {% endif %}
                         <div class="flex-1">
                             {{ form.id }}
+                            {{ form.temp_token }}
                             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 {% if form.instance.pk %}{% trans "Replace Image" %}{% else %}{% trans "Upload Image" %}{% endif %}
                             </label>

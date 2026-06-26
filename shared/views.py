@@ -3,6 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import (
     CreateView,
     UpdateView,
@@ -13,6 +14,7 @@ from django.views.generic import (
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 import json
+from .models import TemporaryUpload
 from .translator import get_translator
 from django.contrib.auth.views import (
     LoginView,
@@ -246,3 +248,19 @@ def translate_text(request):
 
     except Exception as e:
         return JsonResponse({"success": False, "error": str(e)}, status=500)
+
+
+@csrf_exempt
+@login_required
+def upload_temp_file(request):
+    if request.method == "POST" and request.FILES.get("file"):
+        uploaded_file = request.FILES["file"]
+        temp_upload = TemporaryUpload.objects.create(file=uploaded_file)
+        return JsonResponse({
+            "success": True,
+            "token": str(temp_upload.id),
+            "url": temp_upload.file.url,
+            "filename": uploaded_file.name,
+        })
+    return JsonResponse({"success": False, "error": "No file uploaded"}, status=400)
+

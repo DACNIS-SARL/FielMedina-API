@@ -134,6 +134,7 @@
                         <img src="{{ object.image_mobile.url }}" alt="Mobile ad" class="h-auto w-40 rounded-lg shadow border border-gray-200">
                     </div>
                     {% endif %}
+                    {{ form.image_mobile_temp_token }}
                     {{ form.image_mobile }}
                     {% if form.image_mobile.errors %}
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.image_mobile.errors.0 }}</p>
@@ -152,6 +153,7 @@
                         <img src="{{ object.image_tablet.url }}" alt="Tablet ad" class="h-auto w-64 rounded-lg shadow border border-gray-200">
                     </div>
                     {% endif %}
+                    {{ form.image_tablet_temp_token }}
                     {{ form.image_tablet }}
                     {% if form.image_tablet.errors %}
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.image_tablet.errors.0 }}</p>
