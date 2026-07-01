@@ -70,10 +70,13 @@
                         </div>
                      </td>
                </tr>
-               {% include "guard/views/hiking/partials/confirm_model.html" with data=data %}
             {% endfor %}
          </tbody>
       </table>
+
+      {% for data in hikings %}
+         {% include "guard/views/hiking/partials/confirm_model.html" with data=data %}
+      {% endfor %}
 
    </div>
 {% endblock body %}

@@ -67,10 +67,13 @@
                         </div>
                      </td>
                </tr>
-               {% include "guard/views/tips/partials/confirm_model.html" with data=data %}
             {% endfor %}
          </tbody>
       </table>
+
+      {% for data in tips %}
+         {% include "guard/views/tips/partials/confirm_model.html" with data=data %}
+      {% endfor %}
 
    </div>
 {% endblock body %}

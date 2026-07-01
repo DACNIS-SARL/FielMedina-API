@@ -138,10 +138,13 @@
                         </div>
                      </td>
                </tr>
-               {% include "guard/views/ads/partials/confirm_model.html" with data=ad %}
             {% endfor %}
          </tbody>
       </table>
+
+      {% for ad in ads %}
+         {% include "guard/views/ads/partials/confirm_model.html" with data=ad %}
+      {% endfor %}
 
    </div>
 {% endblock body %}
