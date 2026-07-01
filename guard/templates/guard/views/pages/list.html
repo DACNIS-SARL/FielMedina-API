@@ -76,7 +76,7 @@
                               </svg>
                               {% trans "Edit" %}
                            </a>
-                           <button data-modal-target="confirm-modal{{ data.id }}" data-modal-toggle="confirm-modal{{ data.id }}" class="inline-flex items-center text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                           <button data-delete-url="{% url 'shared:page_delete' data.id %}" data-delete-name="{{ data.title }}" class="inline-flex items-center text-white bg-danger box-border border border-transparent hover:bg-danger-strong focus:ring-4 focus:ring-danger-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
                               <svg class="w-3.5 h-3.5 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 640 640">
                                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M232.7 69.9L224 96L128 96C110.3 96 96 110.3 96 128C96 145.7 110.3 160 128 160L512 160C529.7 160 544 145.7 544 128C544 110.3 529.7 96 512 96L416 96L407.3 69.9C402.9 56.8 390.7 48 376.9 48L263.1 48C249.3 48 237.1 56.8 232.7 69.9zM512 208L128 208L149.1 531.1C150.7 556.4 171.7 576 197 576L443 576C468.3 576 489.3 556.4 490.9 531.1L512 208z"/>
                               </svg>
@@ -89,9 +89,7 @@
          </tbody>
       </table>
 
-      {% for data in pages %}
-         {% include "guard/views/pages/partials/confirm_model.html" with data=data %}
-      {% endfor %}
+      {% include "guard/partials/shared_delete_modal.html" %}
 
    </div>
 {% endblock body %}
