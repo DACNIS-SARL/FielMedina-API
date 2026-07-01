@@ -30,27 +30,30 @@
 </div>
 
 <script>
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     const modalEl = document.getElementById('shared-delete-modal');
     if (!modalEl) return;
 
-    const modal = new Modal(modalEl, { backdrop: 'static' });
-    const formEl = document.getElementById('shared-delete-modal-form');
-    const titleEl = document.getElementById('shared-delete-modal-title');
+    // Wait until Modal is defined (if script is deferred)
+    if (typeof Modal !== 'undefined') {
+        const modal = new Modal(modalEl, { backdrop: 'static' });
+        const formEl = document.getElementById('shared-delete-modal-form');
+        const titleEl = document.getElementById('shared-delete-modal-title');
 
-    // Event delegation — works even after simple-datatables rebuilds the DOM
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('[data-delete-url]');
-        if (!btn) return;
+        // Event delegation — works even after simple-datatables rebuilds the DOM
+        document.addEventListener('click', function(e) {
+            const btn = e.target.closest('[data-delete-url]');
+            if (!btn) return;
 
-        e.preventDefault();
-        formEl.action = btn.getAttribute('data-delete-url');
-        titleEl.textContent = btn.getAttribute('data-delete-name') || '';
-        modal.show();
-    });
+            e.preventDefault();
+            formEl.action = btn.getAttribute('data-delete-url');
+            titleEl.textContent = btn.getAttribute('data-delete-name') || '';
+            modal.show();
+        });
 
-    // Close handlers
-    document.getElementById('shared-delete-modal-close').addEventListener('click', function() { modal.hide(); });
-    document.getElementById('shared-delete-modal-decline').addEventListener('click', function() { modal.hide(); });
-})();
+        // Close handlers
+        document.getElementById('shared-delete-modal-close').addEventListener('click', function() { modal.hide(); });
+        document.getElementById('shared-delete-modal-decline').addEventListener('click', function() { modal.hide(); });
+    }
+});
 </script>
