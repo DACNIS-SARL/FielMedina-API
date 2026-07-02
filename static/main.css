@@ -1,4 +1,4 @@
-/*! tailwindcss v4.3.1 | MIT License | https://tailwindcss.com */
+/*! tailwindcss v4.3.2 | MIT License | https://tailwindcss.com */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @layer properties;
 @layer theme, base, components, utilities;
@@ -983,6 +983,9 @@
   .me-1\.5 {
     margin-inline-end: calc(var(--spacing) * 1.5);
   }
+  .me-2 {
+    margin-inline-end: calc(var(--spacing) * 2);
+  }
   .mt-1 {
     margin-top: var(--spacing);
   }
@@ -1269,6 +1272,9 @@
   .mr-2 {
     margin-right: calc(var(--spacing) * 2);
   }
+  .mr-2\.5 {
+    margin-right: calc(var(--spacing) * 2.5);
+  }
   .apexcharts-tooltip-title {
     .apexcharts-canvas .apexcharts-tooltip & {
       padding-top: 0.5rem !important;
@@ -1308,6 +1314,9 @@
   }
   .mb-6 {
     margin-bottom: calc(var(--spacing) * 6);
+  }
+  .mb-8 {
+    margin-bottom: calc(var(--spacing) * 8);
   }
   .apexcharts-xaxistooltip {
     .apexcharts-canvas & {
@@ -1698,6 +1707,9 @@
   }
   .max-w-3xl {
     max-width: var(--container-3xl);
+  }
+  .max-w-4xl {
+    max-width: var(--container-4xl);
   }
   .max-w-md {
     max-width: var(--container-md);
@@ -2197,6 +2209,9 @@
   }
   .gap-6 {
     gap: calc(var(--spacing) * 6);
+  }
+  .gap-8 {
+    gap: calc(var(--spacing) * 8);
   }
   .space-y-2 {
     :where(& > :not(:last-child)) {
@@ -2711,6 +2726,12 @@
   .bg-brand {
     background-color: var(--color-brand);
   }
+  .bg-brand\/5 {
+    background-color: color-mix(in srgb, oklch(48.8% 0.243 264.376) 5%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-brand) 5%, transparent);
+    }
+  }
   .bg-danger {
     background-color: var(--color-danger);
   }
@@ -2725,6 +2746,12 @@
   }
   .bg-gray-100 {
     background-color: var(--color-gray-100);
+  }
+  .bg-gray-200 {
+    background-color: var(--color-gray-200);
+  }
+  .bg-gray-800 {
+    background-color: var(--color-gray-800);
   }
   .bg-gray-900\/50 {
     background-color: color-mix(in srgb, oklch(21% 0.034 264.665) 50%, transparent);
@@ -2743,6 +2770,9 @@
   }
   .bg-green-500 {
     background-color: var(--color-green-500);
+  }
+  .bg-green-600 {
+    background-color: var(--color-green-600);
   }
   .bg-green-700 {
     background-color: var(--color-green-700);
@@ -3257,6 +3287,9 @@
   }
   .p-2\.5 {
     padding: calc(var(--spacing) * 2.5);
+  }
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
   }
   .p-4 {
     padding: calc(var(--spacing) * 4);
@@ -3900,6 +3933,9 @@
   .opacity-25 {
     opacity: 25%;
   }
+  .opacity-70 {
+    opacity: 70%;
+  }
   .opacity-75 {
     opacity: 75%;
   }
@@ -4026,6 +4062,11 @@
   }
   .transition-all {
     transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .transition-colors {
+    transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
     transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
     transition-duration: var(--tw-duration, var(--default-transition-duration));
   }
@@ -4304,6 +4345,20 @@
       }
     }
   }
+  .hover\:bg-gray-900 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-gray-900);
+      }
+    }
+  }
+  .hover\:bg-green-700 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-green-700);
+      }
+    }
+  }
   .hover\:bg-green-800 {
     &:hover {
       @media (hover: hover) {
@@ -4410,6 +4465,13 @@
     &:hover {
       @media (hover: hover) {
         color: var(--color-blue-950);
+      }
+    }
+  }
+  .hover\:text-brand {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-brand);
       }
     }
   }
@@ -4638,6 +4700,19 @@
       outline-style: none;
     }
   }
+  .has-\[\:checked\]\:border-brand {
+    &:has(*:is(:checked)) {
+      border-color: var(--color-brand);
+    }
+  }
+  .has-\[\:checked\]\:bg-brand\/5 {
+    &:has(*:is(:checked)) {
+      background-color: color-mix(in srgb, oklch(48.8% 0.243 264.376) 5%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        background-color: color-mix(in oklab, var(--color-brand) 5%, transparent);
+      }
+    }
+  }
   .sm\:col-span-2 {
     @media (width >= 40rem) {
       grid-column: span 2 / span 2;
@@ -4682,6 +4757,11 @@
   .sm\:grid-cols-3 {
     @media (width >= 40rem) {
       grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .sm\:rounded-lg {
+    @media (width >= 40rem) {
+      border-radius: var(--radius-lg);
     }
   }
   .sm\:rounded-xl {
@@ -4795,6 +4875,11 @@
   .md\:p-6 {
     @media (width >= 48rem) {
       padding: calc(var(--spacing) * 6);
+    }
+  }
+  .md\:p-8 {
+    @media (width >= 48rem) {
+      padding: calc(var(--spacing) * 8);
     }
   }
   .md\:py-6 {
@@ -4926,6 +5011,11 @@
       border-color: var(--color-yellow-600);
     }
   }
+  .dark\:bg-blue-500 {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-blue-500);
+    }
+  }
   .dark\:bg-blue-600 {
     &:where(.dark, .dark *) {
       background-color: var(--color-blue-600);
@@ -4947,6 +5037,11 @@
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-blue-900) 30%, transparent);
       }
+    }
+  }
+  .dark\:bg-brand-medium {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-brand-medium);
     }
   }
   .dark\:bg-gray-600 {
@@ -4991,6 +5086,11 @@
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-gray-900) 80%, transparent);
       }
+    }
+  }
+  .dark\:bg-green-500 {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-green-500);
     }
   }
   .dark\:bg-green-500\/10 {
@@ -5079,6 +5179,11 @@
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-yellow-500) 20%, transparent);
       }
+    }
+  }
+  .dark\:bg-yellow-900 {
+    &:where(.dark, .dark *) {
+      background-color: var(--color-yellow-900);
     }
   }
   .dark\:bg-yellow-900\/30 {
@@ -5227,6 +5332,11 @@
       color: var(--color-yellow-200);
     }
   }
+  .dark\:text-yellow-300 {
+    &:where(.dark, .dark *) {
+      color: var(--color-yellow-300);
+    }
+  }
   .dark\:text-yellow-400 {
     &:where(.dark, .dark *) {
       color: var(--color-yellow-400);
@@ -5253,11 +5363,29 @@
       }
     }
   }
+  .dark\:hover\:bg-blue-600 {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--color-blue-600);
+        }
+      }
+    }
+  }
   .dark\:hover\:bg-blue-700 {
     &:where(.dark, .dark *) {
       &:hover {
         @media (hover: hover) {
           background-color: var(--color-blue-700);
+        }
+      }
+    }
+  }
+  .dark\:hover\:bg-brand {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--color-brand);
         }
       }
     }
@@ -5285,6 +5413,15 @@
       &:hover {
         @media (hover: hover) {
           background-color: var(--color-gray-800);
+        }
+      }
+    }
+  }
+  .dark\:hover\:bg-green-600 {
+    &:where(.dark, .dark *) {
+      &:hover {
+        @media (hover: hover) {
+          background-color: var(--color-green-600);
         }
       }
     }

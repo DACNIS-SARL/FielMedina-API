@@ -138,7 +138,7 @@ class SettingView(LoginRequiredMixin, TemplateView):
         if not profile:
             return [
                 {
-                    "plan": _("Konnect subscription"),
+                    "plan": _("Subscription"),
                     "status": _("Not available"),
                     "started": None,
                     "renews": None,
@@ -148,7 +148,7 @@ class SettingView(LoginRequiredMixin, TemplateView):
         days_left = profile.subscription_days_left
         return [
             {
-                "plan": profile.subscription_plan or _("Pending Konnect setup"),
+                "plan": profile.subscription_plan or _("Standard Subscription"),
                 "status": profile.subscription_status_label,
                 "started": profile.subscription_started_at,
                 "renews": profile.subscription_renews_at,

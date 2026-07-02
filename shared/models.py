@@ -202,7 +202,7 @@ def ensure_profile_exists(sender, instance, created, **kwargs):
         defaults={
             "user_type": default_type,
             "subscription_started_at": today,
-            "subscription_renews_at": today + timedelta(days=30),
+            "subscription_renews_at": today + timedelta(days=90),
         },
     )
     updated_fields = []
@@ -213,7 +213,7 @@ def ensure_profile_exists(sender, instance, created, **kwargs):
         profile.subscription_started_at = today
         updated_fields.append("subscription_started_at")
     if not profile.subscription_renews_at:
-        profile.subscription_renews_at = today + timedelta(days=30)
+        profile.subscription_renews_at = today + timedelta(days=90)
         updated_fields.append("subscription_renews_at")
     if updated_fields:
         profile.save(update_fields=updated_fields)

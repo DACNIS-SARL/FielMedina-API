@@ -459,6 +459,8 @@ class Ad(models.Model):
         null=True,
         blank=True,
     )
+    startDate = models.DateField(verbose_name=_("Start Date"), null=True, blank=True)
+    endDate = models.DateField(verbose_name=_("End Date"), null=True, blank=True)
     link = models.URLField()
     short_link = models.URLField(blank=True, null=True)
     short_id = models.CharField(max_length=50, blank=True, null=True)

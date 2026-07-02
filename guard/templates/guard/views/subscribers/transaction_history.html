@@ -1,0 +1,83 @@
+{% extends "guard/base/index.html" %}
+{% load i18n %}
+
+{% block title %}
+   {% trans "Transaction History" %}
+{% endblock title %}
+
+{% block body %}
+<div class="mb-4 flex justify-between items-center">
+    <div>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{% trans "Transaction History" %}</h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{% trans "View your past and pending payments." %}</p>
+    </div>
+</div>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="p-4 mb-4 text-sm rounded-lg {% if message.tags == 'error' %}text-red-800 bg-red-50 dark:bg-gray-800 dark:text-red-400{% else %}text-green-800 bg-green-50 dark:bg-gray-800 dark:text-green-400{% endif %}" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">{% trans "Date" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Type" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Details" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Amount TTC" %}</th>
+                <th scope="col" class="px-6 py-3">{% trans "Status" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <td class="px-6 py-4">
+                    {{ transaction.created_at|date:"Y-m-d H:i" }}
+                </td>
+                <td class="px-6 py-4 font-medium text-gray-900 dark:text-white whitespace-nowrap">
+                    {{ transaction.get_transaction_type_display }}
+                </td>
+                <td class="px-6 py-4">
+                    {% if transaction.transaction_type == 'subscription' %}
+                        {{ transaction.months }} {% trans "Months" %}
+                    {% elif transaction.transaction_type == 'event_boost' %}
+                        Event: {{ transaction.event.name|default:"-" }}
+                    {% elif transaction.transaction_type == 'ad_boost' %}
+                        Ad: {{ transaction.ad.name|default:"-" }} <br>
+                        <span class="text-xs text-gray-400">{{ transaction.ad_start_date|date:"d M Y" }} to {{ transaction.ad_end_date|date:"d M Y" }}</span>
+                    {% endif %}
+                </td>
+                <td class="px-6 py-4">
+                    {{ transaction.total_ttc }} TND
+                </td>
+                <td class="px-6 py-4">
+                    {% if transaction.status == 'pending' %}
+                        <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-yellow-900 dark:text-yellow-300">
+                            {% trans "Pending" %}
+                        </span>
+                    {% elif transaction.status == 'validated' %}
+                        <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                            {% trans "Validated" %}
+                        </span>
+                    {% else %}
+                        <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
+                            {% trans "Rejected" %}
+                        </span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                    {% trans "No transactions found." %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock body %}

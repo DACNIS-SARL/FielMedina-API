@@ -13,6 +13,7 @@ urlpatterns = [
     path("", include("api.urls")),
     path("", include("guard.urls")),
     path("", include("shared.urls")),
+    path("subscribers/", include("subscribers.urls")),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
