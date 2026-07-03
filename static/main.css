@@ -2620,6 +2620,9 @@
       stroke: var(--color-default) !important;
     }
   }
+  .border-blue-200 {
+    border-color: var(--color-blue-200);
+  }
   .border-blue-600 {
     border-color: var(--color-blue-600);
   }
@@ -3354,6 +3357,9 @@
   .pe-1 {
     padding-inline-end: var(--spacing);
   }
+  .pt-1 {
+    padding-top: var(--spacing);
+  }
   .pt-2 {
     padding-top: calc(var(--spacing) * 2);
   }
@@ -3697,6 +3703,9 @@
   }
   .text-blue-800 {
     color: var(--color-blue-800);
+  }
+  .text-blue-900 {
+    color: var(--color-blue-900);
   }
   .text-body {
     color: var(--color-body);
@@ -4978,6 +4987,14 @@
       border-color: var(--color-blue-500);
     }
   }
+  .dark\:border-blue-700\/50 {
+    &:where(.dark, .dark *) {
+      border-color: color-mix(in srgb, oklch(48.8% 0.243 264.376) 50%, transparent);
+      @supports (color: color-mix(in lab, red, red)) {
+        border-color: color-mix(in oklab, var(--color-blue-700) 50%, transparent);
+      }
+    }
+  }
   .dark\:border-gray-500 {
     &:where(.dark, .dark *) {
       border-color: var(--color-gray-500);
@@ -5200,6 +5217,11 @@
       @supports (color: color-mix(in lab, red, red)) {
         background-color: color-mix(in oklab, var(--color-yellow-900) 40%, transparent);
       }
+    }
+  }
+  .dark\:text-blue-100 {
+    &:where(.dark, .dark *) {
+      color: var(--color-blue-100);
     }
   }
   .dark\:text-blue-200 {

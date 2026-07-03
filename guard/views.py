@@ -923,6 +923,7 @@ class AdCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         self.object.client = self.request.user.profile
         self.object.created_by = self.request.user
         self.object.updated_by = self.request.user
+        self.object.is_active = False  # Pending payment validation
 
         try:
             service = ShortIOService()
@@ -938,6 +939,35 @@ class AdCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
             logging.getLogger(__name__).error(f"Short.io error: {e}")
 
         self.object.save()
+
+        # Handle Payment Transaction
+        from decimal import Decimal
+        from subscribers.models import PaymentTransaction
+        from subscribers.views import send_transaction_emails
+
+        if self.object.startDate and self.object.endDate:
+            diff_days = (self.object.endDate - self.object.startDate).days + 1
+            if diff_days > 0:
+                price_ht = Decimal(str(diff_days * 3.9))
+                vat = price_ht * Decimal('0.19')
+                timbre = Decimal('1.0')
+                total_ttc = price_ht + vat + timbre
+                
+                transaction = PaymentTransaction.objects.create(
+                    user=self.request.user.profile,
+                    transaction_type='ad_boost',
+                    ad=self.object,
+                    ad_start_date=self.object.startDate,
+                    ad_end_date=self.object.endDate,
+                    amount_ht=price_ht,
+                    tax_amount=vat,
+                    timbre_fiscal=timbre,
+                    total_ttc=total_ttc
+                )
+                send_transaction_emails(transaction)
+                
+                messages.success(self.request, _("Ad created. Please complete the bank transfer to activate it."))
+                return HttpResponseRedirect(reverse_lazy("subscribers:transaction_history"))
 
         messages.success(self.request, self.success_message)
         return HttpResponseRedirect(self.get_success_url())
@@ -959,6 +989,14 @@ class AdUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         if self.request.user.is_staff:
             return qs
         return qs.filter(client=self.request.user.profile)
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        if 'startDate' in form.fields:
+            form.fields['startDate'].disabled = True
+        if 'endDate' in form.fields:
+            form.fields['endDate'].disabled = True
+        return form
 
     def form_valid(self, form):
         self.object = form.save(commit=False)

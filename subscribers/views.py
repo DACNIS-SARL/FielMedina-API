@@ -147,46 +147,7 @@ class BoostEventView(LoginRequiredMixin, View):
         messages.success(request, _("Boost request submitted. Please complete the bank transfer."))
         return redirect('subscribers:transaction_history')
 
-class BoostAdView(LoginRequiredMixin, View):
-    def post(self, request, ad_id):
-        ad = get_object_or_404(Ad, id=ad_id, client=request.user.profile)
-        
-        start_date_str = request.POST.get('start_date')
-        end_date_str = request.POST.get('end_date')
-        
-        try:
-            start_date = datetime.datetime.strptime(start_date_str, '%Y-%m-%d').date()
-            end_date = datetime.datetime.strptime(end_date_str, '%Y-%m-%d').date()
-        except (ValueError, TypeError):
-            messages.error(request, _("Invalid dates provided."))
-            return redirect('guard:adList')
-            
-        days = (end_date - start_date).days + 1
-        if days <= 0:
-            messages.error(request, _("End date must be after start date."))
-            return redirect('guard:adList')
-            
-        amount_ht = float(days) * 3.9
-        tax_amount = amount_ht * 0.19
-        timbre = 1.0
-        total = amount_ht + tax_amount + timbre
 
-        transaction = PaymentTransaction.objects.create(
-            user=request.user.profile,
-            transaction_type=TransactionType.AD_BOOST,
-            status=TransactionStatus.PENDING,
-            ad=ad,
-            ad_start_date=start_date,
-            ad_end_date=end_date,
-            amount_ht=amount_ht,
-            tax_amount=tax_amount,
-            timbre_fiscal=timbre,
-            total_ttc=total
-        )
-        send_transaction_emails(transaction)
-        
-        messages.success(request, _("Boost request submitted. Please complete the bank transfer."))
-        return redirect('subscribers:transaction_history')
 
 # -----------------------------------------------------------------------------
 # Staff Views

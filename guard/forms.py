@@ -797,6 +797,16 @@ class AdForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
             "The destination URL for this ad. This will be tracked via Short.io."
         ),
     )
+    startDate = forms.DateField(
+        label=_("Start Date"),
+        required=True,
+        widget=forms.DateInput(attrs={'type': 'date'}),
+    )
+    endDate = forms.DateField(
+        label=_("End Date"),
+        required=True,
+        widget=forms.DateInput(attrs={'type': 'date'}),
+    )
 
     class Meta:
         model = Ad
@@ -807,7 +817,8 @@ class AdForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
             "image_mobile",
             "image_tablet",
             "link",
-            "is_active",
+            "startDate",
+            "endDate",
         ]
         widgets = {
             "country": forms.Select(
@@ -822,16 +833,12 @@ class AdForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm):
             ),
             "image_mobile": forms.FileInput(attrs={"accept": "image/*"}),
             "image_tablet": forms.FileInput(attrs={"accept": "image/*"}),
-            "is_active": forms.CheckboxInput(),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["is_active"].label = _("Active")
-
         if "country" in self.fields:
             self.fields["country"].required = True
-
         if "city" in self.fields:
             self.fields["city"].required = False  # Ads can be just country-level now
 
