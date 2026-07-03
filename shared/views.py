@@ -148,7 +148,7 @@ class SettingView(LoginRequiredMixin, TemplateView):
         days_left = profile.subscription_days_left
         return [
             {
-                "plan": profile.subscription_plan or _("Standard Subscription"),
+                "plan": _(profile.subscription_plan) if profile.subscription_plan else _("Standard Subscription"),
                 "status": profile.subscription_status_label,
                 "started": profile.subscription_started_at,
                 "renews": profile.subscription_renews_at,

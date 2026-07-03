@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 02:18+0000\n"
+"POT-Creation-Date: 2026-07-03 02:31+0000\n"
 "PO-Revision-Date: 2026-01-05 23:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -30,7 +30,7 @@ msgstr "Connectez-vous à votre compte"
 
 #: api/templates/api/views/index.html:4 api/templates/api/views/index.html:7
 msgid "Home"
-msgstr ""
+msgstr "Accueil"
 
 #: guard/admin.py:40 guard/admin.py:97 guard/admin.py:155 guard/admin.py:179
 #: guard/admin.py:230 guard/admin.py:263 guard/admin.py:276
@@ -47,11 +47,12 @@ msgstr "Détails du lieu"
 
 #: guard/admin.py:59 guard/templates/guard/views/locations/index.html:461
 msgid "Voiceover Audio"
-msgstr ""
+msgstr "Audio Voiceover"
 
 #: guard/admin.py:62
 msgid "Optional audio voiceovers for this location (AAC format only)"
 msgstr ""
+"Voiceovers audio optionnels pour cet emplacement (format AAC uniquement)"
 
 #: guard/admin.py:101
 msgid "Event Schedule"
@@ -196,7 +197,7 @@ msgstr "L'heure d'ouverture doit être antérieure à l'heure de fermeture."
 
 #: guard/forms.py:324
 msgid "Only AAC audio format is allowed."
-msgstr ""
+msgstr "Seul le format audio AAC est autorisé."
 
 #: guard/forms.py:372
 msgid "Enter event name in English"
@@ -362,7 +363,7 @@ msgstr "Sélectionnez la région d'arrivée"
 
 #: guard/forms.py:1021
 msgid "e.g., Line 32 or Bus 105"
-msgstr ""
+msgstr "ex., Ligne 32 ou Bus 105"
 
 #: guard/forms.py:1027
 msgid "Please select a transport type."
@@ -596,7 +597,7 @@ msgstr "Histoire (anglais)"
 
 #: guard/models.py:204
 msgid "Upload an audio voiceover in English (AAC format only)"
-msgstr ""
+msgstr "Téléchargez un voiceover audio en anglais (format AAC uniquement)"
 
 #: guard/models.py:208
 #, fuzzy
@@ -606,7 +607,7 @@ msgstr "Histoire (française)"
 
 #: guard/models.py:211
 msgid "Upload an audio voiceover in French (AAC format only)"
-msgstr ""
+msgstr "Téléchargez un voiceover audio en français (format AAC uniquement)"
 
 #: guard/models.py:220 guard/models.py:378 guard/models.py:475
 #: guard/models.py:824 guard/templates/guard/views/ads/list.html:62
@@ -638,11 +639,11 @@ msgstr "Lieux"
 
 #: guard/models.py:258
 msgid "Region ID"
-msgstr ""
+msgstr "ID de la région"
 
 #: guard/models.py:259
 msgid "Unique identifier string, e.g., 'sousse_medina'"
-msgstr ""
+msgstr "Chaîne d'identifiant unique, ex. 'sousse_medina'"
 
 #: guard/models.py:261 guard/models.py:294 guard/models.py:646
 #: guard/models.py:669 guard/models.py:725 guard/models.py:759
@@ -664,11 +665,11 @@ msgstr "Longitude"
 
 #: guard/models.py:272
 msgid "Radius"
-msgstr ""
+msgstr "Rayon"
 
 #: guard/models.py:272
 msgid "Radius in meters, e.g., 2000"
-msgstr ""
+msgstr "Rayon en mètres, ex. 2000"
 
 #: guard/models.py:273 guard/models.py:747 guard/models.py:798
 #: guard/templates/guard/views/ads/list.html:107
@@ -680,7 +681,7 @@ msgstr "Active"
 
 #: guard/models.py:276
 msgid "Offline City"
-msgstr ""
+msgstr "Ville hors ligne"
 
 #: guard/models.py:277
 #, fuzzy
@@ -800,7 +801,7 @@ msgstr "Vers la région"
 
 #: guard/models.py:591
 msgid "Bus number"
-msgstr ""
+msgstr "Numéro de bus"
 
 #: guard/models.py:594 guard/models.py:608
 msgid "Public Transport"
@@ -1259,21 +1260,19 @@ msgstr "Aperçu des abonnements"
 
 #: guard/templates/guard/auth/settings.html:112
 msgid "Manage your subscription using offline bank transfers."
-msgstr ""
+msgstr "Gérez votre abonnement via des virements bancaires hors ligne."
 
 #: guard/templates/guard/auth/settings.html:117
 #: guard/templates/guard/views/subscribers/transaction_history.html:5
 #: guard/templates/guard/views/subscribers/transaction_history.html:11
-#, fuzzy
 #| msgid "Translation failed"
 msgid "Transaction History"
-msgstr "Échec de la traduction"
+msgstr "Historique des transactions"
 
 #: guard/templates/guard/auth/settings.html:120
-#, fuzzy
 #| msgid "Konnect subscription"
 msgid "Renew Subscription"
-msgstr "Abonnement Konnect"
+msgstr "Renouveler l'abonnement"
 
 #: guard/templates/guard/auth/settings.html:128
 #: guard/templates/guard/views/subscribers/list.html:26
@@ -1354,7 +1353,7 @@ msgstr "Mes événements"
 
 #: guard/templates/guard/base/topBar.html:22
 msgid "Super Admin"
-msgstr ""
+msgstr "Super Admin"
 
 #: guard/templates/guard/base/topBar.html:24 shared/models.py:131
 msgid "Staff"
@@ -1376,55 +1375,57 @@ msgstr "Se déconnecter"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:7
 msgid "Boost Ad"
-msgstr ""
+msgstr "Booster l'annonce"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:19
 msgid "Ad boosting costs"
-msgstr ""
+msgstr "Les coûts de boost de l'annonce"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:19
 msgid "per day. Please select the date range for your ad boost."
 msgstr ""
+"par jour. Veuillez sélectionner la plage de dates pour le boost de votre "
+"annonce."
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:34
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:110
 #: guard/templates/guard/views/ads/index.html:210
 #: guard/templates/guard/views/ads/index.html:301
 msgid "Select a start and end date to calculate the total price."
-msgstr ""
+msgstr "Sélectionnez une date de début et de fin pour calculer le prix total."
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:37
 #: guard/templates/guard/partials/shared_boost_event_modal.html:26
 #: guard/templates/guard/views/ads/index.html:213
 #: guard/templates/guard/views/subscribers/payment_portal.html:110
 msgid "Payment Method"
-msgstr ""
+msgstr "Méthode de paiement"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:45
 #: guard/templates/guard/partials/shared_boost_event_modal.html:34
 #: guard/templates/guard/views/ads/index.html:221
 #: guard/templates/guard/views/subscribers/payment_portal.html:118
 msgid "Bank Transfer"
-msgstr ""
+msgstr "Virement bancaire"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:55
 #: guard/templates/guard/partials/shared_boost_event_modal.html:44
 #: guard/templates/guard/views/ads/index.html:231
 #: guard/templates/guard/views/subscribers/payment_portal.html:128
 msgid "Credit Card"
-msgstr ""
+msgstr "Carte de crédit"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:57
 #: guard/templates/guard/partials/shared_boost_event_modal.html:46
 #: guard/templates/guard/views/ads/index.html:233
 #: guard/templates/guard/views/subscribers/payment_portal.html:130
 msgid "Coming Soon"
-msgstr ""
+msgstr "Bientôt disponible"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:64
 #: guard/templates/guard/partials/shared_boost_event_modal.html:53
 msgid "Confirm Transfer Request"
-msgstr ""
+msgstr "Confirmer la demande de transfert"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:106
 #: shared/models.py:244
@@ -1440,7 +1441,7 @@ msgstr "Jours de la semaine"
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:107
 #, python-format
 msgid "Total TTC (including 19%% VAT & 1 TND Timbre)"
-msgstr ""
+msgstr "Total TTC (incluant 19%% de TVA et 1 TND de timbre)"
 
 #: guard/templates/guard/partials/shared_boost_event_modal.html:7
 #, fuzzy
@@ -1453,10 +1454,12 @@ msgid ""
 "You are about to request a boost for this event. The boost costs a flat fee "
 "of"
 msgstr ""
+"Vous êtes sur le point de demander un boost pour cet événement. Le boost "
+"coûte un forfait de"
 
 #: guard/templates/guard/partials/shared_boost_event_modal.html:19
 msgid "and will last until the event start date."
-msgstr ""
+msgstr "et durera jusqu'à la date de début de l'événement."
 
 #: guard/templates/guard/partials/shared_boost_event_modal.html:23
 #, python-format
@@ -1464,6 +1467,9 @@ msgid ""
 "Note: Events starting in less than 3 days cannot be boosted. A total of "
 "18.85 TND (including 19%% VAT and 1 TND Timbre) will be charged."
 msgstr ""
+"Remarque : Les événements commençant dans moins de 3 jours ne peuvent pas "
+"être boostés. Un total de 18,85 TND (incluant 19%% de TVA et 1 TND de "
+"timbre) sera facturé."
 
 #: guard/templates/guard/partials/shared_delete_modal.html:9
 #, fuzzy
@@ -1624,7 +1630,7 @@ msgstr "Montant HT (3,9 TND/jour):"
 #: guard/templates/guard/views/ads/index.html:294
 #, python-format
 msgid "VAT (19%%):"
-msgstr ""
+msgstr "TVA (19%%) :"
 
 #: guard/templates/guard/views/ads/index.html:295
 msgid "Timbre Fiscal:"
@@ -1988,7 +1994,7 @@ msgstr "Liste des événements"
 
 #: guard/templates/guard/views/events/list.html:111
 msgid "Boost"
-msgstr ""
+msgstr "Booster"
 
 #: guard/templates/guard/views/hiking/index.html:6
 #: guard/templates/guard/views/hiking/index.html:41
@@ -2044,7 +2050,7 @@ msgstr "Ajouter l'emplacement suivant"
 
 #: guard/templates/guard/views/hiking/index.html:330
 msgid "Set the terminus point coordinates"
-msgstr ""
+msgstr "Définir les coordonnées du point terminus"
 
 #: guard/templates/guard/views/hiking/index.html:361
 msgid ""
@@ -2130,7 +2136,7 @@ msgstr "Visibilité et caractéristiques de l'emplacement"
 
 #: guard/templates/guard/views/locations/index.html:463
 msgid "Upload optional audio voiceovers (AAC format only)"
-msgstr ""
+msgstr "Téléchargez des voiceovers audio optionnels (format AAC uniquement)"
 
 #: guard/templates/guard/views/locations/index.html:498
 #: guard/templates/guard/views/locations/index.html:533
@@ -2142,7 +2148,7 @@ msgstr "Image actuelle"
 #: guard/templates/guard/views/locations/index.html:503
 #: guard/templates/guard/views/locations/index.html:538
 msgid "Your browser does not support the audio element."
-msgstr ""
+msgstr "Votre navigateur ne prend pas en charge l'élément audio."
 
 #: guard/templates/guard/views/locations/index.html:507
 #: guard/templates/guard/views/locations/index.html:542
@@ -2517,7 +2523,7 @@ msgstr "Type"
 
 #: guard/templates/guard/views/publicTransports/list.html:49
 msgid "Bus Number"
-msgstr ""
+msgstr "Numéro de bus"
 
 #: guard/templates/guard/views/publicTransports/list.html:87
 msgid "No times"
@@ -2557,14 +2563,12 @@ msgstr "Affichage des transactions pour"
 
 #: guard/templates/guard/views/subscribers/history.html:17
 #: guard/templates/guard/views/subscribers/validation_list.html:44
-#| msgid "Subscribers"
 msgid "Back to Subscribers"
 msgstr "Retour aux abonnés"
 
 #: guard/templates/guard/views/subscribers/history.html:33
 #: guard/templates/guard/views/subscribers/transaction_history.html:28
 #: guard/templates/guard/views/subscribers/validation_list.html:60
-#| msgid "User profiles"
 msgid "Reference"
 msgstr "Référence"
 
@@ -2607,12 +2611,11 @@ msgstr "Annonce"
 #: guard/templates/guard/views/subscribers/transaction_history.html:68
 #: subscribers/models.py:13
 msgid "Validated"
-msgstr ""
+msgstr "Validé"
 
 #: guard/templates/guard/views/subscribers/history.html:77
 #: guard/templates/guard/views/subscribers/transaction_history.html:72
 #: subscribers/models.py:15
-#| msgid "Cancelled"
 msgid "Canceled"
 msgstr "Annulé"
 
@@ -2620,7 +2623,7 @@ msgstr "Annulé"
 #: guard/templates/guard/views/subscribers/transaction_history.html:76
 #: subscribers/models.py:14
 msgid "Rejected"
-msgstr ""
+msgstr "Rejeté"
 
 #: guard/templates/guard/views/subscribers/history.html:89
 msgid "No transactions found for this partner."
@@ -2642,13 +2645,10 @@ msgid "Subscribers List"
 msgstr "Liste des abonnés"
 
 #: guard/templates/guard/views/subscribers/list.html:10
-#, fuzzy
-#| msgid "Konnect subscription"
 msgid "Manage client subscriptions."
-msgstr "Abonnement Konnect"
+msgstr "Gérer les abonnements des clients."
 
 #: guard/templates/guard/views/subscribers/list.html:17
-#| msgid "Pending"
 msgid "Pending Payments"
 msgstr "Paiements en attente"
 
@@ -2659,18 +2659,18 @@ msgid "User"
 msgstr "Nom d'utilisateur"
 
 #: guard/templates/guard/views/subscribers/list.html:28
-#, fuzzy
-#| msgid "End Date"
 msgid "Renewal Date"
-msgstr "Date de fin"
+msgstr "Date de renouvellement"
 
 #: guard/templates/guard/views/subscribers/list.html:29
-#, fuzzy
-#| msgid "Days left"
 msgid "Days Left"
 msgstr "Jours restants"
 
-#: guard/templates/guard/views/subscribers/list.html:67
+#: guard/templates/guard/views/subscribers/list.html:46 shared/models.py:183
+msgid "Trial"
+msgstr "Essai"
+
+#: guard/templates/guard/views/subscribers/list.html:71
 #, fuzzy
 #| msgid "No categories found."
 msgid "No subscribers found."
@@ -2678,89 +2678,84 @@ msgstr "Aucune catégorie trouvée."
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:5
 msgid "Payment Portal"
-msgstr ""
+msgstr "Portail de Paiement"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:11
-#, fuzzy
 #| msgid "Subscription overview"
 msgid "Subscription Required"
-msgstr "Aperçu des abonnements"
+msgstr "Abonnement requis"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:13
 msgid ""
 "Your subscription has expired or requires renewal. Please select a plan and "
 "complete the bank transfer to restore access to your dashboard."
 msgstr ""
+"Votre abonnement a expiré ou nécessite un renouvellement. Veuillez "
+"sélectionner un forfait et effectuer le virement bancaire pour restaurer "
+"l'accès à votre tableau de bord."
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:28
-#, fuzzy
 #| msgid "Transport Details"
 msgid "Bank Transfer Details"
-msgstr "Détails du transport"
+msgstr "Détails du virement bancaire"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:32
 msgid "Bank"
-msgstr ""
+msgstr "Banque"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:36
-#, fuzzy
 #| msgid "Product Name"
 msgid "Account Name"
-msgstr "Nom du produit"
+msgstr "Nom du compte"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:40
 msgid "RIB"
-msgstr ""
+msgstr "RIB"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:44
 msgid "IBAN"
-msgstr ""
+msgstr "IBAN"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:48
 msgid "BIC"
-msgstr ""
+msgstr "BIC"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:55
 msgid "Important:"
-msgstr ""
+msgstr "Important :"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:55
 msgid "After initiating the transfer, you must send an email to"
-msgstr ""
+msgstr "Après avoir initié le transfert, vous devez envoyer un email à"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:57
 msgid "with the proof of payment to activate your account."
-msgstr ""
+msgstr "avec la preuve de paiement pour activer votre compte."
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:64
-#, fuzzy
 #| msgid "Konnect subscription"
 msgid "Select a Subscription Plan"
-msgstr "Abonnement Konnect"
+msgstr "Sélectionnez un forfait d'abonnement"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:73
-#, fuzzy
 #| msgid "Last Month"
 msgid "1 Month"
-msgstr "Le mois dernier"
+msgstr "1 Mois"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:82
-#, fuzzy
 #| msgid "Last Month"
 msgid "3 Months"
-msgstr "Le mois dernier"
+msgstr "3 Mois"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:91
-#, fuzzy
 #| msgid "Last Month"
 msgid "6 Months"
-msgstr "Le mois dernier"
+msgstr "6 Mois"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:100
-#, fuzzy
 #| msgid "Last Month"
 msgid "12 Months"
-msgstr "Le mois dernier"
+msgstr "12 Mois"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:107
 #, python-format
@@ -2768,17 +2763,18 @@ msgid ""
 "* All prices exclude VAT (19%%) and Timbre Fiscal (1 TND) which will be "
 "added to your invoice."
 msgstr ""
+"* Tous les prix excluent la TVA (19%%) et le timbre fiscal (1 TND) qui "
+"seront ajoutés à votre facture."
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:135
 msgid "Confirm Bank Transfer"
-msgstr ""
+msgstr "Confirmer le virement bancaire"
 
 #: guard/templates/guard/views/subscribers/transaction_history.html:12
 msgid "View your past and pending payments."
-msgstr ""
+msgstr "Consultez vos paiements passés et en attente."
 
 #: guard/templates/guard/views/subscribers/transaction_history.html:84
-#| msgid "No categories found."
 msgid "No transactions found."
 msgstr "Aucune transaction trouvée."
 
@@ -2786,15 +2782,15 @@ msgstr "Aucune transaction trouvée."
 #: guard/templates/guard/views/subscribers/validation_list.html:32
 #: guard/templates/guard/views/subscribers/validation_list.html:40
 msgid "Pending Transactions"
-msgstr ""
+msgstr "Transactions en attente"
 
 #: guard/templates/guard/views/subscribers/validation_list.html:41
 msgid "Validate offline bank transfers submitted by clients."
-msgstr ""
+msgstr "Valider les virements bancaires hors ligne soumis par les clients."
 
 #: guard/templates/guard/views/subscribers/validation_list.html:65
 msgid "Date Submitted"
-msgstr ""
+msgstr "Date de soumission"
 
 #: guard/templates/guard/views/subscribers/validation_list.html:66
 #, fuzzy
@@ -2828,7 +2824,7 @@ msgstr ""
 
 #: guard/templates/guard/views/subscribers/validation_list.html:125
 msgid "No pending transactions."
-msgstr ""
+msgstr "Aucune transaction en attente."
 
 #: guard/templates/guard/views/tips/index.html:6
 #: guard/templates/guard/views/tips/index.html:41
@@ -2870,7 +2866,7 @@ msgstr "Liste de conseils"
 
 #: guard/templates/guard/views/tips/list.html:61
 msgid "this tip"
-msgstr ""
+msgstr "ce conseil"
 
 #: guard/views.py:154
 msgid "Location created successfully."
@@ -2980,6 +2976,7 @@ msgstr "Annonce créée avec succès"
 #: guard/views.py:985
 msgid "Ad created. Please complete the bank transfer to activate it."
 msgstr ""
+"Annonce créée. Veuillez effectuer le virement bancaire pour l'activer."
 
 #: guard/views.py:992
 msgid "Error creating ad. Please check the form."
@@ -3194,29 +3191,25 @@ msgstr "Profil utilisateur"
 msgid "User profiles"
 msgstr "Profils d'utilisateurs"
 
-#: shared/models.py:183
-msgid "Trial"
-msgstr "Procès"
-
 #: shared/models.py:185
 msgid "Grace period"
 msgstr "Délai de grâce"
 
 #: shared/models.py:224
 msgid "First visit"
-msgstr ""
+msgstr "Première visite"
 
 #: shared/models.py:225
 msgid "Traveling with"
-msgstr ""
+msgstr "Voyager avec"
 
 #: shared/models.py:226
 msgid "Interests"
-msgstr ""
+msgstr "Intérêts"
 
 #: shared/models.py:231
 msgid "User Preference"
-msgstr ""
+msgstr "Préférence utilisateur"
 
 #: shared/models.py:232
 #, fuzzy
@@ -3242,11 +3235,11 @@ msgstr "Forfaits"
 
 #: shared/models.py:268
 msgid "Temporary Upload"
-msgstr ""
+msgstr "Téléchargement temporaire"
 
 #: shared/models.py:269
 msgid "Temporary Uploads"
-msgstr ""
+msgstr "Téléchargements temporaires"
 
 #: shared/templates/shared/js/translation_utils.html:33
 msgid "Please enter some text to translate"
@@ -3317,7 +3310,7 @@ msgstr "Liste des événements"
 
 #: subscribers/models.py:9
 msgid "Ad Boost"
-msgstr ""
+msgstr "Boost d'annonce"
 
 #: subscribers/models.py:18
 #, fuzzy
@@ -3351,19 +3344,19 @@ msgstr "Date de fin"
 
 #: subscribers/models.py:30
 msgid "Amount HT"
-msgstr ""
+msgstr "Montant HT"
 
 #: subscribers/models.py:31
 msgid "Tax Amount (19%)"
-msgstr ""
+msgstr "Montant de la taxe (19%)"
 
 #: subscribers/models.py:32
 msgid "Timbre Fiscal"
-msgstr ""
+msgstr "Timbre Fiscal"
 
 #: subscribers/models.py:33
 msgid "Total TTC"
-msgstr ""
+msgstr "Total TTC"
 
 #: subscribers/models.py:36
 #, fuzzy
@@ -3373,11 +3366,11 @@ msgstr "Créé le"
 
 #: subscribers/models.py:39
 msgid "Payment Transaction"
-msgstr ""
+msgstr "Transaction de paiement"
 
 #: subscribers/models.py:40
 msgid "Payment Transactions"
-msgstr ""
+msgstr "Transactions de paiement"
 
 #: subscribers/views.py:22
 msgid "FielMedina - Bank Transfer Instructions"
@@ -3431,7 +3424,7 @@ msgstr ""
 #: subscribers/views.py:51
 #, python-brace-format
 msgid "New Pending Payment: {transaction_type}"
-msgstr ""
+msgstr "Nouveau paiement en attente : {transaction_type}"
 
 #: subscribers/views.py:52
 #, python-brace-format
@@ -3444,6 +3437,13 @@ msgid ""
 "\n"
 "Please check the FielMedina Admin Validation panel to verify their proof of payment and approve the transaction."
 msgstr ""
+"Une nouvelle demande de virement bancaire hors ligne a été soumise.\n"
+"\n"
+"Client : {client_email}\n"
+"Type : {transaction_type}\n"
+"Montant : {total} TND\n"
+"\n"
+"Veuillez vérifier le panneau de Validation de l'Admin FielMedina pour vérifier leur preuve de paiement et approuver la transaction."
 
 #: subscribers/views.py:68
 msgid "FielMedina - Order Canceled"
@@ -3472,7 +3472,7 @@ msgstr ""
 
 #: subscribers/views.py:86
 msgid "FielMedina - Payment Validated"
-msgstr ""
+msgstr "FielMedina - Paiement validé"
 
 #: subscribers/views.py:87
 #, python-brace-format
@@ -3485,20 +3485,30 @@ msgid ""
 "Thank you,\n"
 "The FielMedina Team"
 msgstr ""
+"Bonjour {user_name},\n"
+"\n"
+"Bonne nouvelle ! Votre paiement pour {transaction_type} a été validé par notre équipe.\n"
+"Votre service est maintenant actif. Nous vous enverrons une facture sous peu.\n"
+"\n"
+"Merci,\n"
+"L'équipe FielMedina"
 
 #: subscribers/views.py:136
 msgid ""
 "Your payment request has been submitted. Please email proof of payment to "
 "commercial@dacnis.tn"
 msgstr ""
+"Votre demande de paiement a été soumise. Veuillez envoyer une preuve de "
+"paiement par email à commercial@dacnis.tn"
 
 #: subscribers/views.py:150
 msgid "Cannot boost an event that starts in less than 3 days."
 msgstr ""
+"Impossible de booster un événement qui commence dans moins de 3 jours."
 
 #: subscribers/views.py:170
 msgid "Boost request submitted. Please complete the bank transfer."
-msgstr ""
+msgstr "Demande de boost soumise. Veuillez effectuer le virement bancaire."
 
 #: subscribers/views.py:219
 #, fuzzy
@@ -3511,9 +3521,21 @@ msgid "Transaction canceled and email sent to client."
 msgstr "Transaction annulée et email envoyé au client."
 
 #: subscribers/views.py:234
-#| msgid "Translation failed"
 msgid "Transaction cannot be canceled."
 msgstr "La transaction ne peut pas être annulée."
+
+msgid ""
+"* All prices exclude VAT (19%) and Timbre Fiscal (1 TND) which will be added"
+" to your invoice."
+msgstr ""
+"* Tous les prix n'incluent pas la TVA (19 %) et le timbre fiscal (1 TND) qui"
+" seront ajoutés à votre facture."
+
+msgid "Total TTC (including 19% VAT & 1 TND Timbre)"
+msgstr "Total TTC (incluant 19% de TVA et 1 TND de timbre)"
+
+msgid "VAT (19%):"
+msgstr "TVA (19%) :"
 
 #~ msgid ""
 #~ "Konnect integration is coming soon. These values are placeholders for now."

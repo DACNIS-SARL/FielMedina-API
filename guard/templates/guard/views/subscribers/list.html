@@ -40,16 +40,20 @@
                     <span class="text-xs text-gray-500">{{ subscriber.user.email }}</span>
                 </td>
                 <td class="px-6 py-4">
-                    {{ subscriber.subscription_plan|default:"Trial" }}
+                    {% if subscriber.subscription_plan %}
+                        {{ subscriber.subscription_plan }}
+                    {% else %}
+                        {% trans "Trial" %}
+                    {% endif %}
                 </td>
                 <td class="px-6 py-4">
                     {% if subscriber.subscription_status == 'active' or subscriber.subscription_status == 'trial' %}
                         <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
-                            {{ subscriber.subscription_status|title }}
+                            {{ subscriber.subscription_status_label }}
                         </span>
                     {% else %}
                         <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-red-900 dark:text-red-300">
-                            {{ subscriber.subscription_status|title }}
+                            {{ subscriber.subscription_status_label }}
                         </span>
                     {% endif %}
                 </td>
