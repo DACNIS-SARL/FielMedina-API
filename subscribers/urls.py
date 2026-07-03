@@ -12,4 +12,5 @@ urlpatterns = [
     # Staff / Admin endpoints
     path('validation-list/', views.TransactionValidationListView.as_view(), name='validation_list'),
     path('validate/<int:transaction_id>/', views.ValidateTransactionView.as_view(), name='validate_transaction'),
+    path('cancel/<int:transaction_id>/', views.CancelTransactionView.as_view(), name='cancel_transaction'),
 ]

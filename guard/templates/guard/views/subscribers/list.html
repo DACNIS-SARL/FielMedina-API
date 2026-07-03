@@ -34,7 +34,9 @@
             {% if subscriber.user_type == 'client_partner' %}
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                 <td class="px-6 py-4 font-medium text-gray-900 dark:text-white">
-                    {{ subscriber.user.get_full_name|default:subscriber.user.username }}<br>
+                    <a href="{% url 'guard:subscriber_history' subscriber.id %}" class="text-blue-600 hover:underline dark:text-blue-500">
+                        {{ subscriber.user.get_full_name|default:subscriber.user.username }}
+                    </a><br>
                     <span class="text-xs text-gray-500">{{ subscriber.user.email }}</span>
                 </td>
                 <td class="px-6 py-4">

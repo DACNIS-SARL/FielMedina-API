@@ -2,15 +2,20 @@
 {% load i18n %}
 
 {% block title %}
-   {% trans "Transaction History" %}
+   {% trans "Partner Transaction History" %}
 {% endblock title %}
 
 {% block body %}
 <div class="mb-4 flex justify-between items-center">
     <div>
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{% trans "Transaction History" %}</h2>
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{% trans "View your past and pending payments." %}</p>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white">{% trans "Partner Transaction History" %}</h2>
+        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            {% trans "Viewing transactions for" %} <strong>{{ partner.user.get_full_name|default:partner.user.username }}</strong> ({{ partner.user.email }})
+        </p>
     </div>
+    <a href="{% url 'guard:subscribersList' %}" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
+        {% trans "Back to Subscribers" %}
+    </a>
 </div>
 
 {% if messages %}
@@ -22,7 +27,7 @@
 {% endif %}
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+    <table id="history-table" class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">{% trans "Reference" %}</th>
@@ -49,13 +54,13 @@
                     {% if transaction.transaction_type == 'subscription' %}
                         {{ transaction.months }} {% trans "Months" %}
                     {% elif transaction.transaction_type == 'event_boost' %}
-                        Event: {{ transaction.event.name|default:"-" }}
+                        {% trans "Event:" %} {{ transaction.event.name|default:"-" }}
                     {% elif transaction.transaction_type == 'ad_boost' %}
-                        Ad: {{ transaction.ad.name|default:"-" }} <br>
-                        <span class="text-xs text-gray-400">{{ transaction.ad_start_date|date:"d M Y" }} to {{ transaction.ad_end_date|date:"d M Y" }}</span>
+                        {% trans "Ad:" %} {{ transaction.ad.name|default:"-" }} <br>
+                        <span class="text-xs text-gray-400">{{ transaction.ad_start_date|date:"d M Y" }} - {{ transaction.ad_end_date|date:"d M Y" }}</span>
                     {% endif %}
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 py-4 font-bold">
                     {{ transaction.total_ttc }} TND
                 </td>
                 <td class="px-6 py-4">
@@ -81,7 +86,7 @@
             {% empty %}
             <tr>
                 <td colspan="6" class="px-6 py-4 text-center text-gray-500">
-                    {% trans "No transactions found." %}
+                    {% trans "No transactions found for this partner." %}
                 </td>
             </tr>
             {% endfor %}
@@ -89,3 +94,15 @@
     </table>
 </div>
 {% endblock body %}
+
+{% block extrascript %}
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.3"></script>
+<script>
+    if (document.getElementById("history-table") && typeof simpleDatatables.DataTable !== 'undefined') {
+        const dataTable = new simpleDatatables.DataTable("#history-table", {
+            searchable: true,
+            perPageSelect: false
+        });
+    }
+</script>
+{% endblock extrascript %}

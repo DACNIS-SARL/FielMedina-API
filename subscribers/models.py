@@ -12,6 +12,7 @@ class TransactionStatus(models.TextChoices):
     PENDING = 'pending', _('Pending')
     VALIDATED = 'validated', _('Validated')
     REJECTED = 'rejected', _('Rejected')
+    CANCELED = 'canceled', _('Canceled')
 
 class PaymentTransaction(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='transactions', verbose_name=_("User Profile"))
@@ -41,3 +42,21 @@ class PaymentTransaction(models.Model):
 
     def __str__(self):
         return f"{self.get_transaction_type_display()} - {self.user} - {self.get_status_display()}"
+
+    @property
+    def reference(self):
+        if self.transaction_type == TransactionType.SUBSCRIPTION:
+            prefix = "ORDER-SUB"
+        elif self.transaction_type == TransactionType.AD_BOOST:
+            prefix = "ORDER-ADS"
+        elif self.transaction_type == TransactionType.EVENT_BOOST:
+            prefix = "ORDER-EVN"
+        else:
+            prefix = "ORDER-GEN"
+        return f"{prefix}-{self.id}"
+
+    @property
+    def is_stale(self):
+        from django.utils import timezone
+        import datetime
+        return self.status == TransactionStatus.PENDING and self.created_at < timezone.now() - datetime.timedelta(days=5)

@@ -32,13 +32,18 @@ Bank: BIAT
 RIB: 08129030011000676770
 IBAN: TN5908129030011000676770
 
+IMPORTANT: Please include this reference in your bank transfer motif/object: {reference}
+
+We must receive the amount within 3 working days, or your order will be canceled.
+
 Once the transfer is done, please reply to this email (commercial@dacnis.tn) with your proof of payment so we can validate your transaction.
 
 Thank you,
 The FielMedina Team""").format(
             user_name=transaction.user.user.get_full_name() or transaction.user.user.username,
             transaction_type=transaction.get_transaction_type_display(),
-            total=transaction.total_ttc
+            total=transaction.total_ttc,
+            reference=transaction.reference
         )
         send_mail(subject_client, message_client, settings.DEFAULT_FROM_EMAIL, [client_email], fail_silently=True)
 
@@ -56,6 +61,24 @@ Please check the FielMedina Admin Validation panel to verify their proof of paym
         total=transaction.total_ttc
     )
     send_mail(subject_admin, message_admin, settings.DEFAULT_FROM_EMAIL, admin_emails, fail_silently=True)
+
+def send_cancellation_email(transaction):
+    client_email = transaction.user.user.email
+    if client_email:
+        subject = _("FielMedina - Order Canceled")
+        message = _("""Hello {user_name},
+
+Your order for {transaction_type} ({reference}) has been canceled because no money was received within 5 working days.
+
+If you have already made the transfer, please contact us immediately at commercial@dacnis.tn with your proof of payment.
+
+Thank you,
+The FielMedina Team""").format(
+            user_name=transaction.user.user.get_full_name() or transaction.user.user.username,
+            transaction_type=transaction.get_transaction_type_display(),
+            reference=transaction.reference
+        )
+        send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [client_email], fail_silently=True)
 
 def send_validation_email(transaction):
     client_email = transaction.user.user.email
@@ -195,4 +218,19 @@ class ValidateTransactionView(StaffRequiredMixin, View):
             
             messages.success(request, _("Transaction validated successfully."))
         
+        return redirect('subscribers:validation_list')
+
+class CancelTransactionView(StaffRequiredMixin, View):
+    def post(self, request, transaction_id):
+        transaction = get_object_or_404(PaymentTransaction, id=transaction_id)
+        
+        if transaction.status == TransactionStatus.PENDING:
+            transaction.status = TransactionStatus.CANCELED
+            transaction.save()
+            
+            send_cancellation_email(transaction)
+            messages.success(request, _("Transaction canceled and email sent to client."))
+        else:
+            messages.error(request, _("Transaction cannot be canceled."))
+            
         return redirect('subscribers:validation_list')

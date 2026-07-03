@@ -6,6 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (
+    View,
     CreateView,
     UpdateView,
     DeleteView,
@@ -273,6 +274,21 @@ class SubscribersListView(UserPassesTestMixin, LoginRequiredMixin, ListView):
     def test_func(self):
         return self.request.user.is_staff
 
+class SubscriberHistoryView(UserPassesTestMixin, LoginRequiredMixin, View):
+    def test_func(self):
+        return self.request.user.is_staff
+        
+    def get(self, request, profile_id):
+        from subscribers.models import PaymentTransaction
+        from django.shortcuts import get_object_or_404, render
+        
+        profile = get_object_or_404(UserProfile, id=profile_id)
+        transactions = PaymentTransaction.objects.filter(user=profile).order_by('-created_at')
+        
+        return render(request, "guard/views/subscribers/history.html", {
+            "partner": profile,
+            "transactions": transactions
+        })
 
 class PublicTransportListView(UserPassesTestMixin, LoginRequiredMixin, ListView):
     model = PublicTransport

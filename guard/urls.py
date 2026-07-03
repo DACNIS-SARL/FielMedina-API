@@ -48,6 +48,7 @@ from .views import (
     get_cities_by_country,
     get_subregions_by_city,
     get_locations_by_city,
+    SubscriberHistoryView,
 )
 
 app_name = "guard"
@@ -58,6 +59,7 @@ urlpatterns = [
         include(
             [
                 path("subscribersList/",SubscribersListView.as_view(), name="subscribersList"),
+                path("subscribers/<int:profile_id>/history/", SubscriberHistoryView.as_view(), name="subscriber_history"),
                 path("locationsList/", LocationsListView.as_view(), name="locationsList"),
                 path("locations/create/",LocationCreateView.as_view(),name="location_create"),
                 path("locations/update/<int:pk>/",LocationUpdateView.as_view(),name="location_update"),
