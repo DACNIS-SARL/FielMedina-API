@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-26 09:14+0000\n"
+"POT-Creation-Date: 2026-07-03 02:18+0000\n"
 "PO-Revision-Date: 2026-01-05 23:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -32,8 +32,8 @@ msgstr "Connectez-vous à votre compte"
 msgid "Home"
 msgstr ""
 
-#: guard/admin.py:39 guard/admin.py:96 guard/admin.py:154 guard/admin.py:178
-#: guard/admin.py:229 guard/admin.py:262 guard/admin.py:275
+#: guard/admin.py:40 guard/admin.py:97 guard/admin.py:155 guard/admin.py:179
+#: guard/admin.py:230 guard/admin.py:263 guard/admin.py:276
 #: guard/templates/guard/views/events/index.html:92
 #: guard/templates/guard/views/hiking/index.html:72
 #: guard/templates/guard/views/locations/index.html:72
@@ -41,494 +41,503 @@ msgstr ""
 msgid "Basic Information"
 msgstr "Informations de base"
 
-#: guard/admin.py:43 guard/templates/guard/views/locations/index.html:168
+#: guard/admin.py:44 guard/templates/guard/views/locations/index.html:168
 msgid "Location Details"
 msgstr "Détails du lieu"
 
-#: guard/admin.py:58 guard/templates/guard/views/locations/index.html:461
+#: guard/admin.py:59 guard/templates/guard/views/locations/index.html:461
 msgid "Voiceover Audio"
 msgstr ""
 
-#: guard/admin.py:61
+#: guard/admin.py:62
 msgid "Optional audio voiceovers for this location (AAC format only)"
 msgstr ""
 
-#: guard/admin.py:100
+#: guard/admin.py:101
 msgid "Event Schedule"
 msgstr "Programme des événements"
 
-#: guard/admin.py:112
+#: guard/admin.py:113 guard/templates/guard/views/subscribers/history.html:36
+#: guard/templates/guard/views/subscribers/transaction_history.html:31
+#: guard/templates/guard/views/subscribers/validation_list.html:63
 msgid "Details"
 msgstr "Détails"
 
-#: guard/admin.py:158 guard/templates/guard/views/hiking/index.html:329
+#: guard/admin.py:159 guard/templates/guard/views/hiking/index.html:329
 msgid "Geolocation"
 msgstr "Géolocalisation"
 
-#: guard/admin.py:182 guard/models.py:51
+#: guard/admin.py:183 guard/models.py:52
 msgid "Ad Images"
 msgstr "Images publicitaires"
 
-#: guard/admin.py:186
+#: guard/admin.py:187
 msgid "Link Information"
 msgstr "Informations sur le lien"
 
-#: guard/admin.py:195
+#: guard/admin.py:196
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: guard/forms.py:66 guard/forms.py:320 guard/forms.py:564 guard/forms.py:996
-#: guard/forms.py:1032
+#: guard/forms.py:105 guard/forms.py:367 guard/forms.py:618
+#: guard/forms.py:1086 guard/forms.py:1123
 msgid "Name (English)"
 msgstr "Nom (anglais)"
 
-#: guard/forms.py:71
+#: guard/forms.py:110
 msgid "Enter location name in English"
 msgstr "Saisissez le nom du lieu en anglais"
 
-#: guard/forms.py:75 guard/forms.py:245 guard/forms.py:329 guard/forms.py:447
-#: guard/forms.py:567 guard/forms.py:642 guard/forms.py:1022
-#: guard/forms.py:1124
+#: guard/forms.py:114 guard/forms.py:285 guard/forms.py:376 guard/forms.py:494
+#: guard/forms.py:621 guard/forms.py:696 guard/forms.py:1112
+#: guard/forms.py:1216
 msgid "Please enter the name in English."
 msgstr "Veuillez saisir le nom en anglais."
 
-#: guard/forms.py:79 guard/forms.py:333 guard/forms.py:571 guard/forms.py:1002
-#: guard/forms.py:1038
+#: guard/forms.py:118 guard/forms.py:380 guard/forms.py:625
+#: guard/forms.py:1092 guard/forms.py:1129
 msgid "Name (French)"
 msgstr "Nom (français)"
 
-#: guard/forms.py:84
+#: guard/forms.py:123
 msgid "Enter location name in French"
 msgstr "Saisissez le nom du lieu en français"
 
-#: guard/forms.py:88 guard/forms.py:251 guard/forms.py:342 guard/forms.py:453
-#: guard/forms.py:574 guard/forms.py:646 guard/forms.py:1024
-#: guard/forms.py:1129
+#: guard/forms.py:127 guard/forms.py:291 guard/forms.py:389 guard/forms.py:500
+#: guard/forms.py:628 guard/forms.py:700 guard/forms.py:1114
+#: guard/forms.py:1221
 msgid "Please enter the name in French."
 msgstr "Veuillez saisir le nom en français."
 
-#: guard/forms.py:93
+#: guard/forms.py:132
 msgid "Story (English)"
 msgstr "Histoire (anglais)"
 
-#: guard/forms.py:97 guard/forms.py:256
+#: guard/forms.py:136 guard/forms.py:296
 msgid "Please enter the story in English."
 msgstr "Veuillez saisir votre récit en anglais."
 
-#: guard/forms.py:101
+#: guard/forms.py:140
 msgid "Story (French)"
 msgstr "Histoire (française)"
 
-#: guard/forms.py:105 guard/forms.py:261
+#: guard/forms.py:144 guard/forms.py:301
 msgid "Please enter the story in French."
 msgstr "Veuillez saisir le récit en français."
 
-#: guard/forms.py:132
+#: guard/forms.py:171
 msgid "Select location category"
 msgstr "Sélectionner la catégorie de localisation"
 
-#: guard/forms.py:138
+#: guard/forms.py:177
 msgid "Select location country"
 msgstr "Sélectionnez le pays de localisation"
 
-#: guard/forms.py:144
+#: guard/forms.py:183
 msgid "Select location city"
 msgstr "Sélectionnez la ville où vous souhaitez vous rendre"
 
-#: guard/forms.py:150 guard/forms.py:615
+#: guard/forms.py:189 guard/forms.py:669
 msgid "e.g., 36.8065"
 msgstr "ex., 36.8065"
 
-#: guard/forms.py:156 guard/forms.py:621
+#: guard/forms.py:195 guard/forms.py:675
 msgid "e.g., 10.1815"
 msgstr "ex., 10.1815"
 
-#: guard/forms.py:163
+#: guard/forms.py:202
 msgid "Opening time"
 msgstr "Heures d'ouverture"
 
-#: guard/forms.py:169
+#: guard/forms.py:208
 msgid "Closing time"
 msgstr "Heure de fermeture"
 
-#: guard/forms.py:174
+#: guard/forms.py:213
 msgid "e.g., 5.00"
 msgstr "ex., 5.00"
 
-#: guard/forms.py:199
+#: guard/forms.py:238
 msgid "Please select a category."
 msgstr "Veuillez sélectionner une catégorie."
 
-#: guard/forms.py:202
+#: guard/forms.py:241
 msgid "Please select a country."
 msgstr "Veuillez sélectionner un pays."
 
-#: guard/forms.py:205 guard/forms.py:537 guard/forms.py:628 guard/forms.py:940
+#: guard/forms.py:244 guard/forms.py:591 guard/forms.py:682
+#: guard/forms.py:1030
 msgid "Please select a city."
 msgstr "Veuillez sélectionner une ville."
 
-#: guard/forms.py:210
+#: guard/forms.py:249
 msgid "Latitude in decimal degrees (e.g., 36.8065)"
 msgstr "Latitude en degrés décimaux (ex. : 36,8065)"
 
-#: guard/forms.py:211
+#: guard/forms.py:250
 msgid "Longitude in decimal degrees (e.g., 10.1815)"
 msgstr "Longitude en degrés décimaux (ex. : 10,1815)"
 
-#: guard/forms.py:212 guard/forms.py:213
+#: guard/forms.py:251 guard/forms.py:252
 msgid "Leave empty if location is always open"
 msgstr "Laisser vide si l'emplacement est toujours ouvert"
 
-#: guard/forms.py:214
+#: guard/forms.py:253
 msgid "Leave empty if admission is free"
 msgstr "Laisser vide si l'entrée est gratuite"
 
-#: guard/forms.py:215
+#: guard/forms.py:254
 msgid "Enable advertisements for this location"
 msgstr "Activer les publicités pour cet emplacement"
 
-#: guard/forms.py:274 guard/forms.py:1150
+#: guard/forms.py:314 guard/forms.py:1242
 msgid "Opening time must be before closing time."
 msgstr "L'heure d'ouverture doit être antérieure à l'heure de fermeture."
 
-#: guard/forms.py:284
+#: guard/forms.py:324
 msgid "Only AAC audio format is allowed."
 msgstr ""
 
-#: guard/forms.py:325
+#: guard/forms.py:372
 msgid "Enter event name in English"
 msgstr "Saisissez le nom de l'événement en anglais"
 
-#: guard/forms.py:338
+#: guard/forms.py:385
 msgid "Enter event name in French"
 msgstr "Saisissez le nom de l'événement en français"
 
-#: guard/forms.py:347 guard/forms.py:514 guard/forms.py:578 guard/forms.py:1045
+#: guard/forms.py:394 guard/forms.py:568 guard/forms.py:632
+#: guard/forms.py:1136
 msgid "Description (English)"
 msgstr "Description (anglais)"
 
-#: guard/forms.py:351 guard/forms.py:458 guard/forms.py:582 guard/forms.py:650
-#: guard/forms.py:1134
+#: guard/forms.py:398 guard/forms.py:505 guard/forms.py:636 guard/forms.py:704
+#: guard/forms.py:1226
 msgid "Please enter the description in English."
 msgstr "Veuillez saisir la description en anglais."
 
-#: guard/forms.py:355 guard/forms.py:519 guard/forms.py:586 guard/forms.py:1050
+#: guard/forms.py:402 guard/forms.py:573 guard/forms.py:640
+#: guard/forms.py:1141
 msgid "Description (French)"
 msgstr "Description (français)"
 
-#: guard/forms.py:359 guard/forms.py:463 guard/forms.py:590 guard/forms.py:654
-#: guard/forms.py:1139
+#: guard/forms.py:406 guard/forms.py:510 guard/forms.py:644 guard/forms.py:708
+#: guard/forms.py:1231
 msgid "Please enter the description in French."
 msgstr "Veuillez saisir la description en français."
 
-#: guard/forms.py:364 guard/forms.py:725
+#: guard/forms.py:411 guard/forms.py:789
 msgid "Destination Link"
 msgstr "Lien de destination"
 
-#: guard/forms.py:371
+#: guard/forms.py:418
 msgid "The destination URL for this event."
 msgstr "L'URL de destination pour cet événement."
 
-#: guard/forms.py:394
+#: guard/forms.py:441
 msgid "Select event location"
 msgstr "Sélectionner le lieu de l'événement"
 
-#: guard/forms.py:399 guard/forms.py:530 guard/forms.py:608 guard/forms.py:756
-#: guard/forms.py:915
+#: guard/forms.py:446 guard/forms.py:584 guard/forms.py:662 guard/forms.py:831
+#: guard/forms.py:1005
 msgid "Select city"
 msgstr "Sélectionnez une ville"
 
-#: guard/forms.py:404
+#: guard/forms.py:451
 msgid "Select event category"
 msgstr "Sélectionner la catégorie d'événement"
 
-#: guard/forms.py:410
+#: guard/forms.py:457
 msgid "Select event start date"
 msgstr "Sélectionnez la date de début de l'événement"
 
-#: guard/forms.py:416
+#: guard/forms.py:463
 msgid "Select event end date"
 msgstr "Sélectionnez la date de fin de l'événement"
 
-#: guard/forms.py:422
+#: guard/forms.py:469
 msgid "Select event time"
 msgstr "Sélectionnez l'heure de l'événement"
 
-#: guard/forms.py:427
+#: guard/forms.py:474
 msgid "Enter event price"
 msgstr "Saisissez le prix de l'événement"
 
-#: guard/forms.py:549
+#: guard/forms.py:603
 msgid "Description (English) is required."
 msgstr "Une description (en anglais) est requise."
 
-#: guard/forms.py:550
+#: guard/forms.py:604
 msgid "Description (French) is required."
 msgstr "Une description (en français) est requise."
 
-#: guard/forms.py:672
+#: guard/forms.py:726
 #, fuzzy
 #| msgid "Select locations"
 msgid "Select location"
 msgstr "Sélectionner les emplacements"
 
-#: guard/forms.py:715
+#: guard/forms.py:779
 msgid "Ad Name"
 msgstr "Nom de l'annonce"
 
-#: guard/forms.py:719
+#: guard/forms.py:783
 msgid "e.g., Summer Campaign 2026"
 msgstr "ex, la campagne d'été 2026"
 
-#: guard/forms.py:722
+#: guard/forms.py:786
 msgid "If empty, a name like 'ADS-XXXXXX' will be auto-generated."
 msgstr ""
 "Si ce champ est vide, un nom tel que ‘ADS-XXXXXX’ sera généré "
 "automatiquement."
 
-#: guard/forms.py:733
+#: guard/forms.py:797
 msgid "The destination URL for this ad. This will be tracked via Short.io."
 msgstr ""
 "URL de destination de cette publicité. Celle-ci sera suivie via Short.io."
 
-#: guard/forms.py:751
+#: guard/forms.py:801 guard/models.py:361 guard/models.py:462
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:24
+#: guard/templates/guard/views/events/list.html:41
+msgid "Start Date"
+msgstr "Date de début"
+
+#: guard/forms.py:806 guard/models.py:362 guard/models.py:463
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:28
+#: guard/templates/guard/views/events/list.html:49
+msgid "End Date"
+msgstr "Date de fin"
+
+#: guard/forms.py:826
 #, fuzzy
 #| msgid "Select city"
 msgid "Select country"
 msgstr "Sélectionnez une ville"
 
-#: guard/forms.py:766 guard/models.py:664 guard/models.py:715
-#: guard/templates/guard/views/ads/list.html:95
-#: guard/templates/guard/views/merchants/list.html:154
-#: guard/templates/guard/views/pages/list.html:65 shared/models.py:110
-#: shared/models.py:184 shared/models.py:247
-msgid "Active"
-msgstr "Active"
-
-#: guard/forms.py:796
+#: guard/forms.py:867
 #, python-format
 msgid "Mobile image must be exactly 320x50 pixels. Uploaded: %(w)sx%(h)s"
 msgstr ""
 "L'image mobile doit mesurer exactement 320 x 50 pixels. Téléchargée le: "
 "%(w)sx%(h)s"
 
-#: guard/forms.py:815
+#: guard/forms.py:886
 #, python-format
 msgid "Tablet image must be exactly 728x90 pixels. Uploaded: %(w)sx%(h)s"
 msgstr ""
 "L'image de la tablette doit avoir exactement 728 x 90 pixels. Téléchargée "
 "le: %(w)sx%(h)s"
 
-#: guard/forms.py:839
+#: guard/forms.py:917
 msgid "e.g., Partner name"
 msgstr "par exemple, le nom du partenaire"
 
-#: guard/forms.py:854 guard/forms.py:889
+#: guard/forms.py:932 guard/forms.py:974
 msgid "Please enter a name."
 msgstr "Veuillez saisir un nom."
 
-#: guard/forms.py:855 guard/forms.py:890
+#: guard/forms.py:933 guard/forms.py:975
 msgid "Please upload an image (300x200)."
 msgstr "Veuillez télécharger une image (300x200)."
 
-#: guard/forms.py:856 guard/forms.py:891
+#: guard/forms.py:934 guard/forms.py:976
 msgid "Please provide a link."
 msgstr "Veuillez fournir un lien."
 
-#: guard/forms.py:874
+#: guard/forms.py:959
 msgid "e.g., Sponsor name"
 msgstr "par exemple, nom du sponsor"
 
-#: guard/forms.py:909
+#: guard/forms.py:999
 msgid "Select transport type"
 msgstr "Sélectionnez le type de transport"
 
-#: guard/forms.py:921
+#: guard/forms.py:1011
 msgid "Select departure region"
 msgstr "Sélectionnez la région de départ"
 
-#: guard/forms.py:926
+#: guard/forms.py:1016
 msgid "Select arrival region"
 msgstr "Sélectionnez la région d'arrivée"
 
-#: guard/forms.py:931
+#: guard/forms.py:1021
 msgid "e.g., Line 32 or Bus 105"
 msgstr ""
 
-#: guard/forms.py:937
+#: guard/forms.py:1027
 msgid "Please select a transport type."
 msgstr "Veuillez sélectionner un type de transport."
 
-#: guard/forms.py:978
+#: guard/forms.py:1068
 msgid "Select time"
 msgstr "Sélectionnez l'heure"
 
-#: guard/forms.py:999
+#: guard/forms.py:1089
 #, fuzzy
 #| msgid "Enter event name in English"
 msgid "Category name in English"
 msgstr "Saisissez le nom de l'événement en anglais"
 
-#: guard/forms.py:1005
+#: guard/forms.py:1095
 #, fuzzy
 #| msgid "Enter event name in French"
 msgid "Category name in French"
 msgstr "Saisissez le nom de l'événement en français"
 
-#: guard/forms.py:1008 guard/models.py:647
+#: guard/forms.py:1098 guard/models.py:730
 #: guard/templates/guard/views/merchants/list.html:50
 msgid "Icon"
 msgstr "Icône"
 
-#: guard/forms.py:1011
+#: guard/forms.py:1101
 msgid "SF Symbol (e.g. cart, bag)"
 msgstr "Symbole SF (ex. cart, bag)"
 
-#: guard/forms.py:1035
+#: guard/forms.py:1126
 msgid "Merchant name in English"
 msgstr "Nom du commerce en anglais"
 
-#: guard/forms.py:1041
+#: guard/forms.py:1132
 msgid "Merchant name in French"
 msgstr "Nom du commerce en français"
 
-#: guard/forms.py:1056 guard/templates/guard/views/merchants/index.html:273
+#: guard/forms.py:1147 guard/templates/guard/views/merchants/index.html:273
 msgid "Address (English)"
 msgstr "Adresse (anglais)"
 
-#: guard/forms.py:1059
+#: guard/forms.py:1150
 msgid "Address in English"
 msgstr "Adresse en anglais"
 
-#: guard/forms.py:1062 guard/templates/guard/views/merchants/index.html:278
+#: guard/forms.py:1153 guard/templates/guard/views/merchants/index.html:278
 msgid "Address (French)"
 msgstr "Adresse (français)"
 
-#: guard/forms.py:1065
+#: guard/forms.py:1156
 msgid "Address in French"
 msgstr "Adresse en français"
 
-#: guard/forms.py:1110
+#: guard/forms.py:1201
 msgid "Internal contract notes"
 msgstr "Notes contractuelles internes"
 
-#: guard/forms.py:1156
+#: guard/forms.py:1248
 msgid "Contract start date must be before end date."
 msgstr "La date de début du contrat doit être antérieure à la date de fin."
 
-#: guard/forms.py:1163
+#: guard/forms.py:1257
 msgid "Product Name (English)"
 msgstr "Nom du produit (anglais)"
 
-#: guard/forms.py:1166
+#: guard/forms.py:1260
 msgid "Product name in English"
 msgstr "Nom du produit en anglais"
 
-#: guard/forms.py:1169
+#: guard/forms.py:1263
 msgid "Product Name (French)"
 msgstr "Nom du produit (français)"
 
-#: guard/forms.py:1172
+#: guard/forms.py:1266
 msgid "Product name in French"
 msgstr "Nom du produit en français"
 
-#: guard/forms.py:1187
+#: guard/forms.py:1282
 msgid "Please enter product name in English."
 msgstr "Veuillez saisir le nom du produit en anglais."
 
-#: guard/forms.py:1189
+#: guard/forms.py:1284
 msgid "Please enter product name in French."
 msgstr "Veuillez saisir le nom du produit en français."
 
-#: guard/models.py:50
+#: guard/models.py:51
 msgid "Ad Image"
 msgstr "Image publicitaire"
 
-#: guard/models.py:65
+#: guard/models.py:66
 msgid "Hiking Image"
 msgstr "Image de randonnée"
 
-#: guard/models.py:66
+#: guard/models.py:67
 msgid "Hiking Images"
 msgstr "Images de randonnée"
 
-#: guard/models.py:80
+#: guard/models.py:81
 msgid "Location Image"
 msgstr "Image de localisation"
 
-#: guard/models.py:81
+#: guard/models.py:82
 msgid "Location Images"
 msgstr "Images de localisation"
 
-#: guard/models.py:95
+#: guard/models.py:96
 msgid "Event Image"
 msgstr "Image de l'événement"
 
-#: guard/models.py:96
+#: guard/models.py:97
 msgid "Event Images"
 msgstr "Images de l'événement"
 
-#: guard/models.py:110
+#: guard/models.py:111
 msgid "Location Category"
 msgstr "Catégorie de localisation"
 
-#: guard/models.py:111
+#: guard/models.py:112
 msgid "Location Categories"
 msgstr "Catégories de localisation"
 
-#: guard/models.py:118
+#: guard/models.py:119
 msgid "Sunday"
 msgstr "Dimanche"
 
-#: guard/models.py:119
+#: guard/models.py:120
 msgid "Monday"
 msgstr "Lundi"
 
-#: guard/models.py:120
+#: guard/models.py:121
 msgid "Tuesday"
 msgstr "Mardi"
 
-#: guard/models.py:121
+#: guard/models.py:122
 msgid "Wednesday"
 msgstr "Mercredi"
 
-#: guard/models.py:122
+#: guard/models.py:123
 msgid "Thursday"
 msgstr "Jeudi"
 
-#: guard/models.py:123
+#: guard/models.py:124
 msgid "Friday"
 msgstr "Vendredi"
 
-#: guard/models.py:124
+#: guard/models.py:125
 msgid "Saturday"
 msgstr "Samedi"
 
-#: guard/models.py:129
+#: guard/models.py:130
 msgid "Day"
 msgstr "Jour"
 
-#: guard/models.py:133
+#: guard/models.py:134
 msgid "Weekday"
 msgstr "Jour de la semaine"
 
-#: guard/models.py:134
+#: guard/models.py:135
 msgid "Weekdays"
 msgstr "Jours de la semaine"
 
-#: guard/models.py:149 guard/models.py:301 guard/models.py:684
+#: guard/models.py:150 guard/models.py:350 guard/models.py:767
 #: guard/templates/guard/views/locations/list.html:38
 #: guard/templates/guard/views/merchants/list.html:107
 msgid "Category"
 msgstr "Catégorie"
 
-#: guard/models.py:158 guard/models.py:365
+#: guard/models.py:159 guard/models.py:430
 #: guard/templates/guard/views/locations/list.html:54
 msgid "Country"
 msgstr "Pays"
 
-#: guard/models.py:166 guard/models.py:295 guard/models.py:373
-#: guard/models.py:489 guard/models.py:692
+#: guard/models.py:167 guard/models.py:268 guard/models.py:344
+#: guard/models.py:438 guard/models.py:572 guard/models.py:775
 #: guard/templates/guard/views/hiking/list.html:33
 #: guard/templates/guard/views/locations/list.html:46
 #: guard/templates/guard/views/merchants/list.html:115
@@ -537,86 +546,107 @@ msgstr "Pays"
 msgid "City"
 msgstr "Ville"
 
-#: guard/models.py:170
+#: guard/models.py:171
 msgid "Active Ads"
 msgstr "Annonces actives"
 
-#: guard/models.py:171
+#: guard/models.py:172
 msgid "Story"
 msgstr "Histoire"
 
-#: guard/models.py:173 guard/models.py:707
+#: guard/models.py:174 guard/models.py:790
 msgid "Open From"
 msgstr "Ouvert à partir de"
 
-#: guard/models.py:176
+#: guard/models.py:177
 msgid "Add opening hours if the location is open from a specific time"
 msgstr ""
 "Ajoutez les horaires d'ouverture si l'établissement est ouvert à partir "
 "d'une heure précise"
 
-#: guard/models.py:179 guard/models.py:708
+#: guard/models.py:180 guard/models.py:791
 msgid "Open To"
 msgstr "Ouvert à"
 
-#: guard/models.py:182
+#: guard/models.py:183
 msgid "Add opening hours if the location is open to a specific time"
 msgstr ""
 "Ajoutez les horaires d'ouverture si l'établissement est ouvert jusqu'à une "
 "heure précise"
 
-#: guard/models.py:187
+#: guard/models.py:188
 msgid "Admission Fee"
 msgstr "Frais d'admission"
 
-#: guard/models.py:190
+#: guard/models.py:191
 msgid "Add admission fee if the location has a specific admission fee"
 msgstr ""
-"Ajoutez les frais d'entrée si le lieu applique des frais d'entrée spécifiques"
+"Ajoutez les frais d'entrée si le lieu applique des frais d'entrée "
+"spécifiques"
 
-#: guard/models.py:194
+#: guard/models.py:195
 msgid "Closed Days"
 msgstr "Jours de fermeture"
 
-#: guard/models.py:200
+#: guard/models.py:201
 #, fuzzy
 #| msgid "Story (English)"
 msgid "Voiceover (English)"
 msgstr "Histoire (anglais)"
 
-#: guard/models.py:203
+#: guard/models.py:204
 msgid "Upload an audio voiceover in English (AAC format only)"
 msgstr ""
 
-#: guard/models.py:207
+#: guard/models.py:208
 #, fuzzy
 #| msgid "Story (French)"
 msgid "Voiceover (French)"
 msgstr "Histoire (française)"
 
-#: guard/models.py:210
+#: guard/models.py:211
 msgid "Upload an audio voiceover in French (AAC format only)"
 msgstr ""
 
-#: guard/models.py:214 guard/models.py:249 guard/models.py:310
+#: guard/models.py:220 guard/models.py:378 guard/models.py:475
+#: guard/models.py:824 guard/templates/guard/views/ads/list.html:62
+#: guard/templates/guard/views/events/list.html:66
+#: guard/templates/guard/views/locations/list.html:63
+#: guard/templates/guard/views/merchants/list.html:139
+msgid "Created By"
+msgstr "Créé par"
+
+#: guard/models.py:228 guard/models.py:386 guard/models.py:483
+#: guard/models.py:832 guard/templates/guard/views/ads/list.html:67
+#: guard/templates/guard/views/events/list.html:71
+#: guard/templates/guard/views/locations/list.html:68
+#: guard/templates/guard/views/merchants/list.html:144
+msgid "Updated By"
+msgstr "Mis à jour par"
+
+#: guard/models.py:232 guard/models.py:298 guard/models.py:359
 #: guard/templates/guard/views/events/list.html:33
 #: guard/templates/guard/views/hiking/index.html:293
 #: guard/templates/guard/views/locations/list.html:30
 msgid "Location"
 msgstr "Emplacement"
 
-#: guard/models.py:215 guard/templates/guard/base/sidebar-left.html:37
+#: guard/models.py:233 guard/templates/guard/base/sidebar-left.html:37
 #: guard/templates/guard/views/locations/index.html:24
 msgid "Locations"
 msgstr "Lieux"
 
-#: guard/models.py:243 guard/models.py:341
-msgid "Cities"
-msgstr "Villes"
+#: guard/models.py:258
+msgid "Region ID"
+msgstr ""
 
-#: guard/models.py:245 guard/models.py:563 guard/models.py:586
-#: guard/models.py:642 guard/models.py:676 guard/models.py:817
-#: guard/templates/guard/views/ads/list.html:25
+#: guard/models.py:259
+msgid "Unique identifier string, e.g., 'sousse_medina'"
+msgstr ""
+
+#: guard/models.py:261 guard/models.py:294 guard/models.py:646
+#: guard/models.py:669 guard/models.py:725 guard/models.py:759
+#: guard/models.py:916 guard/templates/guard/views/ads/list.html:25
 #: guard/templates/guard/views/hiking/list.html:25
 #: guard/templates/guard/views/locations/partials/cat_list.html:8
 #: guard/templates/guard/views/partners/list.html:23
@@ -624,327 +654,353 @@ msgstr "Villes"
 msgid "Name"
 msgstr "Nom"
 
-#: guard/models.py:246 guard/models.py:321 guard/models.py:677
+#: guard/models.py:270 guard/models.py:777
+msgid "Latitude"
+msgstr "Latitude"
+
+#: guard/models.py:271 guard/models.py:778
+msgid "Longitude"
+msgstr "Longitude"
+
+#: guard/models.py:272
+msgid "Radius"
+msgstr ""
+
+#: guard/models.py:272
+msgid "Radius in meters, e.g., 2000"
+msgstr ""
+
+#: guard/models.py:273 guard/models.py:747 guard/models.py:798
+#: guard/templates/guard/views/ads/list.html:107
+#: guard/templates/guard/views/merchants/list.html:166
+#: guard/templates/guard/views/pages/list.html:65 shared/models.py:110
+#: shared/models.py:184 shared/models.py:247
+msgid "Active"
+msgstr "Active"
+
+#: guard/models.py:276
+msgid "Offline City"
+msgstr ""
+
+#: guard/models.py:277
+#, fuzzy
+#| msgid "Cities"
+msgid "Offline Cities"
+msgstr "Villes"
+
+#: guard/models.py:292 guard/models.py:406
+msgid "Cities"
+msgstr "Villes"
+
+#: guard/models.py:295 guard/models.py:370 guard/models.py:760
 #: guard/templates/guard/views/events/index.html:230
 #: guard/templates/guard/views/hiking/index.html:161
 #: guard/templates/guard/views/tips/list.html:33 shared/models.py:240
 msgid "Description"
 msgstr "Description"
 
-#: guard/models.py:259 guard/templates/guard/base/sidebar-left.html:54
+#: guard/models.py:308 guard/templates/guard/base/sidebar-left.html:54
 #: guard/templates/guard/views/hiking/index.html:24
 msgid "Hiking"
 msgstr "Randonnée"
 
-#: guard/models.py:260
+#: guard/models.py:309
 msgid "Hikings"
 msgstr "Randonnées"
 
-#: guard/models.py:272
+#: guard/models.py:321
 msgid "Event Category"
 msgstr "Catégorie d'événement"
 
-#: guard/models.py:273
+#: guard/models.py:322
 msgid "Event Categories"
 msgstr "Catégories d'événements"
 
-#: guard/models.py:287 guard/models.py:381
+#: guard/models.py:336 guard/models.py:446
+#: guard/templates/guard/views/subscribers/validation_list.html:61
 msgid "Client"
 msgstr "Client"
 
-#: guard/models.py:312 guard/templates/guard/views/events/list.html:41
-msgid "Start Date"
-msgstr "Date de début"
-
-#: guard/models.py:313 guard/templates/guard/views/events/list.html:49
-msgid "End Date"
-msgstr "Date de fin"
-
-#: guard/models.py:314 guard/models.py:527
+#: guard/models.py:363 guard/models.py:610
 msgid "Time"
 msgstr "Temps"
 
-#: guard/models.py:316 guard/models.py:788
+#: guard/models.py:365 guard/models.py:887
 #: guard/templates/guard/views/events/list.html:57
-#: guard/templates/guard/views/merchants/index.html:571 shared/models.py:242
+#: guard/templates/guard/views/merchants/index.html:574 shared/models.py:242
 msgid "Price"
 msgstr "Prix"
 
-#: guard/models.py:318
+#: guard/models.py:367
 msgid "The link to subscribe"
 msgstr "Le lien pour s'abonner"
 
-#: guard/models.py:325 guard/templates/guard/views/events/list.html:25
+#: guard/models.py:390 guard/templates/guard/views/events/list.html:25
+#: subscribers/models.py:24
 msgid "Event"
 msgstr "Événement"
 
-#: guard/models.py:326 guard/templates/guard/views/events/index.html:35
+#: guard/models.py:391 guard/templates/guard/views/events/index.html:35
 msgid "Events"
 msgstr "Événements"
 
-#: guard/models.py:346
+#: guard/models.py:411
 msgid "Tip"
 msgstr "Conseil"
 
-#: guard/models.py:347 guard/templates/guard/base/sidebar-left.html:92
+#: guard/models.py:412 guard/templates/guard/base/sidebar-left.html:92
 #: guard/templates/guard/views/tips/index.html:24
 msgid "Tips"
 msgstr "Conseils"
 
-#: guard/models.py:357
+#: guard/models.py:422
 msgid "Add a name"
 msgstr "Ajouter un nom"
 
-#: guard/models.py:385
+#: guard/models.py:450
 msgid "Size: 320x50 pixels"
 msgstr "Taille : 320 x 50 pixels"
 
-#: guard/models.py:386
+#: guard/models.py:451
 msgid "Mobile Image (320x50)"
 msgstr "Image mobile (320x50)"
 
-#: guard/models.py:392
+#: guard/models.py:457
 msgid "Size: 728x90 pixels"
 msgstr "Taille : 728 x 90 pixels"
 
-#: guard/models.py:393
+#: guard/models.py:458
 msgid "Tablet Image (728x90)"
 msgstr "Image de tablette (728x90)"
 
-#: guard/models.py:404
+#: guard/models.py:487 subscribers/models.py:25
 msgid "Ad"
 msgstr "Annonce"
 
-#: guard/models.py:405 guard/templates/guard/base/sidebar-left.html:134
+#: guard/models.py:488 guard/templates/guard/base/sidebar-left.html:134
 #: guard/templates/guard/views/ads/index.html:24
 msgid "Ads"
 msgstr "Publicités"
 
-#: guard/models.py:463 guard/models.py:480
+#: guard/models.py:546 guard/models.py:563
 msgid "Public Transport Type"
 msgstr "Type de transport public"
 
-#: guard/models.py:464
+#: guard/models.py:547
 msgid "Public Transport Types"
 msgstr "Types de transports publics"
 
-#: guard/models.py:498
+#: guard/models.py:581
 msgid "From region"
 msgstr "De la région"
 
-#: guard/models.py:506
+#: guard/models.py:589
 msgid "To region"
 msgstr "Vers la région"
 
-#: guard/models.py:508
+#: guard/models.py:591
 msgid "Bus number"
 msgstr ""
 
-#: guard/models.py:511 guard/models.py:525
+#: guard/models.py:594 guard/models.py:608
 msgid "Public Transport"
 msgstr "Transports publics"
 
-#: guard/models.py:512
+#: guard/models.py:595
 #: guard/templates/guard/views/publicTransports/index.html:24
 msgid "Public Transports"
 msgstr "Transports publics"
 
-#: guard/models.py:530
+#: guard/models.py:613
 msgid "Public Transport Time"
 msgstr "Heure des transports publics"
 
-#: guard/models.py:531
+#: guard/models.py:614
 msgid "Public Transport Times"
 msgstr "Horaires des transports publics"
 
-#: guard/models.py:564 guard/models.py:587 guard/models.py:794
+#: guard/models.py:647 guard/models.py:670 guard/models.py:893
 msgid "Image"
 msgstr "Image"
 
-#: guard/models.py:565 guard/models.py:588
+#: guard/models.py:648 guard/models.py:671
 #: guard/templates/guard/views/ads/list.html:30
 #: guard/templates/guard/views/partners/list.html:24
 #: guard/templates/guard/views/sponsors/list.html:24
 msgid "Link"
 msgstr "Lien"
 
-#: guard/models.py:568
+#: guard/models.py:651
 msgid "Partner"
 msgstr "Partenaire"
 
-#: guard/models.py:569 guard/templates/guard/base/sidebar-left.html:101
+#: guard/models.py:652 guard/templates/guard/base/sidebar-left.html:101
 #: guard/templates/guard/views/partners/list.html:4
 msgid "Partners"
 msgstr "Partenaires"
 
-#: guard/models.py:591
+#: guard/models.py:674
 msgid "sponsor"
 msgstr "sponsor"
 
-#: guard/models.py:592
+#: guard/models.py:675
 msgid "sponsors"
 msgstr "sponsors"
 
-#: guard/models.py:648
+#: guard/models.py:731
 #: guard/templates/guard/views/merchants/category_form.html:151
 msgid "SF Symbol name (iOS) / Material icon name (Android)"
 msgstr "Nom du symbole SF (iOS) / Nom de l'icône Material (Android)"
 
-#: guard/models.py:653
+#: guard/models.py:736
 msgid "Merchant Category"
 msgstr "Catégorie de commerce"
 
-#: guard/models.py:654 guard/templates/guard/views/merchants/list.html:28
+#: guard/models.py:737 guard/templates/guard/views/merchants/list.html:28
 msgid "Merchant Categories"
 msgstr "Catégories de commerce"
 
-#: guard/models.py:663 shared/models.py:189
+#: guard/models.py:746 guard/templates/guard/views/subscribers/history.html:69
+#: guard/templates/guard/views/subscribers/transaction_history.html:64
+#: shared/models.py:189 subscribers/models.py:12
 msgid "Pending"
 msgstr "En attente"
 
-#: guard/models.py:665 shared/models.py:186
+#: guard/models.py:748 shared/models.py:186
 msgid "Expired"
 msgstr "Expiré"
 
-#: guard/models.py:666
+#: guard/models.py:749
 msgid "Cancelled"
 msgstr "Annulé"
 
-#: guard/models.py:669
+#: guard/models.py:752
 msgid "€ — Budget friendly"
 msgstr "€ — Économique"
 
-#: guard/models.py:670
+#: guard/models.py:753
 msgid "€€ — Moderate"
 msgstr "€€ — Modéré"
 
-#: guard/models.py:671
+#: guard/models.py:754
 msgid "€€€ — Premium"
 msgstr "€€€ — Haut de gamme"
 
-#: guard/models.py:694
-msgid "Latitude"
-msgstr "Latitude"
-
-#: guard/models.py:695
-msgid "Longitude"
-msgstr "Longitude"
-
-#: guard/models.py:696
+#: guard/models.py:779
 msgid "Address"
 msgstr "Adresse"
 
-#: guard/models.py:697
+#: guard/models.py:780
 msgid "Phone"
 msgstr "Téléphone"
 
-#: guard/models.py:698
+#: guard/models.py:781
 msgid "Website"
 msgstr "Site web"
 
-#: guard/models.py:705
+#: guard/models.py:788
 msgid "Price Range"
 msgstr "Gamme de prix"
 
-#: guard/models.py:713
+#: guard/models.py:796
 msgid "Cover Image"
 msgstr "Image de couverture"
 
-#: guard/models.py:718 guard/templates/guard/views/merchants/list.html:123
-#: guard/templates/guard/views/merchants/list.html:147
+#: guard/models.py:801 guard/templates/guard/views/merchants/list.html:123
+#: guard/templates/guard/views/merchants/list.html:159
 msgid "Featured"
 msgstr "Mis en avant"
 
-#: guard/models.py:719 guard/templates/guard/views/merchants/index.html:420
+#: guard/models.py:802 guard/templates/guard/views/merchants/index.html:420
 msgid "Featured merchants appear at the top of the list"
 msgstr "Les commerces mis en avant apparaissent en tête de liste"
 
-#: guard/models.py:725
+#: guard/models.py:808
 msgid "Contract Status"
 msgstr "Statut du contrat"
 
-#: guard/models.py:727
+#: guard/models.py:810
 msgid "Contract Start"
 msgstr "Début du contrat"
 
-#: guard/models.py:728
+#: guard/models.py:811
 msgid "Contract End"
 msgstr "Fin du contrat"
 
-#: guard/models.py:732
+#: guard/models.py:815
 msgid "Contract Notes"
 msgstr "Notes du contrat"
 
-#: guard/models.py:733
+#: guard/models.py:816
 msgid "Internal notes about this merchant's contract"
 msgstr "Notes internes concernant le contrat de ce commerce"
 
-#: guard/models.py:737 guard/models.py:758 guard/models.py:780
-#: guard/models.py:811 guard/templates/guard/views/merchants/list.html:99
+#: guard/models.py:836 guard/models.py:857 guard/models.py:879
+#: guard/models.py:910 guard/templates/guard/views/merchants/list.html:99
 msgid "Merchant"
 msgstr "Commerce"
 
-#: guard/models.py:738
+#: guard/models.py:837
 msgid "Merchants"
 msgstr "Commerces"
 
-#: guard/models.py:768
+#: guard/models.py:867
 msgid "Merchant Image"
 msgstr "Image du commerce"
 
-#: guard/models.py:769
+#: guard/models.py:868
 msgid "Merchant Images"
 msgstr "Images du commerce"
 
-#: guard/models.py:782
+#: guard/models.py:881
 msgid "Product Name"
 msgstr "Nom du produit"
 
-#: guard/models.py:799
+#: guard/models.py:898
 msgid "Product"
 msgstr "Produit"
 
-#: guard/models.py:800 guard/templates/guard/views/merchants/index.html:542
+#: guard/models.py:899 guard/templates/guard/views/merchants/index.html:544
 msgid "Products"
 msgstr "Produits"
 
-#: guard/models.py:814
+#: guard/models.py:913
 msgid "Stars"
 msgstr "Étoiles"
 
-#: guard/models.py:815
+#: guard/models.py:914
 msgid "Rating from 1 to 5"
 msgstr "Note de 1 à 5"
 
-#: guard/models.py:818 shared/forms.py:179
+#: guard/models.py:917 shared/forms.py:179
 msgid "Email"
 msgstr "Email"
 
-#: guard/models.py:819
+#: guard/models.py:918
 msgid "Comment"
 msgstr "Commentaire"
 
-#: guard/models.py:823
+#: guard/models.py:922
 msgid "IP Address"
 msgstr "Adresse IP"
 
-#: guard/models.py:824
+#: guard/models.py:923
 msgid "Stored for spam protection"
 msgstr "Enregistré pour la protection contre le spam"
 
-#: guard/models.py:828
+#: guard/models.py:927
 msgid "Approved"
 msgstr "Approuvé"
 
-#: guard/models.py:829
+#: guard/models.py:928
 msgid "Only approved ratings are shown in the app"
 msgstr "Seules les évaluations approuvées sont affichées dans l'application"
 
-#: guard/models.py:834
+#: guard/models.py:933
 msgid "Merchant Rating"
 msgstr "Évaluation du commerce"
 
-#: guard/models.py:835
+#: guard/models.py:934
 msgid "Merchant Ratings"
 msgstr "Évaluations du commerce"
 
@@ -974,21 +1030,25 @@ msgstr "Modifier le mot de passe"
 
 #: guard/templates/guard/auth/password_change.html:15
 msgid "Use a strong password that you do not reuse anywhere else."
-msgstr "Utilisez un mot de passe fort que vous n'utilisez nulle part ailleurs."
+msgstr ""
+"Utilisez un mot de passe fort que vous n'utilisez nulle part ailleurs."
 
 #: guard/templates/guard/auth/password_change.html:48
-#: guard/templates/guard/views/ads/index.html:191
-#: guard/templates/guard/views/events/index.html:537
-#: guard/templates/guard/views/hiking/index.html:408
-#: guard/templates/guard/views/locations/index.html:611
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:67
+#: guard/templates/guard/partials/shared_boost_event_modal.html:56
+#: guard/templates/guard/views/ads/index.html:247
+#: guard/templates/guard/views/events/index.html:538
+#: guard/templates/guard/views/hiking/index.html:409
+#: guard/templates/guard/views/locations/index.html:614
 #: guard/templates/guard/views/merchants/category_form.html:162
-#: guard/templates/guard/views/merchants/index.html:615
+#: guard/templates/guard/views/merchants/index.html:618
 #: guard/templates/guard/views/pages/index.html:208
 #: guard/templates/guard/views/partners/delete.html:16
-#: guard/templates/guard/views/partners/index.html:68
+#: guard/templates/guard/views/partners/index.html:69
 #: guard/templates/guard/views/publicTransports/index.html:200
 #: guard/templates/guard/views/sponsors/delete.html:16
-#: guard/templates/guard/views/sponsors/index.html:68
+#: guard/templates/guard/views/sponsors/index.html:69
+#: guard/templates/guard/views/subscribers/validation_list.html:117
 #: guard/templates/guard/views/tips/index.html:167
 msgid "Cancel"
 msgstr "Annuler"
@@ -1108,12 +1168,13 @@ msgstr ""
 #: guard/templates/guard/auth/password_reset_email.txt:6
 msgid "Please click the link below to choose a new password:"
 msgstr ""
-"Veuillez cliquer sur le lien ci-dessous pour choisir un nouveau mot de "
-"passe :"
+"Veuillez cliquer sur le lien ci-dessous pour choisir un nouveau mot de passe"
+" :"
 
 #: guard/templates/guard/auth/password_reset_email.txt:10
 msgid "If you did not request this, you can ignore this email."
-msgstr "Si vous n'avez pas fait cette demande, vous pouvez ignorer cet e-mail."
+msgstr ""
+"Si vous n'avez pas fait cette demande, vous pouvez ignorer cet e-mail."
 
 #: guard/templates/guard/auth/password_reset_email.txt:12
 msgid "Thanks,"
@@ -1184,57 +1245,70 @@ msgstr "Session"
 #: guard/templates/guard/auth/settings.html:94
 msgid "Need a fresh start? You can sign out of this device safely."
 msgstr ""
-"Besoin d'un nouveau départ ? Vous pouvez vous déconnecter de cet appareil en "
-"toute sécurité."
+"Besoin d'un nouveau départ ? Vous pouvez vous déconnecter de cet appareil en"
+" toute sécurité."
 
 #: guard/templates/guard/auth/settings.html:99
+#: guard/templates/guard/views/subscribers/payment_portal.html:138
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: guard/templates/guard/auth/settings.html:109
+#: guard/templates/guard/auth/settings.html:110
 msgid "Subscription overview"
 msgstr "Aperçu des abonnements"
 
-#: guard/templates/guard/auth/settings.html:111
-msgid ""
-"Konnect integration is coming soon. These values are placeholders for now."
+#: guard/templates/guard/auth/settings.html:112
+msgid "Manage your subscription using offline bank transfers."
 msgstr ""
-"L'intégration Konnect sera bientôt disponible. Ces valeurs sont provisoires "
-"pour le moment."
 
-#: guard/templates/guard/auth/settings.html:115
-msgid "Open Konnect (Soon)"
-msgstr "Ouvrir Konnect (bientôt)"
+#: guard/templates/guard/auth/settings.html:117
+#: guard/templates/guard/views/subscribers/transaction_history.html:5
+#: guard/templates/guard/views/subscribers/transaction_history.html:11
+#, fuzzy
+#| msgid "Translation failed"
+msgid "Transaction History"
+msgstr "Échec de la traduction"
 
-#: guard/templates/guard/auth/settings.html:122
+#: guard/templates/guard/auth/settings.html:120
+#, fuzzy
+#| msgid "Konnect subscription"
+msgid "Renew Subscription"
+msgstr "Abonnement Konnect"
+
+#: guard/templates/guard/auth/settings.html:128
+#: guard/templates/guard/views/subscribers/list.html:26
 msgid "Plan"
 msgstr "Plan"
 
-#: guard/templates/guard/auth/settings.html:123
+#: guard/templates/guard/auth/settings.html:129
 #: guard/templates/guard/views/ads/list.html:56
 #: guard/templates/guard/views/merchants/list.html:128
 #: guard/templates/guard/views/pages/list.html:41
+#: guard/templates/guard/views/subscribers/history.html:38
+#: guard/templates/guard/views/subscribers/list.html:27
+#: guard/templates/guard/views/subscribers/transaction_history.html:33
+#: subscribers/models.py:20
 msgid "Status"
 msgstr "Statut"
 
-#: guard/templates/guard/auth/settings.html:124
+#: guard/templates/guard/auth/settings.html:130
 msgid "Started"
 msgstr "Commencé"
 
-#: guard/templates/guard/auth/settings.html:125
+#: guard/templates/guard/auth/settings.html:131
 msgid "Renews"
 msgstr "Renouvelle"
 
-#: guard/templates/guard/auth/settings.html:126
+#: guard/templates/guard/auth/settings.html:132
 msgid "Days left"
 msgstr "Jours restants"
 
-#: guard/templates/guard/auth/settings.html:149
+#: guard/templates/guard/auth/settings.html:155
 msgid ""
 "No subscription data yet. Konnect billing will appear here once connected."
 msgstr ""
-"Aucune donnée d'abonnement pour le moment. La facturation Konnect apparaîtra "
-"ici une fois la connexion établie."
+"Aucune donnée d'abonnement pour le moment. La facturation Konnect apparaîtra"
+" ici une fois la connexion établie."
 
 #: guard/templates/guard/base/sidebar-left.html:18
 #: guard/templates/guard/views/ads/index.html:18
@@ -1246,6 +1320,7 @@ msgstr ""
 #: guard/templates/guard/views/merchants/index.html:18
 #: guard/templates/guard/views/pages/index.html:18
 #: guard/templates/guard/views/publicTransports/index.html:18
+#: guard/templates/guard/views/subscribers/validation_list.html:16
 #: guard/templates/guard/views/tips/index.html:18
 msgid "Dashboard"
 msgstr "Tableau de bord"
@@ -1260,6 +1335,7 @@ msgid "Our Pick"
 msgstr "Notre Sélection"
 
 #: guard/templates/guard/base/sidebar-left.html:66
+#: guard/templates/guard/views/subscribers/validation_list.html:24
 msgid "Subscribers"
 msgstr "Abonnés"
 
@@ -1298,6 +1374,130 @@ msgstr "Ouvrir le menu utilisateur"
 msgid "Sign out"
 msgstr "Se déconnecter"
 
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:7
+msgid "Boost Ad"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:19
+msgid "Ad boosting costs"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:19
+msgid "per day. Please select the date range for your ad boost."
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:34
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:110
+#: guard/templates/guard/views/ads/index.html:210
+#: guard/templates/guard/views/ads/index.html:301
+msgid "Select a start and end date to calculate the total price."
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:37
+#: guard/templates/guard/partials/shared_boost_event_modal.html:26
+#: guard/templates/guard/views/ads/index.html:213
+#: guard/templates/guard/views/subscribers/payment_portal.html:110
+msgid "Payment Method"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:45
+#: guard/templates/guard/partials/shared_boost_event_modal.html:34
+#: guard/templates/guard/views/ads/index.html:221
+#: guard/templates/guard/views/subscribers/payment_portal.html:118
+msgid "Bank Transfer"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:55
+#: guard/templates/guard/partials/shared_boost_event_modal.html:44
+#: guard/templates/guard/views/ads/index.html:231
+#: guard/templates/guard/views/subscribers/payment_portal.html:128
+msgid "Credit Card"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:57
+#: guard/templates/guard/partials/shared_boost_event_modal.html:46
+#: guard/templates/guard/views/ads/index.html:233
+#: guard/templates/guard/views/subscribers/payment_portal.html:130
+msgid "Coming Soon"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:64
+#: guard/templates/guard/partials/shared_boost_event_modal.html:53
+msgid "Confirm Transfer Request"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:106
+#: shared/models.py:244
+msgid "Duration"
+msgstr "Durée"
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:106
+#, fuzzy
+#| msgid "Weekdays"
+msgid "days"
+msgstr "Jours de la semaine"
+
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:107
+#, python-format
+msgid "Total TTC (including 19%% VAT & 1 TND Timbre)"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_event_modal.html:7
+#, fuzzy
+#| msgid "Edit Event"
+msgid "Boost Event"
+msgstr "Modifier l'événement"
+
+#: guard/templates/guard/partials/shared_boost_event_modal.html:19
+msgid ""
+"You are about to request a boost for this event. The boost costs a flat fee "
+"of"
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_event_modal.html:19
+msgid "and will last until the event start date."
+msgstr ""
+
+#: guard/templates/guard/partials/shared_boost_event_modal.html:23
+#, python-format
+msgid ""
+"Note: Events starting in less than 3 days cannot be boosted. A total of "
+"18.85 TND (including 19%% VAT and 1 TND Timbre) will be charged."
+msgstr ""
+
+#: guard/templates/guard/partials/shared_delete_modal.html:9
+#, fuzzy
+#| msgid "Delete"
+msgid "Confirm Delete"
+msgstr "Supprimer"
+
+#: guard/templates/guard/partials/shared_delete_modal.html:13
+#: guard/templates/guard/views/merchants/list.html:34
+msgid "Close modal"
+msgstr "Fermer le modal"
+
+#: guard/templates/guard/partials/shared_delete_modal.html:18
+#, fuzzy
+#| msgid ""
+#| "Warning: This action cannot be undone. If you confirm, the tip will be "
+#| "permanently deleted."
+msgid ""
+"Warning: This action cannot be undone. If you confirm, this item will be "
+"permanently deleted."
+msgstr ""
+"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le"
+" conseil sera définitivement supprimé."
+
+#: guard/templates/guard/partials/shared_delete_modal.html:24
+#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:22
+msgid "I accept"
+msgstr "J'accepte"
+
+#: guard/templates/guard/partials/shared_delete_modal.html:26
+#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:24
+msgid "Decline"
+msgstr "Je refuse"
+
 #: guard/templates/guard/views/ads/index.html:6
 #: guard/templates/guard/views/ads/index.html:41
 msgid "Edit Ad"
@@ -1309,16 +1509,16 @@ msgid "Add Ad"
 msgstr "Ajouter une annonce"
 
 #: guard/templates/guard/views/ads/index.html:31
-#: guard/templates/guard/views/ads/list.html:110
+#: guard/templates/guard/views/ads/list.html:126
 #: guard/templates/guard/views/events/index.html:47
-#: guard/templates/guard/views/events/list.html:80
+#: guard/templates/guard/views/events/list.html:96
 #: guard/templates/guard/views/hiking/index.html:31
 #: guard/templates/guard/views/hiking/list.html:62
 #: guard/templates/guard/views/locations/index.html:31
-#: guard/templates/guard/views/locations/list.html:76
+#: guard/templates/guard/views/locations/list.html:92
 #: guard/templates/guard/views/merchants/index.html:31
 #: guard/templates/guard/views/merchants/list.html:71
-#: guard/templates/guard/views/merchants/list.html:174
+#: guard/templates/guard/views/merchants/list.html:190
 #: guard/templates/guard/views/pages/index.html:31
 #: guard/templates/guard/views/pages/list.html:77
 #: guard/templates/guard/views/partners/list.html:48
@@ -1377,23 +1577,68 @@ msgstr "Téléchargez une image et entrez le lien de destination"
 msgid "Required size: 320x50 pixels"
 msgstr "Taille requise : 320 x 50 pixels"
 
-#: guard/templates/guard/views/ads/index.html:149
+#: guard/templates/guard/views/ads/index.html:150
 msgid "Required size: 728x90 pixels"
 msgstr "Taille requise : 728x90 pixels"
 
-#: guard/templates/guard/views/ads/index.html:198
+#: guard/templates/guard/views/ads/index.html:206
+msgid "Payment"
+msgstr "Paiement"
+
+#: guard/templates/guard/views/ads/index.html:250
+msgid ""
+"Are you sure you want to validate this ad? You will need to make the payment"
+" before it becomes active."
+msgstr ""
+"Êtes-vous sûr de vouloir valider cette annonce ? Vous devrez effectuer le "
+"paiement avant qu'elle ne devienne active."
+
+#: guard/templates/guard/views/ads/index.html:254
 msgid "Update Ad"
 msgstr "Mettre à jour l'annonce"
 
-#: guard/templates/guard/views/ads/index.html:198
-msgid "Save Ad"
-msgstr "Enregistrer l'annonce"
+#: guard/templates/guard/views/ads/index.html:254
+msgid "Validate and Submit Ad"
+msgstr "Valider et soumettre l'annonce"
 
-#: guard/templates/guard/views/ads/index.html:216
+#: guard/templates/guard/views/ads/index.html:290
+msgid "Price Calculation:"
+msgstr "Calcul du prix:"
+
+#: guard/templates/guard/views/ads/index.html:292
+#, fuzzy
+#| msgid "Duration"
+msgid "Duration:"
+msgstr "Durée"
+
+#: guard/templates/guard/views/ads/index.html:292
+#, fuzzy
+#| msgid "Days left"
+msgid "Days"
+msgstr "Jours restants"
+
+#: guard/templates/guard/views/ads/index.html:293
+msgid "Amount HT (3.9 TND/day):"
+msgstr "Montant HT (3,9 TND/jour):"
+
+#: guard/templates/guard/views/ads/index.html:294
+#, python-format
+msgid "VAT (19%%):"
+msgstr ""
+
+#: guard/templates/guard/views/ads/index.html:295
+msgid "Timbre Fiscal:"
+msgstr "Timbre Fiscal:"
+
+#: guard/templates/guard/views/ads/index.html:296
+msgid "Total TTC:"
+msgstr "Total TTC:"
+
+#: guard/templates/guard/views/ads/index.html:318
 msgid "Invalid dimension"
 msgstr "Dimension non valide"
 
-#: guard/templates/guard/views/ads/index.html:216
+#: guard/templates/guard/views/ads/index.html:318
 msgid "Required"
 msgstr "Requis"
 
@@ -1414,27 +1659,28 @@ msgstr "Liste des annonces"
 msgid "List"
 msgstr "Liste"
 
-#: guard/templates/guard/views/ads/list.html:100
-#: guard/templates/guard/views/merchants/list.html:156
+#: guard/templates/guard/views/ads/list.html:112
+#: guard/templates/guard/views/merchants/list.html:168
 #: guard/templates/guard/views/pages/list.html:67
 msgid "Inactive"
 msgstr "Inactif"
 
-#: guard/templates/guard/views/ads/list.html:117
-#: guard/templates/guard/views/events/list.html:87
+#: guard/templates/guard/views/ads/list.html:133
+#: guard/templates/guard/views/events/list.html:103
+#: guard/templates/guard/views/merchants/list.html:197
 msgid "Analytics"
 msgstr "Analytique"
 
-#: guard/templates/guard/views/ads/list.html:124
-#: guard/templates/guard/views/events/index.html:514
-#: guard/templates/guard/views/events/list.html:94
-#: guard/templates/guard/views/hiking/index.html:388
+#: guard/templates/guard/views/ads/list.html:141
+#: guard/templates/guard/views/events/index.html:515
+#: guard/templates/guard/views/events/list.html:118
+#: guard/templates/guard/views/hiking/index.html:389
 #: guard/templates/guard/views/hiking/list.html:68
-#: guard/templates/guard/views/locations/index.html:591
-#: guard/templates/guard/views/locations/list.html:82
-#: guard/templates/guard/views/merchants/index.html:520
+#: guard/templates/guard/views/locations/index.html:594
+#: guard/templates/guard/views/locations/list.html:98
+#: guard/templates/guard/views/merchants/index.html:522
 #: guard/templates/guard/views/merchants/list.html:74
-#: guard/templates/guard/views/merchants/list.html:180
+#: guard/templates/guard/views/merchants/list.html:204
 #: guard/templates/guard/views/pages/list.html:83
 #: guard/templates/guard/views/partners/delete.html:19
 #: guard/templates/guard/views/partners/list.html:54
@@ -1446,143 +1692,123 @@ msgstr "Analytique"
 msgid "Delete"
 msgstr "Supprimer"
 
-#: guard/templates/guard/views/ads/partials/confirm_model.html:7
-msgid "Delete ad"
-msgstr "Supprimer l'annonce"
-
-#: guard/templates/guard/views/ads/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the ad and its images "
-"will be permanently deleted."
-msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
-"l'annonce et ses images seront définitivement supprimées."
-
-#: guard/templates/guard/views/ads/partials/confirm_model.html:22
-#: guard/templates/guard/views/events/partials/confirm_model.html:22
-#: guard/templates/guard/views/hiking/partials/confirm_model.html:22
-#: guard/templates/guard/views/locations/partials/confirm_model.html:22
-#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:22
-#: guard/templates/guard/views/merchants/partials/confirm_model.html:22
-#: guard/templates/guard/views/pages/partials/confirm_model.html:22
-#: guard/templates/guard/views/partners/partials/confirm_modal.html:22
-#: guard/templates/guard/views/publicTransports/partials/confirm_model.html:22
-#: guard/templates/guard/views/sponsors/partials/confirm_modal.html:22
-#: guard/templates/guard/views/tips/partials/confirm_model.html:22
-msgid "I accept"
-msgstr "J'accepte"
-
-#: guard/templates/guard/views/ads/partials/confirm_model.html:24
-#: guard/templates/guard/views/events/partials/confirm_model.html:24
-#: guard/templates/guard/views/hiking/partials/confirm_model.html:24
-#: guard/templates/guard/views/locations/partials/confirm_model.html:24
-#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:24
-#: guard/templates/guard/views/merchants/partials/confirm_model.html:24
-#: guard/templates/guard/views/pages/partials/confirm_model.html:24
-#: guard/templates/guard/views/partners/partials/confirm_modal.html:24
-#: guard/templates/guard/views/publicTransports/partials/confirm_model.html:24
-#: guard/templates/guard/views/sponsors/partials/confirm_modal.html:24
-#: guard/templates/guard/views/tips/partials/confirm_model.html:24
-msgid "Decline"
-msgstr "Je refuse"
-
 #: guard/templates/guard/views/ads/partials/tracking.html:4
 #: guard/templates/guard/views/events/partials/tracking.html:4
+#: guard/templates/guard/views/merchants/partials/tracking.html:4
 msgid "Tracking Dashboard"
 msgstr "Tableau de bord de suivi"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:11
 #: guard/templates/guard/views/events/partials/tracking.html:11
+#: guard/templates/guard/views/merchants/partials/tracking.html:11
 msgid "Analytics for:"
 msgstr "Analyses pour :"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:22
 #: guard/templates/guard/views/events/partials/tracking.html:22
+#: guard/templates/guard/views/merchants/partials/tracking.html:16
 msgid "Period:"
 msgstr "Période :"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:24
 #: guard/templates/guard/views/events/partials/tracking.html:24
+#: guard/templates/guard/views/merchants/partials/tracking.html:18
 msgid "Today"
 msgstr "Aujourd'hui"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:25
 #: guard/templates/guard/views/events/partials/tracking.html:25
+#: guard/templates/guard/views/merchants/partials/tracking.html:19
 msgid "Yesterday"
 msgstr "Hier"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:26
 #: guard/templates/guard/views/events/partials/tracking.html:26
+#: guard/templates/guard/views/merchants/partials/tracking.html:20
 msgid "Last 7 Days"
 msgstr "Les 7 derniers jours"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:27
 #: guard/templates/guard/views/events/partials/tracking.html:27
+#: guard/templates/guard/views/merchants/partials/tracking.html:21
 msgid "Last 30 Days"
 msgstr "30 derniers jours"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:28
 #: guard/templates/guard/views/events/partials/tracking.html:28
+#: guard/templates/guard/views/merchants/partials/tracking.html:22
 msgid "Last Month"
 msgstr "Le mois dernier"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:29
 #: guard/templates/guard/views/events/partials/tracking.html:29
+#: guard/templates/guard/views/merchants/partials/tracking.html:23
 msgid "All Time"
 msgstr "Tout le temps"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:42
 #: guard/templates/guard/views/events/partials/tracking.html:41
+#: guard/templates/guard/views/merchants/partials/tracking.html:35
 msgid "Tracking Information"
 msgstr "Informations de suivi"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:55
 #: guard/templates/guard/views/events/partials/tracking.html:54
+#: guard/templates/guard/views/merchants/partials/tracking.html:41
 msgid "Short ID"
 msgstr "Short ID"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:69
 #: guard/templates/guard/views/events/partials/tracking.html:68
+#: guard/templates/guard/views/merchants/partials/tracking.html:50
 msgid "Total clicks"
 msgstr "Nombre total de clics"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:87
 #: guard/templates/guard/views/events/partials/tracking.html:86
+#: guard/templates/guard/views/merchants/partials/tracking.html:68
 msgid "Human clicks"
 msgstr "Clics humains"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:107
 #: guard/templates/guard/views/events/partials/tracking.html:106
+#: guard/templates/guard/views/merchants/partials/tracking.html:88
 msgid "Metric's Evolution Over Time"
 msgstr "Évolution de la métrique au fil du temps"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:112
 #: guard/templates/guard/views/events/partials/tracking.html:111
+#: guard/templates/guard/views/merchants/partials/tracking.html:93
 msgid "Top Countries"
 msgstr "Principaux pays"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:117
 #: guard/templates/guard/views/events/partials/tracking.html:115
+#: guard/templates/guard/views/merchants/partials/tracking.html:97
 msgid "Top Cities"
 msgstr "Principales villes"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:122
 #: guard/templates/guard/views/events/partials/tracking.html:120
+#: guard/templates/guard/views/merchants/partials/tracking.html:102
 msgid "Top Browsers"
 msgstr "Principaux navigateurs"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:127
 #: guard/templates/guard/views/events/partials/tracking.html:124
+#: guard/templates/guard/views/merchants/partials/tracking.html:106
 msgid "Top Operating Systems"
 msgstr "Principaux systèmes d'exploitation"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:132
 #: guard/templates/guard/views/events/partials/tracking.html:129
+#: guard/templates/guard/views/merchants/partials/tracking.html:111
 msgid "Top Social Referrers"
 msgstr "Principaux référents sociaux"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:139
 #: guard/templates/guard/views/events/partials/tracking.html:136
+#: guard/templates/guard/views/merchants/partials/tracking.html:118
 msgid "Back"
 msgstr "Retour"
 
@@ -1590,11 +1816,14 @@ msgstr "Retour"
 #: guard/templates/guard/views/ads/partials/tracking.html:258
 #: guard/templates/guard/views/events/partials/tracking.html:207
 #: guard/templates/guard/views/events/partials/tracking.html:254
+#: guard/templates/guard/views/merchants/partials/tracking.html:189
+#: guard/templates/guard/views/merchants/partials/tracking.html:236
 msgid "Clicks"
 msgstr "Clics"
 
 #: guard/templates/guard/views/ads/partials/tracking.html:273
 #: guard/templates/guard/views/events/partials/tracking.html:269
+#: guard/templates/guard/views/merchants/partials/tracking.html:251
 msgid "No data available"
 msgstr "Aucune donnée disponible"
 
@@ -1604,13 +1833,13 @@ msgstr "Nombre total de clics sur les annonces"
 
 #: guard/templates/guard/views/dashboard.html:23
 #: guard/templates/guard/views/dashboard.html:46
-#: guard/templates/guard/views/dashboard.html:69
+#: guard/templates/guard/views/dashboard.html:70
 msgid "Last 7 days trend"
 msgstr "Tendances des 7 derniers jours"
 
 #: guard/templates/guard/views/dashboard.html:25
 #: guard/templates/guard/views/dashboard.html:48
-#: guard/templates/guard/views/dashboard.html:71
+#: guard/templates/guard/views/dashboard.html:72
 msgid "Full report"
 msgstr "Rapport complet"
 
@@ -1618,7 +1847,7 @@ msgstr "Rapport complet"
 msgid "Total Events Clicks"
 msgstr "Nombre total d'événements et de clics"
 
-#: guard/templates/guard/views/dashboard.html:59
+#: guard/templates/guard/views/dashboard.html:60
 msgid "Total Merchant Clicks"
 msgstr "Nombre total de clics sur les commerces"
 
@@ -1718,7 +1947,7 @@ msgstr "Lieu, dates, horaires et tarifs"
 
 #: guard/templates/guard/views/events/index.html:483
 #: guard/templates/guard/views/hiking/index.html:360
-#: guard/templates/guard/views/locations/index.html:563
+#: guard/templates/guard/views/locations/index.html:565
 #: guard/templates/guard/views/merchants/index.html:475
 msgid "Images"
 msgstr "Images"
@@ -1728,28 +1957,28 @@ msgid ""
 "Upload images for this event (max 10). Images will be automatically "
 "optimized."
 msgstr ""
-"Téléchargez des images pour cet événement (10 au maximum). Les images seront "
-"automatiquement optimisées."
+"Téléchargez des images pour cet événement (10 au maximum). Les images seront"
+" automatiquement optimisées."
 
-#: guard/templates/guard/views/events/index.html:502
-#: guard/templates/guard/views/hiking/index.html:377
-#: guard/templates/guard/views/locations/index.html:580
-#: guard/templates/guard/views/merchants/index.html:509
+#: guard/templates/guard/views/events/index.html:503
+#: guard/templates/guard/views/hiking/index.html:378
+#: guard/templates/guard/views/locations/index.html:583
+#: guard/templates/guard/views/merchants/index.html:511
 msgid "Replace Image"
 msgstr "Remplacer l'image"
 
-#: guard/templates/guard/views/events/index.html:502
-#: guard/templates/guard/views/hiking/index.html:377
-#: guard/templates/guard/views/locations/index.html:580
-#: guard/templates/guard/views/merchants/index.html:509
+#: guard/templates/guard/views/events/index.html:503
+#: guard/templates/guard/views/hiking/index.html:378
+#: guard/templates/guard/views/locations/index.html:583
+#: guard/templates/guard/views/merchants/index.html:511
 msgid "Upload Image"
 msgstr "Télécharger une image"
 
-#: guard/templates/guard/views/events/index.html:547
+#: guard/templates/guard/views/events/index.html:548
 msgid "Update Event"
 msgstr "Mise à jour de l'événement"
 
-#: guard/templates/guard/views/events/index.html:547
+#: guard/templates/guard/views/events/index.html:548
 msgid "Save Event"
 msgstr "Enregistrer l'événement"
 
@@ -1757,17 +1986,9 @@ msgstr "Enregistrer l'événement"
 msgid "Events List"
 msgstr "Liste des événements"
 
-#: guard/templates/guard/views/events/partials/confirm_model.html:7
-msgid "Delete event"
-msgstr "Supprimer l'événement"
-
-#: guard/templates/guard/views/events/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the event will be "
-"permanently deleted."
+#: guard/templates/guard/views/events/list.html:111
+msgid "Boost"
 msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
-"l'événement sera définitivement supprimé."
 
 #: guard/templates/guard/views/hiking/index.html:6
 #: guard/templates/guard/views/hiking/index.html:41
@@ -1785,7 +2006,8 @@ msgstr "Mettez à jour les détails de la randonnée ci-dessous"
 
 #: guard/templates/guard/views/hiking/index.html:50
 msgid "Fill in the details to create a new hiking trail"
-msgstr "Remplissez les informations pour créer un nouveau sentier de randonnée"
+msgstr ""
+"Remplissez les informations pour créer un nouveau sentier de randonnée"
 
 #: guard/templates/guard/views/hiking/index.html:74
 msgid "Enter the hiking name in different languages"
@@ -1832,16 +2054,16 @@ msgstr ""
 "Téléchargez des images pour ce sentier de randonnée (max. 10). Les images "
 "seront automatiquement optimisées."
 
-#: guard/templates/guard/views/hiking/index.html:401
-#: guard/templates/guard/views/locations/index.html:604
+#: guard/templates/guard/views/hiking/index.html:402
+#: guard/templates/guard/views/locations/index.html:607
 msgid "Add Another Image"
 msgstr "Ajouter une autre image"
 
-#: guard/templates/guard/views/hiking/index.html:415
+#: guard/templates/guard/views/hiking/index.html:416
 msgid "Update Hiking"
 msgstr "Mise à jour Randonnée"
 
-#: guard/templates/guard/views/hiking/index.html:415
+#: guard/templates/guard/views/hiking/index.html:416
 msgid "Save Hiking"
 msgstr "Enregistrer la Randonnée"
 
@@ -1851,21 +2073,9 @@ msgstr "Liste des randonnées"
 
 #: guard/templates/guard/views/hiking/list.html:41
 #: guard/templates/guard/views/pages/list.html:49
-#: guard/templates/guard/views/tips/list.html:41
+#: guard/templates/guard/views/tips/list.html:41 subscribers/models.py:35
 msgid "Created At"
 msgstr "Créé le"
-
-#: guard/templates/guard/views/hiking/partials/confirm_model.html:7
-msgid "Delete hiking trail"
-msgstr "Supprimer le sentier de randonnée"
-
-#: guard/templates/guard/views/hiking/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the hiking trail will "
-"be permanently deleted."
-msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le "
-"sentier de randonnée sera définitivement supprimé."
 
 #: guard/templates/guard/views/locations/index.html:6
 #: guard/templates/guard/views/locations/index.html:41
@@ -1923,32 +2133,32 @@ msgid "Upload optional audio voiceovers (AAC format only)"
 msgstr ""
 
 #: guard/templates/guard/views/locations/index.html:498
-#: guard/templates/guard/views/locations/index.html:532
+#: guard/templates/guard/views/locations/index.html:533
 #, fuzzy
 #| msgid "Current image"
 msgid "Current file:"
 msgstr "Image actuelle"
 
 #: guard/templates/guard/views/locations/index.html:503
-#: guard/templates/guard/views/locations/index.html:537
+#: guard/templates/guard/views/locations/index.html:538
 msgid "Your browser does not support the audio element."
 msgstr ""
 
 #: guard/templates/guard/views/locations/index.html:507
-#: guard/templates/guard/views/locations/index.html:541
+#: guard/templates/guard/views/locations/index.html:542
 #, fuzzy
 #| msgid "Delete hiking trail"
 msgid "Delete this audio file"
 msgstr "Supprimer le sentier de randonnée"
 
 #: guard/templates/guard/views/locations/index.html:510
-#: guard/templates/guard/views/locations/index.html:544
+#: guard/templates/guard/views/locations/index.html:545
 #, fuzzy
 #| msgid "Replace Image"
 msgid "Replace audio file:"
 msgstr "Remplacer l'image"
 
-#: guard/templates/guard/views/locations/index.html:564
+#: guard/templates/guard/views/locations/index.html:566
 msgid ""
 "Upload images for this location (max 10). Images will be automatically "
 "optimized."
@@ -1956,11 +2166,11 @@ msgstr ""
 "Téléchargez des images pour cet emplacement (10 au maximum). Les images "
 "seront automatiquement optimisées."
 
-#: guard/templates/guard/views/locations/index.html:618
+#: guard/templates/guard/views/locations/index.html:621
 msgid "Update Location"
 msgstr "Mettre à jour l'emplacement"
 
-#: guard/templates/guard/views/locations/index.html:618
+#: guard/templates/guard/views/locations/index.html:621
 msgid "Save Location"
 msgstr "Enregistrer l'emplacement"
 
@@ -1972,18 +2182,6 @@ msgstr "Liste des emplacements"
 #: guard/templates/guard/views/merchants/list.html:18
 msgid "Categories"
 msgstr "Catégories"
-
-#: guard/templates/guard/views/locations/partials/confirm_model.html:7
-msgid "Delete location"
-msgstr "Supprimer l'emplacement"
-
-#: guard/templates/guard/views/locations/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the location will be "
-"permanently deleted."
-msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
-"l'emplacement sera définitivement supprimé."
 
 #: guard/templates/guard/views/merchants/category_form.html:6
 #: guard/templates/guard/views/merchants/category_form.html:31
@@ -2072,53 +2270,49 @@ msgstr "Paramètres pour la mise en avant et statut de contrat actif"
 msgid "Upload cover image and secondary images"
 msgstr "Télécharger l'image de couverture et les images secondaires"
 
-#: guard/templates/guard/views/merchants/index.html:496
+#: guard/templates/guard/views/merchants/index.html:497
 msgid "Secondary Gallery Images"
 msgstr "Images secondaires de la galerie"
 
-#: guard/templates/guard/views/merchants/index.html:533
+#: guard/templates/guard/views/merchants/index.html:535
 msgid "Add Gallery Image"
 msgstr "Ajouter une image de galerie"
 
-#: guard/templates/guard/views/merchants/index.html:543
+#: guard/templates/guard/views/merchants/index.html:545
 msgid "List of products offered by this merchant"
 msgstr "Liste des produits offerts par ce commerce"
 
-#: guard/templates/guard/views/merchants/index.html:554
+#: guard/templates/guard/views/merchants/index.html:557
 msgid "Product Name (EN)"
 msgstr "Nom du produit (EN)"
 
-#: guard/templates/guard/views/merchants/index.html:561
+#: guard/templates/guard/views/merchants/index.html:564
 msgid "Product Name (FR)"
 msgstr "Nom du produit (FR)"
 
-#: guard/templates/guard/views/merchants/index.html:578
+#: guard/templates/guard/views/merchants/index.html:581
 msgid "Product Image"
 msgstr "Image du produit"
 
-#: guard/templates/guard/views/merchants/index.html:595
+#: guard/templates/guard/views/merchants/index.html:598
 msgid "Delete Product"
 msgstr "Supprimer le produit"
 
-#: guard/templates/guard/views/merchants/index.html:607
+#: guard/templates/guard/views/merchants/index.html:610
 msgid "Add Product"
 msgstr "Ajouter un produit"
 
-#: guard/templates/guard/views/merchants/index.html:622
+#: guard/templates/guard/views/merchants/index.html:625
 msgid "Update Merchant"
 msgstr "Mettre à jour le commerce"
 
-#: guard/templates/guard/views/merchants/index.html:622
+#: guard/templates/guard/views/merchants/index.html:625
 msgid "Save Merchant"
 msgstr "Enregistrer le commerce"
 
 #: guard/templates/guard/views/merchants/list.html:4
 msgid "Our Picks List"
 msgstr "Liste de Nos Coups de Cœur"
-
-#: guard/templates/guard/views/merchants/list.html:34
-msgid "Close modal"
-msgstr "Fermer le modal"
 
 #: guard/templates/guard/views/merchants/list.html:48
 msgid "Name (EN)"
@@ -2142,23 +2336,11 @@ msgstr "Supprimer la catégorie"
 
 #: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:16
 msgid ""
-"Warning: This action cannot be undone. If you confirm, the merchant category "
-"will be permanently deleted."
+"Warning: This action cannot be undone. If you confirm, the merchant category"
+" will be permanently deleted."
 msgstr ""
 "Attention : cette action est irréversible. Si vous confirmez, la catégorie "
 "de commerce sera définitivement supprimée."
-
-#: guard/templates/guard/views/merchants/partials/confirm_model.html:7
-msgid "Delete merchant"
-msgstr "Supprimer le commerce"
-
-#: guard/templates/guard/views/merchants/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the merchant will be "
-"permanently deleted."
-msgstr ""
-"Attention : cette action est irréversible. Si vous confirmez, le commerce "
-"sera définitivement supprimé."
 
 #: guard/templates/guard/views/pages/index.html:6
 #: guard/templates/guard/views/pages/index.html:41
@@ -2207,18 +2389,6 @@ msgstr "Titre"
 msgid "Slug"
 msgstr "Slug"
 
-#: guard/templates/guard/views/pages/partials/confirm_model.html:7
-msgid "Delete page"
-msgstr "Supprimer la page"
-
-#: guard/templates/guard/views/pages/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the page will be "
-"permanently deleted."
-msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, la "
-"page sera définitivement supprimée."
-
 #: guard/templates/guard/views/partners/delete.html:4
 #: guard/templates/guard/views/partners/delete.html:8
 msgid "Delete Partner"
@@ -2250,16 +2420,16 @@ msgstr "Téléchargez un logo de 300 x 200 pixels et fournissez le lien."
 msgid "Back to list"
 msgstr "Retour à la liste"
 
-#: guard/templates/guard/views/partners/index.html:57
-#: guard/templates/guard/views/sponsors/index.html:57
+#: guard/templates/guard/views/partners/index.html:58
+#: guard/templates/guard/views/sponsors/index.html:58
 msgid "Current image"
 msgstr "Image actuelle"
 
-#: guard/templates/guard/views/partners/index.html:74
+#: guard/templates/guard/views/partners/index.html:75
 msgid "Update Partner"
 msgstr "Mettre à jour le partenaire"
 
-#: guard/templates/guard/views/partners/index.html:74
+#: guard/templates/guard/views/partners/index.html:75
 msgid "Save Partner"
 msgstr "Enregistrer le partenaire"
 
@@ -2272,18 +2442,6 @@ msgstr "Logo"
 #: guard/templates/guard/views/sponsors/list.html:35
 msgid "No image"
 msgstr "Pas d'image"
-
-#: guard/templates/guard/views/partners/partials/confirm_modal.html:7
-msgid "Delete partner"
-msgstr "Supprimer le partenaire"
-
-#: guard/templates/guard/views/partners/partials/confirm_modal.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the partner will be "
-"permanently deleted."
-msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le "
-"partenaire sera définitivement supprimé."
 
 #: guard/templates/guard/views/publicTransports/index.html:6
 #: guard/templates/guard/views/publicTransports/index.html:41
@@ -2351,6 +2509,9 @@ msgid "Public Transports List"
 msgstr "Liste des transports publics"
 
 #: guard/templates/guard/views/publicTransports/list.html:33
+#: guard/templates/guard/views/subscribers/history.html:35
+#: guard/templates/guard/views/subscribers/transaction_history.html:30
+#: guard/templates/guard/views/subscribers/validation_list.html:62
 msgid "Type"
 msgstr "Type"
 
@@ -2361,19 +2522,6 @@ msgstr ""
 #: guard/templates/guard/views/publicTransports/list.html:87
 msgid "No times"
 msgstr "Pas d'horaires"
-
-#: guard/templates/guard/views/publicTransports/partials/confirm_model.html:7
-msgid "Delete transport"
-msgstr "Supprimer le transport"
-
-#: guard/templates/guard/views/publicTransports/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the transport route "
-"and all its departure times will be permanently deleted."
-msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
-"l'itinéraire de transport et toutes ses heures de départ seront "
-"définitivement supprimés."
 
 #: guard/templates/guard/views/sponsors/delete.html:4
 #: guard/templates/guard/views/sponsors/delete.html:8
@@ -2390,25 +2538,93 @@ msgstr "Modifier le sponsor"
 msgid "Add Sponsor"
 msgstr "Ajouter un sponsor"
 
-#: guard/templates/guard/views/sponsors/index.html:74
+#: guard/templates/guard/views/sponsors/index.html:75
 msgid "Update Sponsor"
 msgstr "Mise à jour du sponsor"
 
-#: guard/templates/guard/views/sponsors/index.html:74
+#: guard/templates/guard/views/sponsors/index.html:75
 msgid "Save Sponsor"
 msgstr "Enregistrer le sponsor"
 
-#: guard/templates/guard/views/sponsors/partials/confirm_modal.html:7
-msgid "Delete sponsor"
-msgstr "Supprimer le sponsor"
+#: guard/templates/guard/views/subscribers/history.html:5
+#: guard/templates/guard/views/subscribers/history.html:11
+msgid "Partner Transaction History"
+msgstr "Historique des transactions du partenaire"
 
-#: guard/templates/guard/views/sponsors/partials/confirm_modal.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the sponsor will be "
-"permanently deleted."
+#: guard/templates/guard/views/subscribers/history.html:13
+msgid "Viewing transactions for"
+msgstr "Affichage des transactions pour"
+
+#: guard/templates/guard/views/subscribers/history.html:17
+#: guard/templates/guard/views/subscribers/validation_list.html:44
+#| msgid "Subscribers"
+msgid "Back to Subscribers"
+msgstr "Retour aux abonnés"
+
+#: guard/templates/guard/views/subscribers/history.html:33
+#: guard/templates/guard/views/subscribers/transaction_history.html:28
+#: guard/templates/guard/views/subscribers/validation_list.html:60
+#| msgid "User profiles"
+msgid "Reference"
+msgstr "Référence"
+
+#: guard/templates/guard/views/subscribers/history.html:34
+#: guard/templates/guard/views/subscribers/transaction_history.html:29
+#, fuzzy
+#| msgid "End Date"
+msgid "Date"
+msgstr "Date de fin"
+
+#: guard/templates/guard/views/subscribers/history.html:37
+#: guard/templates/guard/views/subscribers/transaction_history.html:32
+#: guard/templates/guard/views/subscribers/validation_list.html:64
+msgid "Amount TTC"
+msgstr "Montant TTC"
+
+#: guard/templates/guard/views/subscribers/history.html:55
+#: guard/templates/guard/views/subscribers/transaction_history.html:50
+#: guard/templates/guard/views/subscribers/validation_list.html:84
+#, fuzzy
+#| msgid "Last Month"
+msgid "Months"
+msgstr "Le mois dernier"
+
+#: guard/templates/guard/views/subscribers/history.html:57
+#: guard/templates/guard/views/subscribers/validation_list.html:86
+#, fuzzy
+#| msgid "Event"
+msgid "Event:"
+msgstr "Événement"
+
+#: guard/templates/guard/views/subscribers/history.html:59
+#: guard/templates/guard/views/subscribers/validation_list.html:88
+#, fuzzy
+#| msgid "Ad"
+msgid "Ad:"
+msgstr "Annonce"
+
+#: guard/templates/guard/views/subscribers/history.html:73
+#: guard/templates/guard/views/subscribers/transaction_history.html:68
+#: subscribers/models.py:13
+msgid "Validated"
 msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le "
-"sponsor sera définitivement supprimé."
+
+#: guard/templates/guard/views/subscribers/history.html:77
+#: guard/templates/guard/views/subscribers/transaction_history.html:72
+#: subscribers/models.py:15
+#| msgid "Cancelled"
+msgid "Canceled"
+msgstr "Annulé"
+
+#: guard/templates/guard/views/subscribers/history.html:81
+#: guard/templates/guard/views/subscribers/transaction_history.html:76
+#: subscribers/models.py:14
+msgid "Rejected"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/history.html:89
+msgid "No transactions found for this partner."
+msgstr "Aucune transaction trouvée pour ce partenaire."
 
 #: guard/templates/guard/views/subscribers/index.html:6
 #: guard/templates/guard/views/subscribers/index.html:13
@@ -2421,8 +2637,198 @@ msgid "Add Subscriber"
 msgstr "Ajouter un abonné"
 
 #: guard/templates/guard/views/subscribers/list.html:4
+#: guard/templates/guard/views/subscribers/list.html:9
 msgid "Subscribers List"
 msgstr "Liste des abonnés"
+
+#: guard/templates/guard/views/subscribers/list.html:10
+#, fuzzy
+#| msgid "Konnect subscription"
+msgid "Manage client subscriptions."
+msgstr "Abonnement Konnect"
+
+#: guard/templates/guard/views/subscribers/list.html:17
+#| msgid "Pending"
+msgid "Pending Payments"
+msgstr "Paiements en attente"
+
+#: guard/templates/guard/views/subscribers/list.html:25
+#, fuzzy
+#| msgid "Username"
+msgid "User"
+msgstr "Nom d'utilisateur"
+
+#: guard/templates/guard/views/subscribers/list.html:28
+#, fuzzy
+#| msgid "End Date"
+msgid "Renewal Date"
+msgstr "Date de fin"
+
+#: guard/templates/guard/views/subscribers/list.html:29
+#, fuzzy
+#| msgid "Days left"
+msgid "Days Left"
+msgstr "Jours restants"
+
+#: guard/templates/guard/views/subscribers/list.html:67
+#, fuzzy
+#| msgid "No categories found."
+msgid "No subscribers found."
+msgstr "Aucune catégorie trouvée."
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:5
+msgid "Payment Portal"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:11
+#, fuzzy
+#| msgid "Subscription overview"
+msgid "Subscription Required"
+msgstr "Aperçu des abonnements"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:13
+msgid ""
+"Your subscription has expired or requires renewal. Please select a plan and "
+"complete the bank transfer to restore access to your dashboard."
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:28
+#, fuzzy
+#| msgid "Transport Details"
+msgid "Bank Transfer Details"
+msgstr "Détails du transport"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:32
+msgid "Bank"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:36
+#, fuzzy
+#| msgid "Product Name"
+msgid "Account Name"
+msgstr "Nom du produit"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:40
+msgid "RIB"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:44
+msgid "IBAN"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:48
+msgid "BIC"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:55
+msgid "Important:"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:55
+msgid "After initiating the transfer, you must send an email to"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:57
+msgid "with the proof of payment to activate your account."
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:64
+#, fuzzy
+#| msgid "Konnect subscription"
+msgid "Select a Subscription Plan"
+msgstr "Abonnement Konnect"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:73
+#, fuzzy
+#| msgid "Last Month"
+msgid "1 Month"
+msgstr "Le mois dernier"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:82
+#, fuzzy
+#| msgid "Last Month"
+msgid "3 Months"
+msgstr "Le mois dernier"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:91
+#, fuzzy
+#| msgid "Last Month"
+msgid "6 Months"
+msgstr "Le mois dernier"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:100
+#, fuzzy
+#| msgid "Last Month"
+msgid "12 Months"
+msgstr "Le mois dernier"
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:107
+#, python-format
+msgid ""
+"* All prices exclude VAT (19%%) and Timbre Fiscal (1 TND) which will be "
+"added to your invoice."
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/payment_portal.html:135
+msgid "Confirm Bank Transfer"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/transaction_history.html:12
+msgid "View your past and pending payments."
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/transaction_history.html:84
+#| msgid "No categories found."
+msgid "No transactions found."
+msgstr "Aucune transaction trouvée."
+
+#: guard/templates/guard/views/subscribers/validation_list.html:5
+#: guard/templates/guard/views/subscribers/validation_list.html:32
+#: guard/templates/guard/views/subscribers/validation_list.html:40
+msgid "Pending Transactions"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/validation_list.html:41
+msgid "Validate offline bank transfers submitted by clients."
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/validation_list.html:65
+msgid "Date Submitted"
+msgstr ""
+
+#: guard/templates/guard/views/subscribers/validation_list.html:66
+#, fuzzy
+#| msgid "Location"
+msgid "Action"
+msgstr "Emplacement"
+
+#: guard/templates/guard/views/subscribers/validation_list.html:103
+msgid "> 5 days (Cancel recommended)"
+msgstr "> 5 jours (Annulation recommandée)"
+
+#: guard/templates/guard/views/subscribers/validation_list.html:108
+msgid ""
+"Are you sure you want to validate this payment? This action cannot be undone"
+" and will activate the requested feature."
+msgstr ""
+"Êtes-vous sûr de vouloir valider ce paiement ? Cette action est irréversible"
+" et activera la fonctionnalité demandée."
+
+#: guard/templates/guard/views/subscribers/validation_list.html:111
+msgid "Validate"
+msgstr "Valider"
+
+#: guard/templates/guard/views/subscribers/validation_list.html:114
+msgid ""
+"Are you sure you want to cancel this order? An email will be sent to the "
+"client."
+msgstr ""
+"Êtes-vous sûr de vouloir annuler cette commande ? Un email sera envoyé au "
+"client."
+
+#: guard/templates/guard/views/subscribers/validation_list.html:125
+msgid "No pending transactions."
+msgstr ""
 
 #: guard/templates/guard/views/tips/index.html:6
 #: guard/templates/guard/views/tips/index.html:41
@@ -2462,185 +2868,177 @@ msgstr "Astuce pour économiser"
 msgid "Tips List"
 msgstr "Liste de conseils"
 
-#: guard/templates/guard/views/tips/partials/confirm_model.html:7
-msgid "Delete tip"
-msgstr "Supprimer le conseil"
-
-#: guard/templates/guard/views/tips/partials/confirm_model.html:7
-msgid "Unnamed Tip"
-msgstr "Conseil sans nom"
-
-#: guard/templates/guard/views/tips/partials/confirm_model.html:16
-msgid ""
-"Warning: This action cannot be undone. If you confirm, the tip will be "
-"permanently deleted."
+#: guard/templates/guard/views/tips/list.html:61
+msgid "this tip"
 msgstr ""
-"Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le "
-"conseil sera définitivement supprimé."
 
-#: guard/views.py:139
+#: guard/views.py:154
 msgid "Location created successfully."
 msgstr "Emplacement créé avec succès."
 
-#: guard/views.py:164 guard/views.py:747
+#: guard/views.py:179 guard/views.py:802
 msgid "Please upload at least one image."
 msgstr "Veuillez télécharger au moins une image."
 
-#: guard/views.py:185
+#: guard/views.py:203
 msgid "Location updated successfully."
 msgstr "Emplacement mis à jour avec succès."
 
-#: guard/views.py:217 guard/views.py:553 guard/views.py:811
+#: guard/views.py:235 guard/views.py:596 guard/views.py:866
 msgid "Veuillez conserver ou télécharger au moins une image."
 msgstr "Please save or download at least one image."
 
-#: guard/views.py:237
+#: guard/views.py:257
 msgid "Unfortunately, this location has been deleted"
 msgstr "Malheureusement, cet emplacement a été supprimé"
 
-#: guard/views.py:281
+#: guard/views.py:316
 msgid "Public transport created successfully."
 msgstr "Transports publics créés avec succès."
 
-#: guard/views.py:322
+#: guard/views.py:357
 msgid "Please add at least one departure time."
 msgstr "Veuillez ajouter au moins une heure de départ."
 
-#: guard/views.py:343
+#: guard/views.py:378
 msgid "Public transport updated successfully."
 msgstr "Transports publics mis à jour avec succès."
 
-#: guard/views.py:400
+#: guard/views.py:435
 msgid "Please keep or add at least one departure time."
 msgstr "Veuillez conserver ou ajouter au moins une heure de départ."
 
-#: guard/views.py:420
+#: guard/views.py:455
 msgid "Public transport has been deleted."
 msgstr "Les transports publics ont été supprimés."
 
-#: guard/views.py:446
+#: guard/views.py:484
 msgid "Event created successfully."
 msgstr "Événement créé avec succès."
 
-#: guard/views.py:477
+#: guard/views.py:515
 msgid "Veuillez télécharger au moins une image."
 msgstr "Please upload at least one image."
 
-#: guard/views.py:513
+#: guard/views.py:553
 msgid "Event updated successfully."
 msgstr "Événement mis à jour avec succès."
 
-#: guard/views.py:627
+#: guard/views.py:680
 msgid "Unfortunately, this event has been deleted"
 msgstr "Malheureusement, cet événement a été supprimé"
 
-#: guard/views.py:655 guard/views.py:657
+#: guard/views.py:710 guard/views.py:712
 msgid "Tip created successfully"
 msgstr "Astuce créée avec succès"
 
-#: guard/views.py:660
+#: guard/views.py:715
 msgid "Error creating tip. Please check the form."
 msgstr ""
 "Erreur lors de la création du pourboire. Veuillez vérifier le formulaire."
 
-#: guard/views.py:674 guard/views.py:676
+#: guard/views.py:729 guard/views.py:731
 msgid "Tip updated successfully"
 msgstr "Conseil mis à jour avec succès"
 
-#: guard/views.py:679
+#: guard/views.py:734
 msgid "Error updating tip. Please check the form."
 msgstr ""
 "Erreur lors de la mise à jour du pourboire. Veuillez vérifier le formulaire."
 
-#: guard/views.py:691
+#: guard/views.py:746
 msgid "Tip deleted successfully"
 msgstr "Conseil supprimé avec succès"
 
-#: guard/views.py:719
+#: guard/views.py:774
 msgid "Hiking created successfully"
 msgstr "Randonnée créée avec succès"
 
-#: guard/views.py:760
+#: guard/views.py:815
 msgid "Error creating hiking. Please check the form."
 msgstr ""
 "Erreur lors de la création de la randonnée. Veuillez vérifier le formulaire."
 
-#: guard/views.py:774
+#: guard/views.py:829
 msgid "Hiking updated successfully"
 msgstr "Randonnée mise à jour avec succès"
 
-#: guard/views.py:825
+#: guard/views.py:880
 msgid "Error updating hiking. Please check the form."
 msgstr ""
 "Erreur lors de la mise à jour de la randonnée. Veuillez vérifier le "
 "formulaire."
 
-#: guard/views.py:837
+#: guard/views.py:892
 msgid "Hiking deleted successfully"
 msgstr "Randonnée supprimée avec succès"
 
-#: guard/views.py:877
+#: guard/views.py:935
 msgid "Ad created successfully"
 msgstr "Annonce créée avec succès"
 
-#: guard/views.py:902
+#: guard/views.py:985
+msgid "Ad created. Please complete the bank transfer to activate it."
+msgstr ""
+
+#: guard/views.py:992
 msgid "Error creating ad. Please check the form."
 msgstr ""
 "Erreur lors de la création de l'annonce. Veuillez vérifier le formulaire."
 
-#: guard/views.py:911
+#: guard/views.py:1001
 msgid "Ad updated successfully"
 msgstr "Annonce mise à jour avec succès"
 
-#: guard/views.py:978
+#: guard/views.py:1089
 msgid "Ad deleted successfully"
 msgstr "Annonce supprimée avec succès"
 
-#: guard/views.py:1006
+#: guard/views.py:1119
 msgid "Partner created successfully."
 msgstr "Partenaire créé avec succès."
 
-#: guard/views.py:1019
+#: guard/views.py:1132
 msgid "Partner updated successfully."
 msgstr "Partenaire mis à jour avec succès."
 
-#: guard/views.py:1031
+#: guard/views.py:1144
 msgid "Partner deleted successfully."
 msgstr "Partenaire supprimé avec succès."
 
-#: guard/views.py:1059
+#: guard/views.py:1172
 msgid "Sponsor created successfully."
 msgstr "Parrain créé avec succès."
 
-#: guard/views.py:1072
+#: guard/views.py:1185
 msgid "Sponsor updated successfully."
 msgstr "Parrainage mis à jour avec succès."
 
-#: guard/views.py:1084
+#: guard/views.py:1197
 msgid "Sponsor deleted successfully."
 msgstr "Parrain supprimé avec succès."
 
-#: guard/views.py:1154
+#: guard/views.py:1273
 msgid "Merchant created successfully."
 msgstr "Commerce créé avec succès."
 
-#: guard/views.py:1214
+#: guard/views.py:1335
 msgid "Merchant updated successfully."
 msgstr "Commerce mis à jour avec succès."
 
-#: guard/views.py:1290
+#: guard/views.py:1412
 msgid "Merchant has been deleted."
 msgstr "Le commerce a été supprimé."
 
-#: guard/views.py:1307
+#: guard/views.py:1459
 msgid "Merchant category created successfully."
 msgstr "Catégorie de commerce créée avec succès."
 
-#: guard/views.py:1320
+#: guard/views.py:1472
 msgid "Merchant category updated successfully."
 msgstr "Catégorie de commerce mise à jour avec succès."
 
-#: guard/views.py:1331
+#: guard/views.py:1483
 msgid "Merchant category has been deleted."
 msgstr "La catégorie de commerce a été supprimée."
 
@@ -2826,10 +3224,6 @@ msgstr ""
 msgid "User Preferences"
 msgstr "Profils d'utilisateurs"
 
-#: shared/models.py:244
-msgid "Duration"
-msgstr "Durée"
-
 #: shared/models.py:245
 msgid "Duration Unit"
 msgstr "Durée Unité"
@@ -2846,6 +3240,14 @@ msgstr "Paquet"
 msgid "Packages"
 msgstr "Forfaits"
 
+#: shared/models.py:268
+msgid "Temporary Upload"
+msgstr ""
+
+#: shared/models.py:269
+msgid "Temporary Uploads"
+msgstr ""
+
 #: shared/templates/shared/js/translation_utils.html:33
 msgid "Please enter some text to translate"
 msgstr "Veuillez saisir le texte à traduire"
@@ -2859,60 +3261,368 @@ msgstr "Échec de la traduction"
 msgid "Unknown error"
 msgstr "Erreur inconnue"
 
-#: shared/views.py:53
+#: shared/views.py:55
 msgid "Welcome back!"
 msgstr "Bon retour !"
 
-#: shared/views.py:65
+#: shared/views.py:67
 msgid "Account created successfully. Please log in."
 msgstr "Compte créé avec succès. Veuillez vous connecter."
 
-#: shared/views.py:102
+#: shared/views.py:104
 msgid "Password updated successfully."
 msgstr "Mot de passe mis à jour avec succès."
 
-#: shared/views.py:120
+#: shared/views.py:122
 msgid "Profile updated successfully."
 msgstr "Profil mis à jour avec succès."
 
-#: shared/views.py:139
-msgid "Konnect subscription"
-msgstr "Abonnement Konnect"
+#: shared/views.py:141 subscribers/models.py:7
+#, fuzzy
+#| msgid "Description"
+msgid "Subscription"
+msgstr "Description"
 
-#: shared/views.py:140
+#: shared/views.py:142
 msgid "Not available"
 msgstr "Non disponible"
 
-#: shared/views.py:143 shared/views.py:153
+#: shared/views.py:145 shared/views.py:155
 msgid "—"
 msgstr "—"
 
-#: shared/views.py:149
-msgid "Pending Konnect setup"
-msgstr "Configuration Konnect en attente"
+#: shared/views.py:151
+#, fuzzy
+#| msgid "Konnect subscription"
+msgid "Standard Subscription"
+msgstr "Abonnement Konnect"
 
-#: shared/views.py:185
+#: shared/views.py:187
 msgid "Page created successfully."
 msgstr "Page créée avec succès."
 
-#: shared/views.py:198
+#: shared/views.py:200
 msgid "Page updated successfully."
 msgstr "Page mise à jour avec succès."
 
-#: shared/views.py:209
+#: shared/views.py:211
 msgid "Page deleted successfully."
 msgstr "Page supprimée avec succès."
 
-#: guard/models.py guard/templates/guard/views/locations/list.html
-#: guard/templates/guard/views/events/list.html
-#: guard/templates/guard/views/ads/list.html
-#: guard/templates/guard/views/merchants/list.html
-msgid "Created By"
-msgstr "Créé par"
+#: subscribers/models.py:8
+#, fuzzy
+#| msgid "Events List"
+msgid "Event Boost"
+msgstr "Liste des événements"
 
-#: guard/models.py guard/templates/guard/views/locations/list.html
-#: guard/templates/guard/views/events/list.html
-#: guard/templates/guard/views/ads/list.html
-#: guard/templates/guard/views/merchants/list.html
-msgid "Updated By"
-msgstr "Mis à jour par"
+#: subscribers/models.py:9
+msgid "Ad Boost"
+msgstr ""
+
+#: subscribers/models.py:18
+#, fuzzy
+#| msgid "User profile"
+msgid "User Profile"
+msgstr "Profil utilisateur"
+
+#: subscribers/models.py:19
+#, fuzzy
+#| msgid "Translation failed"
+msgid "Transaction Type"
+msgstr "Échec de la traduction"
+
+#: subscribers/models.py:23
+#, fuzzy
+#| msgid "Subscription overview"
+msgid "Subscription Months"
+msgstr "Aperçu des abonnements"
+
+#: subscribers/models.py:26
+#, fuzzy
+#| msgid "Start Date"
+msgid "Ad Start Date"
+msgstr "Date de début"
+
+#: subscribers/models.py:27
+#, fuzzy
+#| msgid "End Date"
+msgid "Ad End Date"
+msgstr "Date de fin"
+
+#: subscribers/models.py:30
+msgid "Amount HT"
+msgstr ""
+
+#: subscribers/models.py:31
+msgid "Tax Amount (19%)"
+msgstr ""
+
+#: subscribers/models.py:32
+msgid "Timbre Fiscal"
+msgstr ""
+
+#: subscribers/models.py:33
+msgid "Total TTC"
+msgstr ""
+
+#: subscribers/models.py:36
+#, fuzzy
+#| msgid "Created At"
+msgid "Validated At"
+msgstr "Créé le"
+
+#: subscribers/models.py:39
+msgid "Payment Transaction"
+msgstr ""
+
+#: subscribers/models.py:40
+msgid "Payment Transactions"
+msgstr ""
+
+#: subscribers/views.py:22
+msgid "FielMedina - Bank Transfer Instructions"
+msgstr "FielMedina - Instructions pour le virement bancaire"
+
+#: subscribers/views.py:23
+#, python-brace-format
+msgid ""
+"Hello {user_name},\n"
+"\n"
+"Your request for {transaction_type} has been received!\n"
+"\n"
+"Total Amount due: {total} TND\n"
+"\n"
+"Please complete the payment via bank transfer using the details below:\n"
+"Account Name: DACNIS SARL\n"
+"Bank: BIAT\n"
+"RIB: 08129030011000676770\n"
+"IBAN: TN5908129030011000676770\n"
+"\n"
+"IMPORTANT: Please include this reference in your bank transfer motif/object: {reference}\n"
+"\n"
+"We must receive the amount within 3 working days, or your order will be canceled.\n"
+"\n"
+"Once the transfer is done, please reply to this email (commercial@dacnis.tn) with your proof of payment so we can validate your transaction.\n"
+"\n"
+"Thank you,\n"
+"The FielMedina Team"
+msgstr ""
+"Bonjour {user_name},\n"
+"\n"
+"Votre demande pour {transaction_type} a été reçue !\n"
+"\n"
+"Montant total dû : {total} TND\n"
+"\n"
+"Veuillez effectuer le paiement par virement bancaire en utilisant les coordonnées ci-dessous :\n"
+"Nom du compte : DACNIS SARL\n"
+"Banque : BIAT\n"
+"RIB : 08129030011000676770\n"
+"IBAN : TN5908129030011000676770\n"
+"\n"
+"IMPORTANT : Veuillez inclure cette référence dans l'objet/le motif de votre virement bancaire : {reference}\n"
+"\n"
+"Nous devons recevoir le montant dans les 3 jours ouvrables, sinon votre commande sera annulée.\n"
+"\n"
+"Une fois le virement effectué, veuillez répondre à cet email (commercial@dacnis.tn) avec votre preuve de paiement afin que nous puissions valider votre transaction.\n"
+"\n"
+"Merci,\n"
+"L'équipe FielMedina"
+
+#: subscribers/views.py:51
+#, python-brace-format
+msgid "New Pending Payment: {transaction_type}"
+msgstr ""
+
+#: subscribers/views.py:52
+#, python-brace-format
+msgid ""
+"A new offline bank transfer request has been submitted.\n"
+"\n"
+"Client: {client_email}\n"
+"Type: {transaction_type}\n"
+"Amount: {total} TND\n"
+"\n"
+"Please check the FielMedina Admin Validation panel to verify their proof of payment and approve the transaction."
+msgstr ""
+
+#: subscribers/views.py:68
+msgid "FielMedina - Order Canceled"
+msgstr "FielMedina - Commande Annulée"
+
+#: subscribers/views.py:69
+#, python-brace-format
+msgid ""
+"Hello {user_name},\n"
+"\n"
+"Your order for {transaction_type} ({reference}) has been canceled because no money was received within 5 working days.\n"
+"\n"
+"If you have already made the transfer, please contact us immediately at commercial@dacnis.tn with your proof of payment.\n"
+"\n"
+"Thank you,\n"
+"The FielMedina Team"
+msgstr ""
+"Bonjour {user_name},\n"
+"\n"
+"Votre commande pour {transaction_type} ({reference}) a été annulée car aucun paiement n'a été reçu dans un délai de 5 jours ouvrables.\n"
+"\n"
+"Si vous avez déjà effectué le virement, veuillez nous contacter immédiatement à commercial@dacnis.tn avec votre preuve de paiement.\n"
+"\n"
+"Merci,\n"
+"L'équipe FielMedina"
+
+#: subscribers/views.py:86
+msgid "FielMedina - Payment Validated"
+msgstr ""
+
+#: subscribers/views.py:87
+#, python-brace-format
+msgid ""
+"Hello {user_name},\n"
+"\n"
+"Great news! Your payment for {transaction_type} has been validated by our team.\n"
+"Your service is now active. We will send you an invoice shortly.\n"
+"\n"
+"Thank you,\n"
+"The FielMedina Team"
+msgstr ""
+
+#: subscribers/views.py:136
+msgid ""
+"Your payment request has been submitted. Please email proof of payment to "
+"commercial@dacnis.tn"
+msgstr ""
+
+#: subscribers/views.py:150
+msgid "Cannot boost an event that starts in less than 3 days."
+msgstr ""
+
+#: subscribers/views.py:170
+msgid "Boost request submitted. Please complete the bank transfer."
+msgstr ""
+
+#: subscribers/views.py:219
+#, fuzzy
+#| msgid "Location updated successfully."
+msgid "Transaction validated successfully."
+msgstr "Emplacement mis à jour avec succès."
+
+#: subscribers/views.py:232
+msgid "Transaction canceled and email sent to client."
+msgstr "Transaction annulée et email envoyé au client."
+
+#: subscribers/views.py:234
+#| msgid "Translation failed"
+msgid "Transaction cannot be canceled."
+msgstr "La transaction ne peut pas être annulée."
+
+#~ msgid ""
+#~ "Konnect integration is coming soon. These values are placeholders for now."
+#~ msgstr ""
+#~ "L'intégration Konnect sera bientôt disponible. Ces valeurs sont provisoires "
+#~ "pour le moment."
+
+#~ msgid "Open Konnect (Soon)"
+#~ msgstr "Ouvrir Konnect (bientôt)"
+
+#~ msgid "Save Ad"
+#~ msgstr "Enregistrer l'annonce"
+
+#~ msgid "Delete ad"
+#~ msgstr "Supprimer l'annonce"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the ad and its images"
+#~ " will be permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
+#~ "l'annonce et ses images seront définitivement supprimées."
+
+#~ msgid "Delete event"
+#~ msgstr "Supprimer l'événement"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the event will be "
+#~ "permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
+#~ "l'événement sera définitivement supprimé."
+
+#~ msgid "Delete hiking trail"
+#~ msgstr "Supprimer le sentier de randonnée"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the hiking trail will"
+#~ " be permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le"
+#~ " sentier de randonnée sera définitivement supprimé."
+
+#~ msgid "Delete location"
+#~ msgstr "Supprimer l'emplacement"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the location will be "
+#~ "permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
+#~ "l'emplacement sera définitivement supprimé."
+
+#~ msgid "Delete merchant"
+#~ msgstr "Supprimer le commerce"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the merchant will be "
+#~ "permanently deleted."
+#~ msgstr ""
+#~ "Attention : cette action est irréversible. Si vous confirmez, le commerce "
+#~ "sera définitivement supprimé."
+
+#~ msgid "Delete page"
+#~ msgstr "Supprimer la page"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the page will be "
+#~ "permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, la"
+#~ " page sera définitivement supprimée."
+
+#~ msgid "Delete partner"
+#~ msgstr "Supprimer le partenaire"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the partner will be "
+#~ "permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le"
+#~ " partenaire sera définitivement supprimé."
+
+#~ msgid "Delete transport"
+#~ msgstr "Supprimer le transport"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the transport route "
+#~ "and all its departure times will be permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, "
+#~ "l'itinéraire de transport et toutes ses heures de départ seront "
+#~ "définitivement supprimés."
+
+#~ msgid "Delete sponsor"
+#~ msgstr "Supprimer le sponsor"
+
+#~ msgid ""
+#~ "Warning: This action cannot be undone. If you confirm, the sponsor will be "
+#~ "permanently deleted."
+#~ msgstr ""
+#~ "Avertissement : cette action ne peut pas être annulée. Si vous confirmez, le"
+#~ " sponsor sera définitivement supprimé."
+
+#~ msgid "Delete tip"
+#~ msgstr "Supprimer le conseil"
+
+#~ msgid "Unnamed Tip"
+#~ msgstr "Conseil sans nom"
+
+#~ msgid "Pending Konnect setup"
+#~ msgstr "Configuration Konnect en attente"
