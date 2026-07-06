@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-03 02:31+0000\n"
+"POT-Creation-Date: 2026-07-06 14:17+0000\n"
 "PO-Revision-Date: 2026-01-05 23:14+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1037,7 +1037,7 @@ msgstr ""
 #: guard/templates/guard/auth/password_change.html:48
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:67
 #: guard/templates/guard/partials/shared_boost_event_modal.html:56
-#: guard/templates/guard/views/ads/index.html:247
+#: guard/templates/guard/views/ads/index.html:246
 #: guard/templates/guard/views/events/index.html:538
 #: guard/templates/guard/views/hiking/index.html:409
 #: guard/templates/guard/views/locations/index.html:614
@@ -1049,7 +1049,7 @@ msgstr ""
 #: guard/templates/guard/views/publicTransports/index.html:200
 #: guard/templates/guard/views/sponsors/delete.html:16
 #: guard/templates/guard/views/sponsors/index.html:69
-#: guard/templates/guard/views/subscribers/validation_list.html:117
+#: guard/templates/guard/views/subscribers/validation_list.html:121
 #: guard/templates/guard/views/tips/index.html:167
 msgid "Cancel"
 msgstr "Annuler"
@@ -1265,12 +1265,10 @@ msgstr "Gérez votre abonnement via des virements bancaires hors ligne."
 #: guard/templates/guard/auth/settings.html:117
 #: guard/templates/guard/views/subscribers/transaction_history.html:5
 #: guard/templates/guard/views/subscribers/transaction_history.html:11
-#| msgid "Translation failed"
 msgid "Transaction History"
 msgstr "Historique des transactions"
 
 #: guard/templates/guard/auth/settings.html:120
-#| msgid "Konnect subscription"
 msgid "Renew Subscription"
 msgstr "Renouveler l'abonnement"
 
@@ -1308,6 +1306,32 @@ msgid ""
 msgstr ""
 "Aucune donnée d'abonnement pour le moment. La facturation Konnect apparaîtra"
 " ici une fois la connexion établie."
+
+#: guard/templates/guard/base/messages.html:11
+#, fuzzy
+#| msgid "Check your inbox"
+msgid "Check icon"
+msgstr "Consultez votre boîte de réception"
+
+#: guard/templates/guard/base/messages.html:18
+msgid "Error icon"
+msgstr "Icône d'erreur"
+
+#: guard/templates/guard/base/messages.html:25
+msgid "Warning icon"
+msgstr "Icône d'avertissement"
+
+#: guard/templates/guard/base/messages.html:32
+#, fuzzy
+#| msgid "Ad Information"
+msgid "Info icon"
+msgstr "Informations publicitaires"
+
+#: guard/templates/guard/base/messages.html:37
+#, fuzzy
+#| msgid "Closed Days"
+msgid "Close"
+msgstr "Jours de fermeture"
 
 #: guard/templates/guard/base/sidebar-left.html:18
 #: guard/templates/guard/views/ads/index.html:18
@@ -1351,6 +1375,12 @@ msgstr "Sponsors"
 msgid "My events"
 msgstr "Mes événements"
 
+#: guard/templates/guard/base/topBar.html:9
+#, fuzzy
+#| msgid "Open user menu"
+msgid "Open sidebar"
+msgstr "Ouvrir le menu utilisateur"
+
 #: guard/templates/guard/base/topBar.html:22
 msgid "Super Admin"
 msgstr "Super Admin"
@@ -1377,6 +1407,18 @@ msgstr "Se déconnecter"
 msgid "Boost Ad"
 msgstr "Booster l'annonce"
 
+#: guard/templates/guard/partials/shared_boost_ad_modal.html:11
+#: guard/templates/guard/partials/shared_boost_event_modal.html:11
+#: guard/templates/guard/partials/shared_delete_modal.html:13
+#: guard/templates/guard/views/ads/index.html:277
+#: guard/templates/guard/views/locations/partials/cat_model.html:9
+#: guard/templates/guard/views/merchants/list.html:34
+#: guard/templates/guard/views/merchants/partials/category_confirm_delete.html:11
+#: guard/templates/guard/views/subscribers/validation_list.html:132
+#: guard/templates/guard/views/subscribers/validation_list.html:158
+msgid "Close modal"
+msgstr "Fermer le modal"
+
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:19
 msgid "Ad boosting costs"
 msgstr "Les coûts de boost de l'annonce"
@@ -1389,35 +1431,35 @@ msgstr ""
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:34
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:110
-#: guard/templates/guard/views/ads/index.html:210
-#: guard/templates/guard/views/ads/index.html:301
+#: guard/templates/guard/views/ads/index.html:209
+#: guard/templates/guard/views/ads/index.html:337
 msgid "Select a start and end date to calculate the total price."
 msgstr "Sélectionnez une date de début et de fin pour calculer le prix total."
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:37
 #: guard/templates/guard/partials/shared_boost_event_modal.html:26
-#: guard/templates/guard/views/ads/index.html:213
+#: guard/templates/guard/views/ads/index.html:212
 #: guard/templates/guard/views/subscribers/payment_portal.html:110
 msgid "Payment Method"
 msgstr "Méthode de paiement"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:45
 #: guard/templates/guard/partials/shared_boost_event_modal.html:34
-#: guard/templates/guard/views/ads/index.html:221
+#: guard/templates/guard/views/ads/index.html:220
 #: guard/templates/guard/views/subscribers/payment_portal.html:118
 msgid "Bank Transfer"
 msgstr "Virement bancaire"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:55
 #: guard/templates/guard/partials/shared_boost_event_modal.html:44
-#: guard/templates/guard/views/ads/index.html:231
+#: guard/templates/guard/views/ads/index.html:230
 #: guard/templates/guard/views/subscribers/payment_portal.html:128
 msgid "Credit Card"
 msgstr "Carte de crédit"
 
 #: guard/templates/guard/partials/shared_boost_ad_modal.html:57
 #: guard/templates/guard/partials/shared_boost_event_modal.html:46
-#: guard/templates/guard/views/ads/index.html:233
+#: guard/templates/guard/views/ads/index.html:232
 #: guard/templates/guard/views/subscribers/payment_portal.html:130
 msgid "Coming Soon"
 msgstr "Bientôt disponible"
@@ -1476,11 +1518,6 @@ msgstr ""
 #| msgid "Delete"
 msgid "Confirm Delete"
 msgstr "Supprimer"
-
-#: guard/templates/guard/partials/shared_delete_modal.html:13
-#: guard/templates/guard/views/merchants/list.html:34
-msgid "Close modal"
-msgstr "Fermer le modal"
 
 #: guard/templates/guard/partials/shared_delete_modal.html:18
 #, fuzzy
@@ -1571,27 +1608,35 @@ msgstr ""
 "Remplissez les informations pour créer une nouvelle annonce. Le lien sera "
 "automatiquement raccourci à des fins de suivi."
 
-#: guard/templates/guard/views/ads/index.html:74
+#: guard/templates/guard/views/ads/index.html:73
 msgid "Ad Information"
 msgstr "Informations publicitaires"
 
-#: guard/templates/guard/views/ads/index.html:76
+#: guard/templates/guard/views/ads/index.html:75
 msgid "Upload an image and enter the destination link"
 msgstr "Téléchargez une image et entrez le lien de destination"
 
-#: guard/templates/guard/views/ads/index.html:131
+#: guard/templates/guard/views/ads/index.html:130
 msgid "Required size: 320x50 pixels"
 msgstr "Taille requise : 320 x 50 pixels"
 
-#: guard/templates/guard/views/ads/index.html:150
+#: guard/templates/guard/views/ads/index.html:149
 msgid "Required size: 728x90 pixels"
 msgstr "Taille requise : 728x90 pixels"
 
-#: guard/templates/guard/views/ads/index.html:206
+#: guard/templates/guard/views/ads/index.html:205
 msgid "Payment"
 msgstr "Paiement"
 
-#: guard/templates/guard/views/ads/index.html:250
+#: guard/templates/guard/views/ads/index.html:254
+msgid "Validate and Submit Ad"
+msgstr "Valider et soumettre l'annonce"
+
+#: guard/templates/guard/views/ads/index.html:261
+msgid "Update Ad"
+msgstr "Mettre à jour l'annonce"
+
+#: guard/templates/guard/views/ads/index.html:283
 msgid ""
 "Are you sure you want to validate this ad? You will need to make the payment"
 " before it becomes active."
@@ -1599,52 +1644,58 @@ msgstr ""
 "Êtes-vous sûr de vouloir valider cette annonce ? Vous devrez effectuer le "
 "paiement avant qu'elle ne devienne active."
 
-#: guard/templates/guard/views/ads/index.html:254
-msgid "Update Ad"
-msgstr "Mettre à jour l'annonce"
+#: guard/templates/guard/views/ads/index.html:285
+#: guard/templates/guard/views/subscribers/validation_list.html:140
+#: guard/templates/guard/views/subscribers/validation_list.html:166
+msgid "Yes, I'm sure"
+msgstr "Oui, je suis sûr"
 
-#: guard/templates/guard/views/ads/index.html:254
-msgid "Validate and Submit Ad"
-msgstr "Valider et soumettre l'annonce"
+#: guard/templates/guard/views/ads/index.html:288
+#: guard/templates/guard/views/subscribers/validation_list.html:143
+#: guard/templates/guard/views/subscribers/validation_list.html:169
+#, fuzzy
+#| msgid "Cancel"
+msgid "No, cancel"
+msgstr "Annuler"
 
-#: guard/templates/guard/views/ads/index.html:290
+#: guard/templates/guard/views/ads/index.html:326
 msgid "Price Calculation:"
 msgstr "Calcul du prix:"
 
-#: guard/templates/guard/views/ads/index.html:292
+#: guard/templates/guard/views/ads/index.html:328
 #, fuzzy
 #| msgid "Duration"
 msgid "Duration:"
 msgstr "Durée"
 
-#: guard/templates/guard/views/ads/index.html:292
+#: guard/templates/guard/views/ads/index.html:328
 #, fuzzy
 #| msgid "Days left"
 msgid "Days"
 msgstr "Jours restants"
 
-#: guard/templates/guard/views/ads/index.html:293
+#: guard/templates/guard/views/ads/index.html:329
 msgid "Amount HT (3.9 TND/day):"
 msgstr "Montant HT (3,9 TND/jour):"
 
-#: guard/templates/guard/views/ads/index.html:294
+#: guard/templates/guard/views/ads/index.html:330
 #, python-format
 msgid "VAT (19%%):"
 msgstr "TVA (19%%) :"
 
-#: guard/templates/guard/views/ads/index.html:295
+#: guard/templates/guard/views/ads/index.html:331
 msgid "Timbre Fiscal:"
 msgstr "Timbre Fiscal:"
 
-#: guard/templates/guard/views/ads/index.html:296
+#: guard/templates/guard/views/ads/index.html:332
 msgid "Total TTC:"
 msgstr "Total TTC:"
 
-#: guard/templates/guard/views/ads/index.html:318
+#: guard/templates/guard/views/ads/index.html:354
 msgid "Invalid dimension"
 msgstr "Dimension non valide"
 
-#: guard/templates/guard/views/ads/index.html:318
+#: guard/templates/guard/views/ads/index.html:354
 msgid "Required"
 msgstr "Requis"
 
@@ -2681,7 +2732,6 @@ msgid "Payment Portal"
 msgstr "Portail de Paiement"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:11
-#| msgid "Subscription overview"
 msgid "Subscription Required"
 msgstr "Abonnement requis"
 
@@ -2695,7 +2745,6 @@ msgstr ""
 "l'accès à votre tableau de bord."
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:28
-#| msgid "Transport Details"
 msgid "Bank Transfer Details"
 msgstr "Détails du virement bancaire"
 
@@ -2704,7 +2753,6 @@ msgid "Bank"
 msgstr "Banque"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:36
-#| msgid "Product Name"
 msgid "Account Name"
 msgstr "Nom du compte"
 
@@ -2733,27 +2781,22 @@ msgid "with the proof of payment to activate your account."
 msgstr "avec la preuve de paiement pour activer votre compte."
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:64
-#| msgid "Konnect subscription"
 msgid "Select a Subscription Plan"
 msgstr "Sélectionnez un forfait d'abonnement"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:73
-#| msgid "Last Month"
 msgid "1 Month"
 msgstr "1 Mois"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:82
-#| msgid "Last Month"
 msgid "3 Months"
 msgstr "3 Mois"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:91
-#| msgid "Last Month"
 msgid "6 Months"
 msgstr "6 Mois"
 
 #: guard/templates/guard/views/subscribers/payment_portal.html:100
-#| msgid "Last Month"
 msgid "12 Months"
 msgstr "12 Mois"
 
@@ -2802,7 +2845,11 @@ msgstr "Emplacement"
 msgid "> 5 days (Cancel recommended)"
 msgstr "> 5 jours (Annulation recommandée)"
 
-#: guard/templates/guard/views/subscribers/validation_list.html:108
+#: guard/templates/guard/views/subscribers/validation_list.html:113
+msgid "Validate"
+msgstr "Valider"
+
+#: guard/templates/guard/views/subscribers/validation_list.html:138
 msgid ""
 "Are you sure you want to validate this payment? This action cannot be undone"
 " and will activate the requested feature."
@@ -2810,11 +2857,7 @@ msgstr ""
 "Êtes-vous sûr de vouloir valider ce paiement ? Cette action est irréversible"
 " et activera la fonctionnalité demandée."
 
-#: guard/templates/guard/views/subscribers/validation_list.html:111
-msgid "Validate"
-msgstr "Valider"
-
-#: guard/templates/guard/views/subscribers/validation_list.html:114
+#: guard/templates/guard/views/subscribers/validation_list.html:164
 msgid ""
 "Are you sure you want to cancel this order? An email will be sent to the "
 "client."
@@ -2822,7 +2865,7 @@ msgstr ""
 "Êtes-vous sûr de vouloir annuler cette commande ? Un email sera envoyé au "
 "client."
 
-#: guard/templates/guard/views/subscribers/validation_list.html:125
+#: guard/templates/guard/views/subscribers/validation_list.html:180
 msgid "No pending transactions."
 msgstr "Aucune transaction en attente."
 
@@ -3524,18 +3567,18 @@ msgstr "Transaction annulée et email envoyé au client."
 msgid "Transaction cannot be canceled."
 msgstr "La transaction ne peut pas être annulée."
 
-msgid ""
-"* All prices exclude VAT (19%) and Timbre Fiscal (1 TND) which will be added"
-" to your invoice."
-msgstr ""
-"* Tous les prix n'incluent pas la TVA (19 %) et le timbre fiscal (1 TND) qui"
-" seront ajoutés à votre facture."
+#~ msgid ""
+#~ "* All prices exclude VAT (19%) and Timbre Fiscal (1 TND) which will be added"
+#~ " to your invoice."
+#~ msgstr ""
+#~ "* Tous les prix n'incluent pas la TVA (19 %) et le timbre fiscal (1 TND) qui"
+#~ " seront ajoutés à votre facture."
 
-msgid "Total TTC (including 19% VAT & 1 TND Timbre)"
-msgstr "Total TTC (incluant 19% de TVA et 1 TND de timbre)"
+#~ msgid "Total TTC (including 19% VAT & 1 TND Timbre)"
+#~ msgstr "Total TTC (incluant 19% de TVA et 1 TND de timbre)"
 
-msgid "VAT (19%):"
-msgstr "TVA (19%) :"
+#~ msgid "VAT (19%):"
+#~ msgstr "TVA (19%) :"
 
 #~ msgid ""
 #~ "Konnect integration is coming soon. These values are placeholders for now."
