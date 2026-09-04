@@ -21,7 +21,26 @@
    {% include 'guard/views/locations/partials/cat_model.html' %}
 
    <div class="container py-6">
-      
+
+      {% if asset_totals.total %}
+      <div class="mb-4 flex flex-wrap items-center gap-3 text-sm">
+         <span class="font-medium text-heading">{% blocktrans with n=asset_totals.total %}{{ n }} locations{% endblocktrans %}</span>
+         <span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 dark:bg-gray-700 dark:text-gray-200">
+            {% trans "English voiceover" %}
+            <strong>{{ asset_totals.voice_en }}/{{ asset_totals.total }}</strong>
+         </span>
+         <span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 dark:bg-gray-700 dark:text-gray-200">
+            {% trans "French voiceover" %}
+            <strong>{{ asset_totals.voice_fr }}/{{ asset_totals.total }}</strong>
+         </span>
+         <span class="inline-flex items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1 dark:bg-gray-700 dark:text-gray-200">
+            {% trans "3D model" %}
+            <strong>{{ asset_totals.model_3d }}/{{ asset_totals.total }}</strong>
+         </span>
+         <span class="text-gray-500 dark:text-gray-400">{% trans "Type 'missing' in the search box to list unfinished work" %}</span>
+      </div>
+      {% endif %}
+
       <table id="location-list">
          <thead>
             <tr>
@@ -57,32 +76,45 @@
                         </svg>
                      </span>
                   </th>
-                  {% if request.user.is_staff %}
-                  <th>
+                  <th class="hidden md:table-cell">
                      <span class="flex items-center">
-                        {% trans "Created By" %}
+                        {% trans "Content" %}
                      </span>
                   </th>
-                  <th>
-                     <span class="flex items-center">
-                        {% trans "Updated By" %}
-                     </span>
-                  </th>
-                  {% endif %}
                   <th></th>
             </tr>
          </thead>
          <tbody>
             {% for data in locations %}
                <tr>
-                     <td class="font-medium text-heading whitespace-nowrap">{{ data.name }}</td>
+                     <td class="whitespace-nowrap">
+                        <div class="font-medium text-heading">{{ data.name }}</div>
+                        {% if request.user.is_staff and data.created_by or request.user.is_staff and data.updated_by %}
+                           <div class="mt-0.5 text-xs font-normal text-gray-500 dark:text-gray-400">
+                              {% if data.created_by %}
+                                 {% trans "by" %} {{ data.created_by.get_full_name|default:data.created_by.username }}
+                              {% endif %}
+                              {% if data.updated_by and data.updated_by != data.created_by %}
+                                 {% if data.created_by %}· {% endif %}{% trans "edited by" %} {{ data.updated_by.get_full_name|default:data.updated_by.username }}
+                              {% endif %}
+                           </div>
+                        {% endif %}
+                        <div class="mt-1.5 flex flex-wrap items-center gap-1 md:hidden">
+                           {% include 'guard/views/locations/partials/asset_badge.html' with is_present=data.voiceover_en label="EN" label_full=_("English voiceover") token="voice-en" icon="volume" %}
+                           {% include 'guard/views/locations/partials/asset_badge.html' with is_present=data.voiceover_fr label="FR" label_full=_("French voiceover") token="voice-fr" icon="volume" %}
+                           {% include 'guard/views/locations/partials/asset_badge.html' with is_present=data.model_3d label="3D" label_full=_("3D model") token="model-3d" icon="layers" %}
+                        </div>
+                     </td>
                      <td>{{ data.category.name }}</td>
                      <td>{{ data.city.name }}</td>
                      <td>{{ data.country.name }}</td>
-                     {% if request.user.is_staff %}
-                     <td>{% if data.created_by %}{{ data.created_by.get_full_name|default:data.created_by.username }}{% else %}-{% endif %}</td>
-                     <td>{% if data.updated_by %}{{ data.updated_by.get_full_name|default:data.updated_by.username }}{% else %}-{% endif %}</td>
-                     {% endif %}
+                     <td class="hidden md:table-cell">
+                        <div class="flex items-center gap-1.5">
+                           {% include 'guard/views/locations/partials/asset_badge.html' with is_present=data.voiceover_en label="EN" label_full=_("English voiceover") token="voice-en" icon="volume" %}
+                           {% include 'guard/views/locations/partials/asset_badge.html' with is_present=data.voiceover_fr label="FR" label_full=_("French voiceover") token="voice-fr" icon="volume" %}
+                           {% include 'guard/views/locations/partials/asset_badge.html' with is_present=data.model_3d label="3D" label_full=_("3D model") token="model-3d" icon="layers" %}
+                        </div>
+                     </td>
                      <td>
                         <div class="flex items-center gap-2">
                            <a href="{% url 'guard:location_update' data.id %}" class="inline-flex items-center text-white bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">

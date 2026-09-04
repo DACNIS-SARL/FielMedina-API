@@ -15,6 +15,22 @@ Django + Strawberry GraphQL backend for the Fielmedina apps (`Fielmedina-ios-v3`
   (`returned.count < limit`), not an explicit count.
 - Introspection is disabled outside `DEBUG` (`NoSchemaIntrospectionCustomRule`).
 
+## 3D landmark models
+
+`Location` carries an optional `model_3d` (.glb) plus `model_scale`, `model_rotation`
+(degrees clockwise from north) and `model_altitude` (metres). Both apps download the
+`.glb` in their offline prefetch and render it with Mapbox's `ModelLayer`; the same
+files are the intended source for the AR feature.
+
+The transform lives in the DB, not the apps, so a mis-placed or mis-scaled model is a
+Django admin edit — not an app release. Model authoring convention: origin at the
+building's ground centre, +Z up, facing north, exported in metres (so `model_scale`
+stays 1.0).
+
+Keep `.glb` files small. They are downloaded for offline use over Tunisian mobile data
+and rendered on low-end phones, and they are by far the largest asset the prefetcher
+handles.
+
 ## Known gaps (not yet addressed, flagged during a client-side audit)
 
 - No GraphQL query depth/cost limiting — a public endpoint without this is a DoS

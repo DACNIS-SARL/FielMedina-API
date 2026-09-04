@@ -1,4 +1,4 @@
-Django~=5.2
+Django~=5.2.17
 django-environ
 django-cors-headers
 strawberry-graphql[cli]
@@ -6,7 +6,7 @@ strawberry-graphql-django
 django-tinymce
 django-modeltranslation
 django-filter
-Pillow
+Pillow>=12.3.0
 django-cities-light
 psycopg[binary]
 requests
@@ -16,3 +16,14 @@ firebase-admin
 gunicorn
 whitenoise
 redis
+
+cryptography>=50.0.1
+sqlparse>=0.6.0
+urllib3>=2.7.0
+idna>=3.19
+h2>=4.4.1
+msgpack>=1.2.2
+pyjwt>=2.13.0
+pyasn1>=0.6.4
+python-multipart>=0.0.32
+starlette>=1.6.0

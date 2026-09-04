@@ -558,6 +558,78 @@
         </div>
     </div>
 
+    <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl mt-6">
+        <div class="px-4 py-5 sm:p-6">
+            <div class="border-b border-gray-200 dark:border-gray-700 pb-4 mb-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white flex items-center">
+                    <svg class="w-5 h-5 mr-2 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path>
+                    </svg>
+                    {% trans "3D Model" %}
+                </h2>
+                <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{% trans "Optional .glb model shown on the map. Origin at the building's ground centre, +Z up, facing north, exported in metres." %}</p>
+            </div>
+
+            <div class="mb-6">
+                <label for="{{ form.model_3d.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    {{ form.model_3d.label }}
+                </label>
+                {% if object.model_3d %}
+                    <div class="mb-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                        <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">
+                            {% trans "Current file:" %} <a href="{{ object.model_3d.url }}" class="text-blue-600 hover:underline" target="_blank" rel="noopener">{{ object.model_3d.name }}</a>
+                            <span class="text-gray-500">({{ object.model_3d.size|filesizeformat }})</span>
+                        </p>
+                        <div class="flex items-center">
+                            <input type="checkbox" name="model_3d-clear" id="model_3d-clear_id" class="w-4 h-4 text-red-600 bg-gray-100 border-gray-300 rounded focus:ring-red-500 dark:focus:ring-red-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                            <label for="model_3d-clear_id" class="ml-2 text-sm font-medium text-red-600 dark:text-red-500">{% trans "Delete this model" %}</label>
+                        </div>
+                    </div>
+                {% endif %}
+                {{ form.model_3d }}
+                {% if form.model_3d.errors %}
+                    <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.model_3d.errors.0 }}</p>
+                {% endif %}
+                {% if form.model_3d.help_text %}
+                    <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ form.model_3d.help_text }}</p>
+                {% endif %}
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div>
+                    <label for="{{ form.model_scale.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.model_scale.label }}</label>
+                    {{ form.model_scale }}
+                    {% if form.model_scale.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.model_scale.errors.0 }}</p>
+                    {% endif %}
+                    {% if form.model_scale.help_text %}
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ form.model_scale.help_text }}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.model_rotation.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.model_rotation.label }}</label>
+                    {{ form.model_rotation }}
+                    {% if form.model_rotation.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.model_rotation.errors.0 }}</p>
+                    {% endif %}
+                    {% if form.model_rotation.help_text %}
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ form.model_rotation.help_text }}</p>
+                    {% endif %}
+                </div>
+                <div>
+                    <label for="{{ form.model_altitude.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ form.model_altitude.label }}</label>
+                    {{ form.model_altitude }}
+                    {% if form.model_altitude.errors %}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500">{{ form.model_altitude.errors.0 }}</p>
+                    {% endif %}
+                    {% if form.model_altitude.help_text %}
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">{{ form.model_altitude.help_text }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Images Section -->
     <div class="bg-white dark:bg-gray-800 shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl mt-6">
         <div class="px-4 py-5 sm:p-6">

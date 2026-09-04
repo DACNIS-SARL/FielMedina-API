@@ -29,6 +29,11 @@ def location_voiceover_path(instance, filename):
     return f"locations/voiceovers/{instance.id}/{name}{ext}"
 
 
+def location_model_path(instance, filename):
+    name, ext = os.path.splitext(filename)
+    return f"locations/models/{instance.id}/{name}{ext}"
+
+
 def event_image_path(instance, filename):
     name, ext = os.path.splitext(filename)
     return f"events/{instance.event.id}/{name}.jpg"
@@ -209,6 +214,37 @@ class Location(models.Model):
         blank=True,
         null=True,
         help_text=_("Upload an audio voiceover in French (AAC format only)"),
+    )
+
+    # --- 3D model (map ModelLayer today, AR later) ---
+    # The apps download this file for offline use and hand it to Mapbox's ModelLayer.
+    # Transform values live here rather than in the apps so a mis-placed model can be
+    # corrected without an app release.
+    model_3d = models.FileField(
+        upload_to=location_model_path,
+        verbose_name=_("3D Model"),
+        blank=True,
+        null=True,
+        help_text=_(
+            "Optional glTF binary (.glb) of this landmark. Keep it small — it is "
+            "downloaded for offline use and rendered on the map. Model origin should "
+            "sit at the building's ground centre, +Z up, facing north."
+        ),
+    )
+    model_scale = models.FloatField(
+        default=1.0,
+        verbose_name=_("Model Scale"),
+        help_text=_("Uniform scale multiplier. 1.0 means the model is already in metres."),
+    )
+    model_rotation = models.FloatField(
+        default=0.0,
+        verbose_name=_("Model Rotation"),
+        help_text=_("Heading in degrees clockwise from north, to align the model with the real building."),
+    )
+    model_altitude = models.FloatField(
+        default=0.0,
+        verbose_name=_("Model Altitude"),
+        help_text=_("Vertical offset in metres, to lift or sink the model relative to the ground."),
     )
 
     created_by = models.ForeignKey(

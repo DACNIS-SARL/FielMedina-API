@@ -191,6 +191,20 @@ class LocationType:
             return info.context.request.build_absolute_uri(root.voiceover_fr.url)
         return None
 
+    # --- 3D model ---
+    # Absolute URL so the clients can download the .glb for offline use, plus the
+    # transform needed to place it. Null model3d means "this landmark has no model
+    # yet" — the clients skip it and render the normal marker.
+    @strawberry.field(name="model3d")
+    def model_3d(self, info: strawberry.Info, root) -> Optional[str]:
+        if getattr(root, "model_3d", None) and getattr(root.model_3d, "url", None):
+            return info.context.request.build_absolute_uri(root.model_3d.url)
+        return None
+
+    model_scale: auto
+    model_rotation: auto
+    model_altitude: auto
+
 
 @strawberry_django.type(OfflineCity)
 class OfflineCityType:

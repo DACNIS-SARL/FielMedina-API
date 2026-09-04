@@ -62,6 +62,17 @@ class LocationAdmin(TranslationAdmin):
                 "description": _("Optional audio voiceovers for this location (AAC format only)"),
             },
         ),
+        (
+            _("3D Model"),
+            {
+                "fields": ("model_3d", "model_scale", "model_rotation", "model_altitude"),
+                "description": _(
+                    "Optional .glb model shown on the map. The transform values are "
+                    "editable here so a mis-placed model can be corrected without an "
+                    "app release."
+                ),
+            },
+        ),
     )
 
 

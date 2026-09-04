@@ -164,8 +164,16 @@ class LocationForm(TemporaryUploadFormMixin, FlowbiteFormMixin, forms.ModelForm)
             "closedDays",
             "voiceover_en",
             "voiceover_fr",
+            "model_3d",
+            "model_scale",
+            "model_rotation",
+            "model_altitude",
         ]
         widgets = {
+            "model_3d": forms.ClearableFileInput(attrs={"accept": ".glb,.gltf"}),
+            "model_scale": forms.NumberInput(attrs={"step": "0.01", "min": "0"}),
+            "model_rotation": forms.NumberInput(attrs={"step": "1", "min": "0", "max": "360"}),
+            "model_altitude": forms.NumberInput(attrs={"step": "0.1"}),
             "category": forms.Select(
                 attrs={
                     "placeholder": _("Select location category"),

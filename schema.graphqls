@@ -168,6 +168,10 @@ type LocationType {
   closedDays: [WeekdayType!]!
   voiceoverEn: String
   voiceoverFr: String
+  model3d: String
+  modelScale: Float!
+  modelRotation: Float!
+  modelAltitude: Float!
 }
 
 type MerchantCategoryType {

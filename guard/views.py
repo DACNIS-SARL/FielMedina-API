@@ -1,4 +1,5 @@
 # from django.shortcuts import render
+from django.db.models import Count, Q
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.mixins import UserPassesTestMixin
@@ -130,7 +131,9 @@ class LocationsListView(UserPassesTestMixin, LoginRequiredMixin, ListView):
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        qs = super().get_queryset().select_related("created_by", "updated_by")
+        qs = super().get_queryset().select_related(
+            "created_by", "updated_by", "category", "city", "country"
+        )
         if self.request.user.is_staff:
             return qs
         return qs.filter(created_by=self.request.user)
@@ -138,6 +141,15 @@ class LocationsListView(UserPassesTestMixin, LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["location_categories"] = LocationCategory.objects.all()
+
+        qs = self.get_queryset()
+        totals = qs.aggregate(
+            total=Count("id"),
+            voice_en=Count("id", filter=~Q(voiceover_en="") & Q(voiceover_en__isnull=False)),
+            voice_fr=Count("id", filter=~Q(voiceover_fr="") & Q(voiceover_fr__isnull=False)),
+            model_3d=Count("id", filter=~Q(model_3d="") & Q(model_3d__isnull=False)),
+        )
+        context["asset_totals"] = totals
         return context
 
     def test_func(self):
