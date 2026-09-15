@@ -44,6 +44,8 @@ from guard.models import (
 from cities_light.models import City, Country
 from shared.models import Page, UserPreference
 
+from .accounts import AccountMutation, AccountQuery
+
 
 @strawberry.type
 class ImageFieldType:
@@ -651,7 +653,7 @@ class PublicTransportNodeType:
 
 
 @strawberry.type
-class Query:
+class Query(AccountQuery):
     @strawberry.field
     def pages(self, is_active: Optional[bool] = None) -> List[PageType]:
         qs = Page.objects.all()
@@ -967,7 +969,7 @@ class SubmitRatingPayload:
 
 
 @strawberry.type
-class Mutation:
+class Mutation(AccountMutation):
     @strawberry.mutation
     def sync_user_preference(
         self,

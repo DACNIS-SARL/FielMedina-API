@@ -143,6 +143,10 @@ LOGOUT_REDIRECT_URL = "shared:login"
 
 DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL")
 ADMIN_LIST_EMAILS = env.list("ADMIN_LIST_EMAILS")
+WEB_APP_URL = env(
+    "WEB_APP_URL",
+    default="http://localhost:3000" if DEBUG else "https://fielmedina.com",
+)
 
 
 if DEBUG:

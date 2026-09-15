@@ -131,6 +131,16 @@ class UserProfile(models.Model):
         STAFF = "staff", _("Staff")
         CLIENT_PARTNER = "client_partner", _("Client / Partners")
 
+    class Activity(models.TextChoices):
+        RESTAURANT = "restaurant", _("Restaurant or café")
+        GUESTHOUSE = "guesthouse", _("Guesthouse or hotel")
+        ARTISAN = "artisan", _("Artisan")
+        SHOP = "shop", _("Shop")
+        WELLNESS = "wellness", _("Wellness")
+        ACTIVITIES = "activities", _("Activities and tours")
+        EVENTS = "events", _("Events")
+        OTHER = "other", _("Other")
+
     user = models.OneToOneField(
         User,
         on_delete=models.CASCADE,
@@ -152,6 +162,12 @@ class UserProfile(models.Model):
     )
     subscription_started_at = models.DateField(null=True, blank=True)
     subscription_renews_at = models.DateField(null=True, blank=True)
+    company_name = models.CharField(_("Company"), max_length=160, blank=True, default="")
+    activity = models.CharField(
+        _("Activity"), max_length=32, choices=Activity.choices, blank=True, default=""
+    )
+    phone = models.CharField(_("Phone"), max_length=32, blank=True, default="")
+    city = models.CharField(_("City"), max_length=120, blank=True, default="")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
