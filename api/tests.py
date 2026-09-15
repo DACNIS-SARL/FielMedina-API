@@ -284,6 +284,35 @@ class AccountApiTests(TestCase):
         self.assertEqual(self.partner.last_name, "B. Salah")
         self.assertEqual(self.partner.profile.city, "Mahdia")
 
+    def test_update_account_keeps_omitted_fields(self):
+        UserProfile.objects.filter(user=self.partner).update(
+            company_name="Atelier Amina",
+            city="Mahdia",
+            phone="+216 70 000 000",
+        )
+        token = self.sign_in("atelier")["session"]["token"]
+
+        partial = self.graphql(
+            UPDATE,
+            {"input": {"fullName": "Amina Ben Salah", "email": "atelier@example.com"}},
+            token=token,
+        )["updateAccount"]
+        self.assertTrue(partial["ok"], partial)
+        account = partial["account"]
+        self.assertEqual(
+            (account["company"], account["city"], account["phone"]),
+            ("Atelier Amina", "Mahdia", "+216 70 000 000"),
+        )
+
+        cleared = self.graphql(
+            UPDATE,
+            {"input": {"fullName": "Amina Ben Salah", "email": "atelier@example.com", "city": ""}},
+            token=token,
+        )["updateAccount"]
+        self.assertTrue(cleared["ok"], cleared)
+        self.assertEqual(cleared["account"]["city"], "")
+        self.assertEqual(cleared["account"]["company"], "Atelier Amina")
+
     def test_update_account_requires_a_session(self):
         payload = self.graphql(UPDATE, {"input": {"fullName": "Amina", "email": "amina@example.com"}})
         self.assertEqual(payload["updateAccount"]["error"], "unauthenticated")

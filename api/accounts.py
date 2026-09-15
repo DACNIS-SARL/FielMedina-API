@@ -109,9 +109,9 @@ class SignUpInput:
 class AccountUpdateInput:
     full_name: str
     email: str
-    company: str = ""
-    city: str = ""
-    phone: str = ""
+    company: Optional[str] = None
+    city: Optional[str] = None
+    phone: Optional[str] = None
 
 
 def failure(error: Optional[str] = None, **fields: str) -> AccountPayload:
@@ -188,7 +188,7 @@ def password_error(password: str, user) -> Optional[str]:
     return None
 
 
-def identity_errors(full_name: str, email: str, phone: str, user=None) -> Dict[str, str]:
+def identity_errors(full_name: str, email: str, phone: Optional[str], user=None) -> Dict[str, str]:
     errors = {}
     if not full_name:
         errors["fullName"] = "required"
@@ -428,7 +428,7 @@ class AccountMutation:
         user = token.user
         full_name = single_line(data.full_name, 300)
         email = data.email.strip().lower()
-        phone = data.phone.strip()[:32]
+        phone = data.phone.strip()[:32] if data.phone is not None else None
 
         errors = identity_errors(full_name, email, phone, user=user)
         if errors:
@@ -439,9 +439,17 @@ class AccountMutation:
         user.save(update_fields=["first_name", "last_name", "email"])
 
         profile = profile_for(user)
-        profile.company_name = single_line(data.company, 160)
-        profile.city = single_line(data.city, 120)
-        profile.phone = phone
-        profile.save(update_fields=["company_name", "city", "phone", "updated_at"])
+        changed = []
+        if data.company is not None:
+            profile.company_name = single_line(data.company, 160)
+            changed.append("company_name")
+        if data.city is not None:
+            profile.city = single_line(data.city, 120)
+            changed.append("city")
+        if phone is not None:
+            profile.phone = phone
+            changed.append("phone")
+        if changed:
+            profile.save(update_fields=[*changed, "updated_at"])
 
         return AccountPayload(ok=True, account=serialize_account(user))
