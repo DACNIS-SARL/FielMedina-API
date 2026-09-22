@@ -2,12 +2,14 @@ import datetime
 import json
 import re
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core import mail
 from django.core.cache import cache
 from django.test import TestCase, override_settings
 from django.utils import timezone
 
+from guard.models import Partner
 from shared.models import UserProfile
 
 from .models import AuthToken
@@ -316,3 +318,42 @@ class AccountApiTests(TestCase):
     def test_update_account_requires_a_session(self):
         payload = self.graphql(UPDATE, {"input": {"fullName": "Amina", "email": "amina@example.com"}})
         self.assertEqual(payload["updateAccount"]["error"], "unauthenticated")
+
+
+@override_settings(
+    SITE_URL="https://mystory.fielmedina.com",
+    ALLOWED_HOSTS=["mystory.fielmedina.com", "fielmedina-api", "testserver"],
+)
+class MediaUrlHostTests(TestCase):
+    def setUp(self):
+        Partner.objects.bulk_create(
+            [
+                Partner(
+                    name="Test partner",
+                    image="partners/example.jpg",
+                    link="https://example.com",
+                )
+            ]
+        )
+
+    def image_urls(self, host):
+        response = self.client.post(
+            "/graphql",
+            data=json.dumps({"query": "{ partners { image { url } } }"}),
+            content_type="application/json",
+            HTTP_HOST=host,
+        )
+        self.assertEqual(response.status_code, 200)
+        payload = response.json()
+        self.assertIsNone(payload.get("errors"))
+        return [partner["image"]["url"] for partner in payload["data"]["partners"]]
+
+    def test_public_host_returns_site_url(self):
+        expected = f"https://mystory.fielmedina.com{settings.MEDIA_URL}partners/example.jpg"
+        self.assertEqual(self.image_urls("mystory.fielmedina.com"), [expected])
+
+    def test_internal_host_returns_the_same_public_url(self):
+        self.assertEqual(
+            self.image_urls("fielmedina-api:8000"),
+            self.image_urls("mystory.fielmedina.com"),
+        )

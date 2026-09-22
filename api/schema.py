@@ -15,6 +15,17 @@ from graphql.validation import NoSchemaIntrospectionCustomRule
 from strawberry.extensions import AddValidationRules
 
 
+def absolute_media_url(url: Optional[str]) -> str:
+    if not url:
+        return ""
+    if url.startswith(("http://", "https://")):
+        return url
+    base = (getattr(settings, "SITE_URL", "") or "").rstrip("/")
+    if not base:
+        return url
+    return f"{base}/{url.lstrip('/')}"
+
+
 from guard.models import (
     Location,
     LocationCategory,
@@ -54,7 +65,7 @@ class ImageFieldType:
         if not root:
             return ""
         try:
-            return info.context.request.build_absolute_uri(root.url)
+            return absolute_media_url(root.url)
         except Exception:
             return root.url
 
@@ -184,13 +195,13 @@ class LocationType:
     @strawberry.field(name="voiceoverEn")
     def voiceover_en(self, info: strawberry.Info, root) -> Optional[str]:
         if getattr(root, "voiceover_en", None) and getattr(root.voiceover_en, "url", None):
-            return info.context.request.build_absolute_uri(root.voiceover_en.url)
+            return absolute_media_url(root.voiceover_en.url)
         return None
 
     @strawberry.field(name="voiceoverFr")
     def voiceover_fr(self, info: strawberry.Info, root) -> Optional[str]:
         if getattr(root, "voiceover_fr", None) and getattr(root.voiceover_fr, "url", None):
-            return info.context.request.build_absolute_uri(root.voiceover_fr.url)
+            return absolute_media_url(root.voiceover_fr.url)
         return None
 
     # --- 3D model ---
@@ -200,7 +211,7 @@ class LocationType:
     @strawberry.field(name="model3d")
     def model_3d(self, info: strawberry.Info, root) -> Optional[str]:
         if getattr(root, "model_3d", None) and getattr(root.model_3d, "url", None):
-            return info.context.request.build_absolute_uri(root.model_3d.url)
+            return absolute_media_url(root.model_3d.url)
         return None
 
     model_scale: auto
@@ -412,7 +423,7 @@ class MerchantProductType:
     @strawberry.field
     def image(self, info: strawberry.Info, root) -> Optional[str]:
         if root.image and root.image.name:
-            return info.context.request.build_absolute_uri(root.image.url)
+            return absolute_media_url(root.image.url)
         return None
 
 
@@ -454,7 +465,7 @@ class MerchantType:
     @strawberry.field
     def cover(self, info: strawberry.Info, root) -> Optional[str]:
         if root.cover and root.cover.name:
-            return info.context.request.build_absolute_uri(root.cover.url)
+            return absolute_media_url(root.cover.url)
         return None
 
     @strawberry.field

@@ -173,6 +173,9 @@ else:
         "https://www.fielmedina.com",
     ])
     ALLOWED_HOSTS = env.list("ALLOWED_HOSTS", default=["mystory.fielmedina.com"])
+    for internal_host in env.list("INTERNAL_HOSTS", default=["fielmedina-api"]):
+        if internal_host not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(internal_host)
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_HOST = env("EMAIL_HOST")
     EMAIL_PORT = env.int("EMAIL_PORT")
