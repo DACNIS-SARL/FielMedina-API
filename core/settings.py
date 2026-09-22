@@ -147,6 +147,8 @@ WEB_APP_URL = env(
     "WEB_APP_URL",
     default="http://localhost:3000" if DEBUG else "https://fielmedina.com",
 )
+WEB_REVALIDATE_URL = env("WEB_REVALIDATE_URL", default=f"{WEB_APP_URL.rstrip('/')}/api/revalidate")
+WEB_REVALIDATE_SECRET = env("WEB_REVALIDATE_SECRET", default="")
 
 
 if DEBUG:
