@@ -15,6 +15,10 @@ from graphql.validation import NoSchemaIntrospectionCustomRule
 from strawberry.extensions import AddValidationRules
 
 
+def as_float(value: Any) -> Optional[float]:
+    return None if value is None else float(value)
+
+
 def absolute_media_url(url: Optional[str]) -> str:
     if not url:
         return ""
@@ -269,8 +273,13 @@ class HikingType:
     description_fr: str
     city: Optional["CityType"]
 
-    latitude: Optional[float]
-    longitude: Optional[float]
+    @strawberry.field
+    def latitude(self, root) -> Optional[float]:
+        return as_float(root.latitude)
+
+    @strawberry.field
+    def longitude(self, root) -> Optional[float]:
+        return as_float(root.longitude)
 
     @strawberry.field
     def images(self, root) -> List[ImageHikingType]:
@@ -419,7 +428,10 @@ class MerchantProductType:
     name: auto
     name_en: str
     name_fr: str
-    price: Optional[float]
+
+    @strawberry.field
+    def price(self, root) -> Optional[float]:
+        return as_float(root.price)
 
     @strawberry.field
     def image(self, info: strawberry.Info, root) -> Optional[str]:
@@ -450,8 +462,6 @@ class MerchantType:
     address: Optional[str]
     address_en: Optional[str]
     address_fr: Optional[str]
-    latitude: float
-    longitude: float
     phone: Optional[str]
     website: Optional[str]
     short_link: auto
@@ -480,6 +490,14 @@ class MerchantType:
     @strawberry.field
     def ratings(self, root) -> List[MerchantRatingType]:
         return root.ratings.filter(is_approved=True)
+
+    @strawberry.field
+    def latitude(self, root) -> float:
+        return float(root.latitude)
+
+    @strawberry.field
+    def longitude(self, root) -> float:
+        return float(root.longitude)
 
     @strawberry.field
     def average_rating(self, root) -> Optional[float]:
