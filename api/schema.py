@@ -56,6 +56,7 @@ from cities_light.models import City, Country
 from shared.models import Page, UserPreference
 
 from .accounts import AccountMutation, AccountQuery
+from .space import SpaceMutation, SpaceQuery
 
 
 @strawberry.type
@@ -664,7 +665,7 @@ class PublicTransportNodeType:
 
 
 @strawberry.type
-class Query(AccountQuery):
+class Query(SpaceQuery, AccountQuery):
     @strawberry.field
     def pages(self, is_active: Optional[bool] = None) -> List[PageType]:
         qs = Page.objects.all()
@@ -980,7 +981,7 @@ class SubmitRatingPayload:
 
 
 @strawberry.type
-class Mutation(AccountMutation):
+class Mutation(SpaceMutation, AccountMutation):
     @strawberry.mutation
     def sync_user_preference(
         self,
