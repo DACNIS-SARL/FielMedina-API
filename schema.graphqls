@@ -76,6 +76,7 @@ type EventType {
   city: CityType
   category: EventCategoryType
   location: LocationType
+  organizerName: String
   images: [ImageEventType!]!
 }
 

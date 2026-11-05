@@ -61,6 +61,7 @@ from shared.models import Page, UserPreference
 
 from .accounts import AccountMutation, AccountQuery
 from .space import SpaceMutation, SpaceQuery
+from .space_content import SpaceContentMutation, SpaceContentQuery
 
 
 @strawberry.type
@@ -336,6 +337,12 @@ class EventType:
     city: Optional["CityType"]
     category: Optional[EventCategoryType]
     location: Optional[LocationType]
+
+    @strawberry.field
+    def organizer_name(self, root) -> Optional[str]:
+        client = getattr(root, "client", None)
+        name = (getattr(client, "company_name", "") or "").strip() if client else ""
+        return name or None
 
     @strawberry.field
     def images(self, root) -> List[ImageEventType]:
@@ -683,7 +690,7 @@ class PublicTransportNodeType:
 
 
 @strawberry.type
-class Query(SpaceQuery, AccountQuery):
+class Query(SpaceContentQuery, SpaceQuery, AccountQuery):
     @strawberry.field
     def pages(self, is_active: Optional[bool] = None) -> List[PageType]:
         qs = Page.objects.all()
@@ -999,7 +1006,7 @@ class SubmitRatingPayload:
 
 
 @strawberry.type
-class Mutation(SpaceMutation, AccountMutation):
+class Mutation(SpaceContentMutation, SpaceMutation, AccountMutation):
     @strawberry.mutation
     def sync_user_preference(
         self,

@@ -383,15 +383,16 @@ def image_error(upload) -> Optional[str]:
     return None
 
 
-def refresh_short_link(instance, title: str) -> bool:
+def refresh_short_link(instance, title: str, url: Optional[str] = None) -> bool:
+    target = url or instance.link
     try:
         service = ShortIOService()
         if instance.short_id:
-            updated = service.update_link(instance.short_id, instance.link, title=title)
+            updated = service.update_link(instance.short_id, target, title=title)
             if updated:
                 instance.short_link = updated.get("secureShortURL") or updated.get("shortURL") or instance.short_link
                 return False
-        created = service.shorten_url(instance.link, title=title)
+        created = service.shorten_url(target, title=title)
         if created:
             instance.short_link = created.get("secureShortURL") or created.get("shortURL")
             instance.short_id = created.get("idString")
